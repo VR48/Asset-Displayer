@@ -36,31 +36,3 @@ export function importHandoff(value,sets,versions){
  return {decisions,unknown};
 }
 export function parseHandoff(text){if(typeof text!=='string'||text.length>2000000)throw Error('Handoff is too large.');try{return JSON.parse(text);}catch{throw Error('Handoff is not valid JSON.');}}
-// Serialized writes plus an optimistic content check avoid overwriting changes
-// from another tab/editor. No file handles or notes are transmitted over HTTP.
-export class HandoffWriter {
- constructor(handle,initialText,onState=()=>{}){this.handle=handle;this.expected=initialText;this.onState=onState;this.queue=Promise.resolve();this.active=true;}
- enqueue(snapshot){
-  if(!this.active)return Promise.reject(Error('Handoff is disconnected.'));
-  const text=JSON.stringify(snapshot,null,2)+'\n';
-  this.onState('saving');
-  const work=this.queue.catch(()=>{}).then(async()=>{
-   if(!this.active)return;
-   const commit=async()=>{
-    let stream;
-    try{
-     stream=await this.handle.createWritable({mode:'exclusive'});
-     if(await(await this.handle.getFile()).text()!==this.expected)throw Error('The handoff changed in another tab or editor. Reconnect and review it before saving.');
-     await stream.write(text);await stream.close();this.expected=text;this.onState('saved',snapshot.savedAt);
-    }catch(error){try{await stream?.abort();}catch{}throw error;}
-   };
-   const locks=globalThis.navigator?.locks;
-   if(locks)await locks.request('asset-displayer-handoff-'+this.handle.name,{mode:'exclusive',ifAvailable:true},async lock=>{if(!lock)throw Error('Another tab is writing this handoff. Wait, then reconnect.');return commit();});
-   else await commit();
-  });
-  this.queue=work.catch(error=>{this.onState('error',error.message);throw error;});
-  // Keep the queue rejection observed even if the caller closes the page.
-  this.queue.catch(()=>{});return this.queue;
- }
- async disconnect(){this.active=false;await this.queue.catch(()=>{});this.onState('disconnected');}
-}

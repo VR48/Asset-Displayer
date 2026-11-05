@@ -1,1 +1,1 @@
-{"name":"asset-displayer","version":"1.1.1","private":true,"type":"module","scripts":{"verify":"node verify.mjs","test":"node --test --test-concurrency=1 handoff.test.mjs","handoff":"node tools/read-handoff.mjs"}}
+{"name":"asset-displayer","version":"1.2.0","private":true,"type":"module","scripts":{"verify":"node verify.mjs","test":"node --test --test-concurrency=1 handoff.test.mjs","handoff":"node tools/read-handoff.mjs"}}

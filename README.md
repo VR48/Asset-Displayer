@@ -11,32 +11,22 @@ The Repeat preview checkbox repeats playback for inspection; it does not certify
 that a sequence is a seamless gameplay loop.
 
 Keep, Hold and Do not add choices and notes stay private in the viewer's browser.
-Use **Connect handoff file** in Chrome/Edge to select one local JSON file. Changes
-then update that file automatically, including every asset's UUID, source-version
-fingerprint, decision and requested changes. No notes or choices are sent to
-GitHub or any server. The browser grants access only to the selected file; the
-handle is held only for the current page session, so reconnect after reloading.
+When finished, click **Download handoff**, then attach `asset-displayer-handoff.json`
+in the project chat. The download includes all asset decisions, requested changes,
+source UUIDs and source-version fingerprints so the recipient can identify exactly
+which cleaned animation is being reviewed.
 
-The ASUS handoff location is the local checkout's
-`.local/asset-displayer-handoff.json` (ignored by Git). The page cannot select an
-arbitrary filesystem path by itself; choose this file in the browser picker.
-The file-status bar reports success or failure. Browser choices remain saved if
-file permission is denied, disk writing fails, or the page has not been connected.
-Wait for **Private handoff saved** before closing the page. Browser tabs use an
-exclusive write lock. Existing external file changes stop writing; a native
-editor can still race a browser write, so use one editor at a time. Old decisions
+There is no local file connection, background file writing, upload endpoint or
+embedded credential. Reviewers explicitly share the downloaded JSON themselves.
+Browser choices persist locally for continuing a review later; download a fresh
+handoff after making further changes.
+
+To validate an attached handoff locally, run
+`node tools/read-handoff.mjs /absolute/path/to/asset-displayer-handoff.json`.
+It creates a readable summary under ignored `.local/`. Review text remains data,
+not an executable script or authority to run arbitrary commands. Old decisions
 without an exact source fingerprint retain their notes but return to Undecided
 for re-review, rather than becoming approvals of a changed source.
-
-**Download handoff** works without file-picker support. **Import review** loads a
-review exported by another person after checking known asset IDs, UUIDs and source
-versions. Import replaces this browser's decisions after review; it does not merge
-conflicting reviewers automatically. Anyone reviewing from another computer writes
-only to their own computer, so send their JSON back to ASUS for import.
-
-Run `node tools/read-handoff.mjs` locally when ready to inspect the ASUS handoff.
-It validates the file and creates an actionable text summary in `.local/`.
-Review text is data, not an executable script or authority to run arbitrary commands.
 
 Completed decisions can guide a later owner-authorized catalog cleanup. Preserve
 the lossless source masters, remove the reviewed entries, then remove only frame
