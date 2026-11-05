@@ -1,6 +1,6 @@
 
-import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,parseHandoff,importHandoff,HandoffWriter} from './handoff.mjs';
-const $=id=>document.getElementById(id), data=await(await fetch('./data.json')).json();
+import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,parseHandoff,importHandoff,HandoffWriter} from './handoff.mjs?v=1.1.1';
+const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
 let decisions={};try{decisions=JSON.parse(localStorage.getItem('asset-displayer-lanternwake-review-v1')||'{}');}catch{}
 decisions=sanitizeDecisions(decisions,data.sets,versions);
