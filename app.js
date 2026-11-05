@@ -66,6 +66,7 @@ $('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('s
 $('pivot').onchange=()=>draw(frame);$('background').onchange=()=>$('stage').className='stage '+$('background').value;
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(snapshot(),null,2)+'\n'],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=FILE_NAME;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
 $('connect').onclick=async()=>{
+ $('connect').disabled=true;handoffStatus('Choose the local handoff JSON in the save dialog. If no dialog opens, use Download handoff or open this site in Chrome/Edge.');
  try{
   const handle=await window.showSaveFilePicker({suggestedName:FILE_NAME,types:[{description:'Asset review handoff JSON',accept:{'application/json':['.json']}}],excludeAcceptAllOption:true});
   const file=await handle.getFile();if(file.size>2000000)throw Error('Choose a handoff file smaller than 2 MB.');
@@ -84,7 +85,8 @@ $('connect').onclick=async()=>{
    else if(state==='error')handoffStatus('Handoff not saved: '+detail+' Browser choices are retained; reconnect or download.',true);
   });
   $('disconnect').hidden=false;$('connect').textContent='Reconnect / choose file';revision++;flushHandoff();
- }catch(error){if(error.name!=='AbortError')handoffStatus('Could not connect: '+error.message,true);}
+ }catch(error){if(error.name!=='AbortError')handoffStatus('Could not connect: '+error.message,true);else handoffStatus('File selection cancelled. Browser choices are retained.');}
+ finally{$('connect').disabled=false;}
 };
 $('disconnect').onclick=async()=>{clearTimeout(saveTimer);saveTimer=null;const prior=writer;writer=null;await prior?.disconnect();$('disconnect').hidden=true;$('connect').textContent='Connect handoff file';handoffStatus('File disconnected. New changes stay in this browser until connected or downloaded.');};
 $('import').onclick=()=>$('import-file').click();
