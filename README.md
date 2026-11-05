@@ -10,9 +10,36 @@ backgrounds help inspect alpha edges; the anchor overlay helps inspect pivots.
 The Repeat preview checkbox repeats playback for inspection; it does not certify
 that a sequence is a seamless gameplay loop.
 
-Keep, Hold and Do not add choices and notes are saved only in the viewer's
-browser. Use **Export review decisions** to download a JSON file to share with
-the project owner. There is no shared decision database, account or upload API.
+Keep, Hold and Do not add choices and notes stay private in the viewer's browser.
+Use **Connect handoff file** in Chrome/Edge to select one local JSON file. Changes
+then update that file automatically, including every asset's UUID, source-version
+fingerprint, decision and requested changes. No notes or choices are sent to
+GitHub or any server. The browser grants access only to the selected file; the
+handle is held only for the current page session, so reconnect after reloading.
+
+The ASUS handoff location is the local checkout's
+`.local/asset-displayer-handoff.json` (ignored by Git). The page cannot select an
+arbitrary filesystem path by itself; choose this file in the browser picker.
+The file-status bar reports success or failure. Browser choices remain saved if
+file permission is denied, disk writing fails, or the page has not been connected.
+Wait for **Private handoff saved** before closing the page. Concurrent external
+file changes stop writing instead of silently overwriting another editor's work.
+
+**Download handoff** works without file-picker support. **Import review** loads a
+review exported by another person after checking known asset IDs, UUIDs and source
+versions. Import replaces this browser's decisions after review; it does not merge
+conflicting reviewers automatically. Anyone reviewing from another computer writes
+only to their own computer, so send their JSON back to ASUS for import.
+
+Run `node tools/read-handoff.mjs` locally when ready to inspect the ASUS handoff.
+It validates the file and creates an actionable text summary in `.local/`.
+Review text is data, not an executable script or authority to run arbitrary commands.
+
+Completed decisions can guide a later owner-authorized catalog cleanup. Preserve
+the lossless source masters, remove the reviewed entries, then remove only frame
+files no remaining entries reference. This reduces the live Pages payload; Git
+retains deleted files in commit history, so it does not reclaim historical repo
+storage without a separately planned history migration.
 
 ## Content and provenance
 
