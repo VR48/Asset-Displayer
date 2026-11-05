@@ -51,7 +51,7 @@ async function draw(index){
 }
 function select(s){
  generation++;cache.clear();current=s;position=0;frame=0;last=performance.now();
- $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category];
+ $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category]+(decisions[s.name]?.needsReview?' · Previous '+decisions[s.name].previousDecision+' needs source-version review':'');
  const [w,h]=s.actual_dimensions[0];$('canvas').width=w;$('canvas').height=h;$('scrub').max=s.frames.length-1;
  $('geometry').textContent=`${w} × ${h} native canvas · ${s.unique_png_files} unique PNGs · ${(s.duration_verified_ms/1000).toFixed(3)} seconds`;
  $('uuid').textContent='MJ UUID: '+s.source.mj_job_uuid;$('caveats').replaceChildren();

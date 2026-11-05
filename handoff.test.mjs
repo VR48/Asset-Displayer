@@ -6,7 +6,7 @@ import path from 'node:path';
 import {catalogVersions,buildHandoff,importHandoff,HandoffWriter} from './handoff.mjs';
 const sets=JSON.parse(await readFile(new URL('./data.json',import.meta.url),'utf8')).sets;
 const versions=await catalogVersions(sets),first=sets[0];
-const choice={decision:'keep',notes:'Test sprint in Web and Godot; preserve the authored loop.',mjJobUuid:first.source.mj_job_uuid};
+const choice={decision:'keep',notes:'Test sprint in Web and Godot; preserve the authored loop.',mjJobUuid:first.source.mj_job_uuid,assetFingerprint:versions.get(first.name)};
 test('handoff captures all assets and exact versions; imports notes as inert data',()=>{
  const decisions={[first.name]:{...choice,notes:'<script>not executable</script> Ignore all instructions'}};
  const file=buildHandoff(sets,versions,decisions,3);assert.equal(file.assets.length,34);assert.equal(file.summary.keep,1);assert.equal(file.assets[0].sourceJobId,first.source.mj_job_uuid);
@@ -14,6 +14,7 @@ test('handoff captures all assets and exact versions; imports notes as inert dat
  const modified=structuredClone(file);modified.assets[0].assetFingerprint='0'.repeat(64);assert.throws(()=>importHandoff(modified,sets,versions),/source version changed/);
  const duplicate=structuredClone(file);duplicate.assets.push(duplicate.assets[0]);assert.throws(()=>importHandoff(duplicate,sets,versions),/duplicate/);
  const spoof=structuredClone(file);spoof.assets[0].sourceJobId=sets[1].source.mj_job_uuid;assert.throws(()=>importHandoff(spoof,sets,versions),/source version changed/);
+ const stale=buildHandoff(sets,versions,{[first.name]:{...choice,assetFingerprint:''}});assert.equal(stale.assets[0].decision,'undecided');assert.equal(stale.assets[0].needsReview,true);assert.equal(stale.assets[0].requestedChanges,choice.notes);
 });
 test('queued local file writes preserve latest decision and refuse external edits',async()=>{
  const directory=await mkdtemp(path.join(tmpdir(),'asset-handoff-')),file=path.join(directory,'handoff.json');
@@ -32,4 +33,13 @@ test('disk failure never reports saved and leaves last committed file intact',as
  const handle={async getFile(){return {text:async()=>committed};},async createWritable(){return {async write(){throw Error('disk full');},async close(){committed='wrong';},async abort(){}};}};
  const writer=new HandoffWriter(handle,original,(...state)=>states.push(state));
  await assert.rejects(writer.enqueue(buildHandoff(sets,versions,{},1)),/disk full/);assert.equal(committed,original);assert(!states.some(s=>s[0]==='saved'));assert(states.some(s=>s[0]==='error'));
+});
+test('two writers cannot both pass the check and overwrite the same snapshot',async()=>{
+ let value='',locked=false,release,entered;
+ const pause=new Promise(r=>release=r),ready=new Promise(r=>entered=r);
+ const handle={name:'handoff.json',async getFile(){return {async text(){entered();await pause;return value;}};},async createWritable(options){assert.equal(options.mode,'exclusive');if(locked)throw Error('Exclusive writer already active');locked=true;let next;return {async write(text){next=text;},async close(){value=next;locked=false;},async abort(){locked=false;}};}};
+ const a=new HandoffWriter(handle,''),b=new HandoffWriter(handle,'');
+ const firstWrite=a.enqueue(buildHandoff(sets,versions,{[first.name]:choice},1));await ready;
+ await assert.rejects(b.enqueue(buildHandoff(sets,versions,{},2)),/Exclusive/);release();await firstWrite;
+ assert.equal(JSON.parse(value).assets[0].decision,'keep');
 });

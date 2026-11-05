@@ -22,8 +22,11 @@ The ASUS handoff location is the local checkout's
 arbitrary filesystem path by itself; choose this file in the browser picker.
 The file-status bar reports success or failure. Browser choices remain saved if
 file permission is denied, disk writing fails, or the page has not been connected.
-Wait for **Private handoff saved** before closing the page. Concurrent external
-file changes stop writing instead of silently overwriting another editor's work.
+Wait for **Private handoff saved** before closing the page. Browser tabs use an
+exclusive write lock. Existing external file changes stop writing; a native
+editor can still race a browser write, so use one editor at a time. Old decisions
+without an exact source fingerprint retain their notes but return to Undecided
+for re-review, rather than becoming approvals of a changed source.
 
 **Download handoff** works without file-picker support. **Import review** loads a
 review exported by another person after checking known asset IDs, UUIDs and source
