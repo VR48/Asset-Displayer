@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Asset Displayer · Lanternwake</title>
+<link rel="stylesheet" href="style.css">
+<header><div><h1>Asset Displayer</h1><small>Lanternwake animation review · 34 lossless frame sets · original timing</small></div><button id="export">Export review decisions</button></header>
+<main><aside><div class="filters"><select id="character"><option value="">All characters</option></select><select id="category"><option value="">All package categories</option></select></div><small id="counts"></small><div id="list"></div></aside><article>
+<div class="title"><div><h2 id="title">Loading…</h2><div class="badge" id="approval"></div></div><select id="decision"><option value="undecided">Undecided</option><option value="keep">Keep candidate</option><option value="hold">Hold / compare</option><option value="skip">Do not add</option></select></div>
+<div class="stage checker" id="stage"><canvas id="canvas"></canvas></div>
+<div class="controls"><button id="play">Pause</button><button id="previous">◀ Frame</button><button id="next">Frame ▶</button><select id="speed"><option value="0.25">¼ speed</option><option value="0.5">½ speed</option><option value="1" selected>Original timing</option></select><label><input type="checkbox" id="loop" checked> Repeat preview</label><label><input type="checkbox" id="pivot"> Show anchor</label><select id="background"><option value="checker">Checker</option><option value="dark">Dark</option><option value="light">Light</option></select><span id="time"></span></div>
+<input type="range" id="scrub" class="scrub" min="0" max="1" step="1" value="0">
+<div class="details"><div class="panel"><strong>Provenance & playback</strong><p id="geometry"></p><code id="uuid"></code><p class="muted" id="frameInfo"></p><div class="status">Delivered PNGs only. Stabilization offsets are not applied again.</div></div><div class="panel"><strong>Package caveats</strong><ul id="caveats"></ul><label for="notes">Your review notes</label><textarea id="notes" placeholder="What works? Any visible problems or integration questions?"></textarea><small>Choices are private to this browser. Export your decisions to share them.</small></div></div>
+</article></main>
+<script type="module" src="app.js"></script></html>
