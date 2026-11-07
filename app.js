@@ -1,6 +1,6 @@
 
-import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.5.1';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.5.1';
+import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.5.2';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.5.2';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);

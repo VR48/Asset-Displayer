@@ -16,5 +16,6 @@ test('known prior rear revision retains notes but requires a fresh decision',asy
  const rear=sets.find(s=>s.name==='seb-master-rear-low-sword-v1'),versions=await catalogVersions(sets);assert(rear.source.previous_sha256);
  const previous={decision:'keep',notes:'Back too plain',sourceKey:rear.source.previous_sha256,assetFingerprint:'old'};
  const reset=sanitizeDecisions({[rear.name]:previous},sets,versions)[rear.name];assert.equal(reset.decision,'undecided');assert.equal(reset.notes,'Back too plain');assert.equal(reset.needsReview,true);
+ for(const key of rear.source.previous_sha256s??[]){const old=sanitizeDecisions({[rear.name]:{...previous,sourceKey:key}},sets,versions)[rear.name];assert.equal(old.decision,'undecided');assert.equal(old.notes,'Back too plain');assert.equal(old.needsReview,true);}
  assert.equal(sanitizeDecisions({[rear.name]:{...previous,sourceKey:'unrelated-source'}},sets,versions)[rear.name],undefined);
 });

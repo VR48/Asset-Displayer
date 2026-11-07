@@ -46,12 +46,15 @@ for offset, item in enumerate(selected):
         source['origin_image_index'] = item['baseImageIndex']
     if item.get('revisionParentSha256'):
         source['previous_sha256'] = item['revisionParentSha256']
+    if item.get('revisionAncestorSha256'):
+        source['previous_sha256s'] = item['revisionAncestorSha256']
     caveats = ['Static neutral standing MASTER candidate, not an animation or approval to replace gameplay assets.',
                'Sword belongs to anatomical right hand and hangs low; projector belongs to anatomical left forearm; shield off.',
                'Pure magenta background retained for future cleanup. Review PNG adds opaque alpha without changing RGB pixels.',
                'No runtime anchor, sprite scale, action timing or animation bank has been calibrated.']
     if item.get('revision'):
-        caveats.append(f"Revision {item['revision']}: added angular back armor plates, segmented spine and layered lumbar plates. Previous plain-back source is archived locally; review this revised artwork again.")
+        description = item.get('revisionDescription', 'Added angular back armor plates, segmented spine and layered lumbar plates.')
+        caveats.append(f"Revision {item['revision']}: {description} Previous rear versions are archived locally; review this revised artwork again.")
     if direction == 'front':
         caveats.append('Existing relaxed low-sword source retained unchanged, used by MJ job cbb51156-6c74-4d87-af82-e6c93535b391; original image-generation provider is not asserted.')
     else:

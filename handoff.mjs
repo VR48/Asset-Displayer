@@ -14,7 +14,7 @@ export function sanitizeDecisions(value,sets,versions){
  for(const set of sets){
   const entry=Object.hasOwn(value,set.name)?value[set.name]:null;
   if(!entry||!choices.has(entry.decision)||typeof entry.notes!=='string'||entry.notes.length>4000)continue;
-  const key=entry.sourceKey??entry.mjJobUuid,previous=!!set.source.previous_sha256&&key===set.source.previous_sha256;
+  const key=entry.sourceKey??entry.mjJobUuid,previous=typeof key==='string'&&[set.source.previous_sha256,...(set.source.previous_sha256s??[])].includes(key);
   if(key!==sourceIdentity(set)&&!previous)continue;
   const stale=previous||versions&&entry.assetFingerprint!==versions.get(set.name);
   result[set.name]={decision:stale?'undecided':entry.decision,notes:entry.notes,mjJobUuid:set.source.mj_job_uuid,sourceKey:sourceIdentity(set),packageCategory:set.approval_category,replaceApproved:!stale&&entry.decision==='keep'&&!!set.replacement&&entry.replaceApproved===true&&entry.replacementFingerprint===set.replacement.baselineFingerprint,replacementFingerprint:set.replacement?.baselineFingerprint,...(versions?{assetFingerprint:versions.get(set.name)}:{}),...((stale||entry.needsReview)?{needsReview:true,previousDecision:entry.previousDecision??entry.decision}:{})};
