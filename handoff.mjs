@@ -4,7 +4,7 @@ const choices=new Set(['undecided','keep','hold','skip']);
 async function sha(value){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))].map(b=>b.toString(16).padStart(2,'0')).join('');}
 export async function catalogVersions(sets){
  const result=new Map();
- for(const set of sets)result.set(set.name,await sha({uuid:set.source.mj_job_uuid,geometry:set.geometry,frames:set.frames.map((f,i)=>[f.sha256,set.durations[i]])}));
+ for(const set of sets)result.set(set.name,await sha({uuid:set.source.mj_job_uuid,geometry:set.geometry,frames:set.frames.map((f,i)=>[f.sha256,set.durations[i]]),...(set.replacement?{replacement:set.replacement}:{})}));
  return result;
 }
 export function sanitizeDecisions(value,sets,versions){
@@ -14,13 +14,13 @@ export function sanitizeDecisions(value,sets,versions){
   const entry=Object.hasOwn(value,set.name)?value[set.name]:null;
   if(!entry||!choices.has(entry.decision)||typeof entry.notes!=='string'||entry.notes.length>4000||entry.mjJobUuid!==set.source.mj_job_uuid)continue;
   const stale=versions&&entry.assetFingerprint!==versions.get(set.name);
-  result[set.name]={decision:stale?'undecided':entry.decision,notes:entry.notes,mjJobUuid:set.source.mj_job_uuid,packageCategory:set.approval_category,...(versions?{assetFingerprint:versions.get(set.name)}:{}),...((stale||entry.needsReview)?{needsReview:true,previousDecision:entry.previousDecision??entry.decision}:{})};
+  result[set.name]={decision:stale?'undecided':entry.decision,notes:entry.notes,mjJobUuid:set.source.mj_job_uuid,packageCategory:set.approval_category,replaceApproved:!stale&&entry.decision==='keep'&&!!set.replacement&&entry.replaceApproved===true&&entry.replacementFingerprint===set.replacement.baselineFingerprint,replacementFingerprint:set.replacement?.baselineFingerprint,...(versions?{assetFingerprint:versions.get(set.name)}:{}),...((stale||entry.needsReview)?{needsReview:true,previousDecision:entry.previousDecision??entry.decision}:{})};
  }
  return result;
 }
 export function buildHandoff(sets,versions,decisions,revision=0){
  const clean=sanitizeDecisions(decisions,sets,versions);
- const assets=sets.map(set=>({assetId:set.name,assetNumber:set.number,assetFingerprint:versions.get(set.name),sourceJobId:set.source.mj_job_uuid,packageCategory:set.approval_category,decision:clean[set.name]?.decision??'undecided',requestedChanges:clean[set.name]?.notes??'',timelineEntries:set.frames.length,durationMs:set.duration_verified_ms,...(clean[set.name]?.needsReview?{needsReview:true,previousDecision:clean[set.name].previousDecision}:{})}));
+ const assets=sets.map(set=>({assetId:set.name,assetNumber:set.number,assetFingerprint:versions.get(set.name),sourceJobId:set.source.mj_job_uuid,packageCategory:set.approval_category,decision:clean[set.name]?.decision??'undecided',requestedChanges:clean[set.name]?.notes??'',timelineEntries:set.frames.length,durationMs:set.duration_verified_ms,...(set.usage?{usage:set.usage}:{}),...(set.replacement?{replacement:{...set.replacement,approved:clean[set.name]?.replaceApproved===true}}:{}),...(clean[set.name]?.needsReview?{needsReview:true,previousDecision:clean[set.name].previousDecision}:{})}));
  return {schema:SCHEMA,project:'Lanternwake',savedAt:new Date().toISOString(),revision,summary:Object.fromEntries([...choices].map(c=>[c,assets.filter(a=>a.decision===c).length])),assets};
 }
 export function importHandoff(value,sets,versions){
@@ -31,7 +31,8 @@ export function importHandoff(value,sets,versions){
   seen.add(entry.assetId);const set=catalog.get(entry.assetId);
   if(!set){unknown.push(entry.assetId);continue;}
   if(entry.sourceJobId!==set.source.mj_job_uuid||entry.assetFingerprint!==versions.get(set.name))throw Error('The source version changed for '+set.name+'. Review it again before importing.');
-  decisions[set.name]={decision:entry.needsReview?'undecided':entry.decision,notes:entry.requestedChanges,mjJobUuid:set.source.mj_job_uuid,packageCategory:set.approval_category,assetFingerprint:versions.get(set.name),...(entry.needsReview?{needsReview:true,previousDecision:choices.has(entry.previousDecision)?entry.previousDecision:'undecided'}:{})};
+  if(entry.replacement){if(!set.replacement||Object.keys(set.replacement).some(key=>entry.replacement[key]!==set.replacement[key]))throw Error('Replacement target changed for '+set.name);if(typeof entry.replacement.approved!=='boolean'||entry.replacement.approved&& (entry.decision!=='keep'||entry.needsReview))throw Error('Invalid replacement approval');}
+  decisions[set.name]={decision:entry.needsReview?'undecided':entry.decision,notes:entry.requestedChanges,mjJobUuid:set.source.mj_job_uuid,packageCategory:set.approval_category,assetFingerprint:versions.get(set.name),replaceApproved:entry.replacement?.approved===true,replacementFingerprint:set.replacement?.baselineFingerprint,...(entry.needsReview?{needsReview:true,previousDecision:choices.has(entry.previousDecision)?entry.previousDecision:'undecided'}:{})};
  }
  return {decisions,unknown};
 }

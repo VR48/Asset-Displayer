@@ -10,6 +10,27 @@ backgrounds help inspect alpha edges; the anchor overlay helps inspect pivots.
 The Repeat preview checkbox repeats playback for inspection; it does not certify
 that a sequence is a seamless gameplay loop.
 
+**Compare** appears for the nine candidates with a verified existing character,
+action, direction and (where applicable) attack-phase destination. It opens the
+current original beside the cleaned candidate. Both use the same elapsed clock,
+playback controls, anchor location and world scale; each retains its own frame
+durations. Repeating previews loop independently. The original gait preview uses
+nominal gameplay cadence; in-game movement speed changes that cadence.
+
+The current comparison set is Rook sprint-right / walk-up / walk-down, Kest
+standing fire-right, Vale walk-right, Mica walk-down-right, and Mica's standing
+up-right weapon raise / fire / lower phases. Mica's diagonal art maps to the
+runtime's `down` / `up` keys. Raising and lowering replace attack phases, not
+standalone ready-state features. Kest's full repaired take still needs shot/phase
+segmentation before integration. New-feature candidates have an explanation and
+no Compare button: no approximate walk, attack or other slot is substituted.
+
+The **Authorize replacing** checkbox records approval of the named slot and
+phase against an exact original fingerprint in the downloaded handoff. Keep
+candidate alone does not authorize replacement. Changing to Hold, Do not add or
+Undecided clears that approval. Source or target changes invalidate old approval
+and preserve notes for re-review. Nothing is installed or removed by the viewer.
+
 Keep, Hold and Do not add choices and notes stay private in the viewer's browser.
 When finished, click **Download handoff**, then attach `asset-displayer-handoff.json`
 in the project chat. The download includes all asset decisions, requested changes,
@@ -41,6 +62,15 @@ storage without a separately planned history migration.
   viewing or marking a candidate does not install it in the game.
 - `assets/` stores 2,754 unique, unchanged lossless RGBA PNGs by SHA-256. Shared
   frames are stored once and referenced in the intended timeline order.
+- `comparisons.json` identifies the ASUS checkout's Original runtime bank
+  snapshot, with source commit, manifest/page hashes and attack-phase semantics.
+  `baselines/` contains 282 native-size RGBA PNGs decoded from those existing
+  KTX2 runtime pages with the pinned official Basis decoder, retaining each
+  clip's fixed rectangle. This is the existing game's delivered artwork, not
+  the raw Pika movie or a claim that another PC's checkout is synchronized.
+- `node tools/build-comparisons.mjs /absolute/path/to/lanternwake` rebuilds only
+  these review exports by reading the game; it never writes into its banks.
+  This requires the game's pinned decoder and is not needed to host the viewer.
 - Local filesystem paths, Discord links, transfer credentials, sender identity,
   internal evidence identifiers and original private manifests are excluded.
 - Artwork and character rights remain with their respective owners. Publication

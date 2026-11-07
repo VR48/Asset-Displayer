@@ -1,0 +1,2377 @@
+{
+  "schema": "asset-displayer-comparisons-v1",
+  "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+  "bank": "Original runtime bank (ASUS checkout snapshot)",
+  "conversion": "Pinned official Basis decoder to RGBA32, native clip rectangle; no scaling or retiming beyond authored playback rules.",
+  "baselines": [
+    {
+      "id": "rook-sprint-right-cycle",
+      "character": "Rook",
+      "slot": "sprint:right",
+      "phase": "cycle",
+      "direction": "Right",
+      "attacking": false,
+      "sourceManifest": "dist/assets/heroes/rook-animation.json",
+      "sourceManifestSha256": "321f711d1fae273cd17c843f63420428bb77254291baa3c4e17450261e09345f",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/rook-native-v6/sprint-right-01.ktx2",
+          "sha256": "57cf6284c1c2888301ff1036308495af1b81171d8cbb8658a362ece252c571ae"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/sprint-right-02.ktx2",
+          "sha256": "e76c9fff9244d60f18d56ab1bfd1b22d1d5ca95b0c71bce74e748204a10847b8"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/sprint-right-03.ktx2",
+          "sha256": "69d025809a8a91673d40118a6fbb039139b07c9fee844f0137e452036e517d6b"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/sprint-right-04.ktx2",
+          "sha256": "8183adb8783d7a8556a7c1593de1bd4d6aeeb220b720acd1cd7eca84867d760b"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          523,
+          691
+        ],
+        "anchor": [
+          242,
+          670
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Nominal gameplay gait cadence; actual speed changes with movement.",
+      "frames": [
+        {
+          "url": "baselines/5cad2b83e02f36355e4412b296ef16b6a3ff90a730d92814d36bb94c52f58b94.png",
+          "sha256": "5cad2b83e02f36355e4412b296ef16b6a3ff90a730d92814d36bb94c52f58b94",
+          "source_frame": 57,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/fbb4c002b852878bd488c74d0a5c52cb758be739caa2005f7e56cc416255eb74.png",
+          "sha256": "fbb4c002b852878bd488c74d0a5c52cb758be739caa2005f7e56cc416255eb74",
+          "source_frame": 58,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2579651d69bd51303a2806ffc8ef7a38f06da5914238f246f6cb55c9ba44a12a.png",
+          "sha256": "2579651d69bd51303a2806ffc8ef7a38f06da5914238f246f6cb55c9ba44a12a",
+          "source_frame": 59,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ceb151e72453233433af19ba9573fe25ec94cc8c3ad4d175546ca12468a4053d.png",
+          "sha256": "ceb151e72453233433af19ba9573fe25ec94cc8c3ad4d175546ca12468a4053d",
+          "source_frame": 60,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c201f8febbfe23ac9a5cc4eda79670f9ffc5331802de520a104fae3e77a876cb.png",
+          "sha256": "c201f8febbfe23ac9a5cc4eda79670f9ffc5331802de520a104fae3e77a876cb",
+          "source_frame": 61,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/46c8dde28164d5a9faa3639419c45230621e523d83b1692887ebb0bfecc556a3.png",
+          "sha256": "46c8dde28164d5a9faa3639419c45230621e523d83b1692887ebb0bfecc556a3",
+          "source_frame": 62,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8861eb612abb2154141e25321cbc61147419edb01f991b3390d65dbf42ac6ec2.png",
+          "sha256": "8861eb612abb2154141e25321cbc61147419edb01f991b3390d65dbf42ac6ec2",
+          "source_frame": 63,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0b4d54e966c5527e4c689491b0ac13c3cd2831e265083cdabe262a72da877934.png",
+          "sha256": "0b4d54e966c5527e4c689491b0ac13c3cd2831e265083cdabe262a72da877934",
+          "source_frame": 64,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5b428c605498b8c09a7365e1096b525405a9a235368d5d6f56dec7a051010fe8.png",
+          "sha256": "5b428c605498b8c09a7365e1096b525405a9a235368d5d6f56dec7a051010fe8",
+          "source_frame": 65,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/4fe43e18cec3573da7bb95f0d8bc99810a7b62c7116783f3328117343edad094.png",
+          "sha256": "4fe43e18cec3573da7bb95f0d8bc99810a7b62c7116783f3328117343edad094",
+          "source_frame": 66,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e2567d99a23a8ffdedaa78340b7c109e79174dc01e6f6119afe03a271f22a4fa.png",
+          "sha256": "e2567d99a23a8ffdedaa78340b7c109e79174dc01e6f6119afe03a271f22a4fa",
+          "source_frame": 67,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/48327264989aca9ab1dab16570b40194d86cbb33c3b7d60045d60afb675caf12.png",
+          "sha256": "48327264989aca9ab1dab16570b40194d86cbb33c3b7d60045d60afb675caf12",
+          "source_frame": 68,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/093cb1053a4d0efb8dd3556847f2111b760a83cd58741a7e2d734ad6b799e8e8.png",
+          "sha256": "093cb1053a4d0efb8dd3556847f2111b760a83cd58741a7e2d734ad6b799e8e8",
+          "source_frame": 69,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/41c5d785c412a2f7b902e1258d9737a9c1f17d8c591bdbffc4527b25262769ca.png",
+          "sha256": "41c5d785c412a2f7b902e1258d9737a9c1f17d8c591bdbffc4527b25262769ca",
+          "source_frame": 70,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1cd95ded8308c9cd728ff37f6cf12ff22269c031bb59bea2b63ab4663b1c535c.png",
+          "sha256": "1cd95ded8308c9cd728ff37f6cf12ff22269c031bb59bea2b63ab4663b1c535c",
+          "source_frame": 71,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a03ee78c6e9133354c9d56527815ca30d90375ea06908b53545062d2f064b4d2.png",
+          "sha256": "a03ee78c6e9133354c9d56527815ca30d90375ea06908b53545062d2f064b4d2",
+          "source_frame": 72,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c778b09b4c703be662330353d478332b8fc986683b6ef1070a11fa8a366727c4.png",
+          "sha256": "c778b09b4c703be662330353d478332b8fc986683b6ef1070a11fa8a366727c4",
+          "source_frame": 73,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/cd1e3fe78a07a00397764ca128b32f6dc1bd9ed7bec77ad6e1ff2a48a140fb66.png",
+          "sha256": "cd1e3fe78a07a00397764ca128b32f6dc1bd9ed7bec77ad6e1ff2a48a140fb66",
+          "source_frame": 74,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/82955c95f7a4f65020f136e3875aef5d8c5e1460916b1706c7b7e18c5a878349.png",
+          "sha256": "82955c95f7a4f65020f136e3875aef5d8c5e1460916b1706c7b7e18c5a878349",
+          "source_frame": 75,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9be6751e9d60c2a57635728e77dfa76d8f814c17e5e40fd7495b37e377fd4871.png",
+          "sha256": "9be6751e9d60c2a57635728e77dfa76d8f814c17e5e40fd7495b37e377fd4871",
+          "source_frame": 76,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/114dca74b2c25c4b51f23644f475ebcaedabd7b97bf6dee2886129198a4e12fc.png",
+          "sha256": "114dca74b2c25c4b51f23644f475ebcaedabd7b97bf6dee2886129198a4e12fc",
+          "source_frame": 77,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/73678375843ff642d79c44b0555deb4e615ce5745d2cb04b6a261602af4a3252.png",
+          "sha256": "73678375843ff642d79c44b0555deb4e615ce5745d2cb04b6a261602af4a3252",
+          "source_frame": 78,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/aaa8db4f80b83c8903018fed38c38e02afc367701404deb35415dc28b1a1d91b.png",
+          "sha256": "aaa8db4f80b83c8903018fed38c38e02afc367701404deb35415dc28b1a1d91b",
+          "source_frame": 79,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1249cf35cad678c6522f8b454f21da23c27ec792ef67b73bc2b79f02329e4fbb.png",
+          "sha256": "1249cf35cad678c6522f8b454f21da23c27ec792ef67b73bc2b79f02329e4fbb",
+          "source_frame": 80,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e184a48c9c67b9ba27311864a652297ee58b5e4a3f313731e336123ab7a52542.png",
+          "sha256": "e184a48c9c67b9ba27311864a652297ee58b5e4a3f313731e336123ab7a52542",
+          "source_frame": 81,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/da3701eca67245a2f5fc0046576f08008e255d6953391b82cf94e75aae27137a.png",
+          "sha256": "da3701eca67245a2f5fc0046576f08008e255d6953391b82cf94e75aae27137a",
+          "source_frame": 82,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/60d98795081681d6098735bad647f6a859828e8246c14012f27ed81363a58e0d.png",
+          "sha256": "60d98795081681d6098735bad647f6a859828e8246c14012f27ed81363a58e0d",
+          "source_frame": 83,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5c73709fbbb07a5da8fece14b30faaca9d3f3477c0e6fd00e38f27308730d25c.png",
+          "sha256": "5c73709fbbb07a5da8fece14b30faaca9d3f3477c0e6fd00e38f27308730d25c",
+          "source_frame": 84,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/f20d015bb0cdd5562903a6d83831659c0843663e93bb9a6b4c091fde808d8ba9.png",
+          "sha256": "f20d015bb0cdd5562903a6d83831659c0843663e93bb9a6b4c091fde808d8ba9",
+          "source_frame": 85,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1c810604d23beb2c8f2006c8cdcd8fc6ebb229347fae876d7ee528ee8b512bda.png",
+          "sha256": "1c810604d23beb2c8f2006c8cdcd8fc6ebb229347fae876d7ee528ee8b512bda",
+          "source_frame": 86,
+          "phase": "cycle"
+        }
+      ],
+      "durations": [
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953,
+        20.952380952380953
+      ],
+      "duration_verified_ms": 628.5714285714288,
+      "fingerprint": "db316e00b889e1ac1cdabb14f16e28de3735eb0e93b56979998a750dd863ce62"
+    },
+    {
+      "id": "kest-attack-right-action",
+      "character": "Kest",
+      "slot": "attack:right",
+      "phase": "action",
+      "direction": "Right",
+      "attacking": true,
+      "sourceManifest": "dist/assets/heroes/kest-animation.json",
+      "sourceManifestSha256": "c57403c7d79f7f7866b7e7292b20a1463d3cc281a18117d2b7f8c07856bcaa89",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-01.ktx2",
+          "sha256": "f731194f83b3a4022646e487e2a608328b5d6d291dd5f3622e660436e4fcfaca"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-02.ktx2",
+          "sha256": "e4a6be9c1540b7e97153c5e715746fa7ecf889fe9cb8f5a3c01b5c3c29c8068f"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-03.ktx2",
+          "sha256": "2ae201b815a6fc7b547dda72bb192e0d13ac1ab0c857e9805d1eb03ab5190fa7"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-04.ktx2",
+          "sha256": "21f3888b76e113c983ea2474adbbbd9c9d7988dab0e860b7378e1704f068c26f"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-05.ktx2",
+          "sha256": "c8265448d27dba95a2c82d9dbf18b6fe6896f78ae420a4f2ad3a2c6fe6436992"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-06.ktx2",
+          "sha256": "80c3d3b3e839e14fd7550e0272cf72d1ccdac2933944e180d8573366971bd729"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-07.ktx2",
+          "sha256": "2f68e281c975301fd86b837482602a83ebcfebebc46193a0160e8570c689d0a8"
+        },
+        {
+          "path": "dist/assets/heroes/kest-native-v1/attack-right-08.ktx2",
+          "sha256": "5ab57ed954d0b0c9dc34bde957e8870fb953cd640f8b8cb6b5413788ce9c6c06"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          556,
+          597
+        ],
+        "anchor": [
+          132,
+          589
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Authored attack phases; one active firing cycle. Holding fire repeats the active phase.",
+      "frames": [
+        {
+          "url": "baselines/a01b1afa7136e998c3c0b78e126799726f6a687c783ae8545ff154f90369fa61.png",
+          "sha256": "a01b1afa7136e998c3c0b78e126799726f6a687c783ae8545ff154f90369fa61",
+          "source_frame": 12,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/614f325d9f4df33329fb3ef4055081f930f77925cdad26503b5a4d9f7a1ef83c.png",
+          "sha256": "614f325d9f4df33329fb3ef4055081f930f77925cdad26503b5a4d9f7a1ef83c",
+          "source_frame": 13,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/42914bfa5054eaec66773846de11cd088d914cdb6add702b1925c386b39eb0f3.png",
+          "sha256": "42914bfa5054eaec66773846de11cd088d914cdb6add702b1925c386b39eb0f3",
+          "source_frame": 14,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/103e5aabb10668a8836564c02b71342979479b977dce3bc7284133d8545a5a32.png",
+          "sha256": "103e5aabb10668a8836564c02b71342979479b977dce3bc7284133d8545a5a32",
+          "source_frame": 15,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/b0e7a29272d41e0412b2d3bd7cd9a54f54676713f2a567a91d5414372ce482e7.png",
+          "sha256": "b0e7a29272d41e0412b2d3bd7cd9a54f54676713f2a567a91d5414372ce482e7",
+          "source_frame": 16,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/4bb0c43f8054436458f5b8a7cbf91d0031e5bdeb733c5f831df87f14e9f72a22.png",
+          "sha256": "4bb0c43f8054436458f5b8a7cbf91d0031e5bdeb733c5f831df87f14e9f72a22",
+          "source_frame": 17,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/be95c3497344534859bcfc3eec0351ca565d44dc8f47a1be846d5edf987dc5f7.png",
+          "sha256": "be95c3497344534859bcfc3eec0351ca565d44dc8f47a1be846d5edf987dc5f7",
+          "source_frame": 18,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/b58ed48b4d3510792d3c262c7e31bf877adde71fb3d9fbbdf47c62501b89bb8f.png",
+          "sha256": "b58ed48b4d3510792d3c262c7e31bf877adde71fb3d9fbbdf47c62501b89bb8f",
+          "source_frame": 19,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/e3da8a443671786936a0c422ac27aa725f5f65fa01dddf5fed69e0464049a40d.png",
+          "sha256": "e3da8a443671786936a0c422ac27aa725f5f65fa01dddf5fed69e0464049a40d",
+          "source_frame": 20,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/9c7ab595fdf34c61495b2c839ba8a103f2b8ce20ce1f392c5013fc5c610a2c81.png",
+          "sha256": "9c7ab595fdf34c61495b2c839ba8a103f2b8ce20ce1f392c5013fc5c610a2c81",
+          "source_frame": 21,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/b2f09a6459222b8eaf48ebf22d72376780a1133e108974192fab8de8c177312a.png",
+          "sha256": "b2f09a6459222b8eaf48ebf22d72376780a1133e108974192fab8de8c177312a",
+          "source_frame": 22,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/5d6396bc5a75975f60d671c3acc229191ef55c1f1f91f0434f857365abe2f9b0.png",
+          "sha256": "5d6396bc5a75975f60d671c3acc229191ef55c1f1f91f0434f857365abe2f9b0",
+          "source_frame": 23,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/11cce5823b54ccf351e2ad236267a52e707bfa05ce0b8312fa31755bf7ab0be0.png",
+          "sha256": "11cce5823b54ccf351e2ad236267a52e707bfa05ce0b8312fa31755bf7ab0be0",
+          "source_frame": 24,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/bf4de6a04d0bc3dd2abd79557bb3411dc85f7933b4dc6f66765ad994d22feff9.png",
+          "sha256": "bf4de6a04d0bc3dd2abd79557bb3411dc85f7933b4dc6f66765ad994d22feff9",
+          "source_frame": 25,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/df883a4f9c0bfe23471a86c38b25764ecc434e9e88e75f7fb46e4971e39646b7.png",
+          "sha256": "df883a4f9c0bfe23471a86c38b25764ecc434e9e88e75f7fb46e4971e39646b7",
+          "source_frame": 26,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/ddb82f131755c0f42f3a99787165f98df1f8022c104b6790ad8f409690ca1311.png",
+          "sha256": "ddb82f131755c0f42f3a99787165f98df1f8022c104b6790ad8f409690ca1311",
+          "source_frame": 27,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/06d9376ad8889727fa495f8e780a2276cf9339326d2ce88f97c4e4160be0931c.png",
+          "sha256": "06d9376ad8889727fa495f8e780a2276cf9339326d2ce88f97c4e4160be0931c",
+          "source_frame": 28,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/0a668e49b3f95e28a44bb996556947faca8e73e10172b27a9a4c254aaa0acddc.png",
+          "sha256": "0a668e49b3f95e28a44bb996556947faca8e73e10172b27a9a4c254aaa0acddc",
+          "source_frame": 29,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/e9f5d55d649212f9aecdb30467c87d03a733551820aedd8b28b34e4c2a003f5a.png",
+          "sha256": "e9f5d55d649212f9aecdb30467c87d03a733551820aedd8b28b34e4c2a003f5a",
+          "source_frame": 30,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/b36175c6cfed6f577979732df6e26aad1854a5bf853e09580365a1cdac9208d5.png",
+          "sha256": "b36175c6cfed6f577979732df6e26aad1854a5bf853e09580365a1cdac9208d5",
+          "source_frame": 31,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/ccceedae92b3170b6ff2c2bc95ed2f6e58bf73d03b9e21e471275097e0f8879d.png",
+          "sha256": "ccceedae92b3170b6ff2c2bc95ed2f6e58bf73d03b9e21e471275097e0f8879d",
+          "source_frame": 32,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/638e535017ca896d9a50a624ae79be3ea9450c4ada1324362013c6f82ffc1249.png",
+          "sha256": "638e535017ca896d9a50a624ae79be3ea9450c4ada1324362013c6f82ffc1249",
+          "source_frame": 33,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/f1da5ba1bf1e61aac59ecfb2dfd99ae1ce379754566b99db21139acab91af758.png",
+          "sha256": "f1da5ba1bf1e61aac59ecfb2dfd99ae1ce379754566b99db21139acab91af758",
+          "source_frame": 34,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/ecc797983c3de0e0958769c9db152954a6c8eb5873a0b84a33a7ef17b79e6e72.png",
+          "sha256": "ecc797983c3de0e0958769c9db152954a6c8eb5873a0b84a33a7ef17b79e6e72",
+          "source_frame": 35,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/250597756ad9ba83b6b6d1d9da0a4ba6f5d46f0773be1488b884287f731fc431.png",
+          "sha256": "250597756ad9ba83b6b6d1d9da0a4ba6f5d46f0773be1488b884287f731fc431",
+          "source_frame": 36,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/9e22062d5badc8f8f2f732d93de38209bd829248c4ecb2f74520894bb32d07c6.png",
+          "sha256": "9e22062d5badc8f8f2f732d93de38209bd829248c4ecb2f74520894bb32d07c6",
+          "source_frame": 37,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/95f720483934aa4df02324a6b5a0271064fa8818e34327ddcd9f070bf4c68c30.png",
+          "sha256": "95f720483934aa4df02324a6b5a0271064fa8818e34327ddcd9f070bf4c68c30",
+          "source_frame": 38,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/50c71a2ca52a81d30e627d2f2cedafac1b3cbe2a077e28190807567016775e62.png",
+          "sha256": "50c71a2ca52a81d30e627d2f2cedafac1b3cbe2a077e28190807567016775e62",
+          "source_frame": 39,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/818deeb270590d1e09eaa7868a520294fc2cd7b1163d72c0da99968219f0607f.png",
+          "sha256": "818deeb270590d1e09eaa7868a520294fc2cd7b1163d72c0da99968219f0607f",
+          "source_frame": 40,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/2d54602a314878014c724949bda4098931d67c49ea07788cf3a23ccc82a1260c.png",
+          "sha256": "2d54602a314878014c724949bda4098931d67c49ea07788cf3a23ccc82a1260c",
+          "source_frame": 41,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/793199ecbd24f91cc364d8f14f4a2b1f188fbf4ac02b7712f3c5baaf6218869d.png",
+          "sha256": "793199ecbd24f91cc364d8f14f4a2b1f188fbf4ac02b7712f3c5baaf6218869d",
+          "source_frame": 42,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/c4ed4e1be484d3e8afa39f5da6921bd0dc6cd63f579c9f1fd15d2d33d131b590.png",
+          "sha256": "c4ed4e1be484d3e8afa39f5da6921bd0dc6cd63f579c9f1fd15d2d33d131b590",
+          "source_frame": 43,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/ba936bade42989bf2b96b10d6847937a21430e153d570739af4bdf6722910f90.png",
+          "sha256": "ba936bade42989bf2b96b10d6847937a21430e153d570739af4bdf6722910f90",
+          "source_frame": 47,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/6bf23dcb438b15a030dcb31520ac2b60980aa489f4365460990254a65425e04e.png",
+          "sha256": "6bf23dcb438b15a030dcb31520ac2b60980aa489f4365460990254a65425e04e",
+          "source_frame": 48,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/b44437d468a02a9b0f77589e455a2cbb31801601b4297dd5e0a2abf02ea204a2.png",
+          "sha256": "b44437d468a02a9b0f77589e455a2cbb31801601b4297dd5e0a2abf02ea204a2",
+          "source_frame": 49,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/558c379a10c655db109fc4a6e0ba21519ba3ceabbefd56d5e4e295d85405739e.png",
+          "sha256": "558c379a10c655db109fc4a6e0ba21519ba3ceabbefd56d5e4e295d85405739e",
+          "source_frame": 50,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/b5dbe2d4799fa69021fe3430b699946378df16414c533c14b2c9024cf3cf51df.png",
+          "sha256": "b5dbe2d4799fa69021fe3430b699946378df16414c533c14b2c9024cf3cf51df",
+          "source_frame": 51,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/6c9555b8bbe6aca23b8251e4ca8d96a4d22fd09a4e34e21ad8bdcc7643049f72.png",
+          "sha256": "6c9555b8bbe6aca23b8251e4ca8d96a4d22fd09a4e34e21ad8bdcc7643049f72",
+          "source_frame": 44,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/70b1d99eef9224032286952d3f2212c255e88eb119806db9fa8f8b149415b4d6.png",
+          "sha256": "70b1d99eef9224032286952d3f2212c255e88eb119806db9fa8f8b149415b4d6",
+          "source_frame": 45,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/7e2acc8d5aa17caed612d0ac838eb9e19be25b19cdf48ab4b758737fe54ffc1f.png",
+          "sha256": "7e2acc8d5aa17caed612d0ac838eb9e19be25b19cdf48ab4b758737fe54ffc1f",
+          "source_frame": 46,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/a61dc1f694a617614341041a81862ad8440682efa928aabdd187d5c01e85e993.png",
+          "sha256": "a61dc1f694a617614341041a81862ad8440682efa928aabdd187d5c01e85e993",
+          "source_frame": 104,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/0b9b1d44ce34e9b8823c89826b7dd865cc2c9b322b0e1f01ab727164556e7ea4.png",
+          "sha256": "0b9b1d44ce34e9b8823c89826b7dd865cc2c9b322b0e1f01ab727164556e7ea4",
+          "source_frame": 105,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/697639ca5081a7f06967522abbabd00b8f5b815808ebdd922a5d6af3ee627c93.png",
+          "sha256": "697639ca5081a7f06967522abbabd00b8f5b815808ebdd922a5d6af3ee627c93",
+          "source_frame": 106,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/f2cd49ca2c11183936687ce2fbd2cc0ab1fd528f15e72227e0cf0fef11b7ac80.png",
+          "sha256": "f2cd49ca2c11183936687ce2fbd2cc0ab1fd528f15e72227e0cf0fef11b7ac80",
+          "source_frame": 107,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/4c6b8329d53fd96c2fadb98c3b8d7ef7b2f12ccf833cee2a58cf590c1574e00a.png",
+          "sha256": "4c6b8329d53fd96c2fadb98c3b8d7ef7b2f12ccf833cee2a58cf590c1574e00a",
+          "source_frame": 108,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/9aaf83c8b27bf23782d07d030a065c92b3610a6572cda52ad8a5724b931597a3.png",
+          "sha256": "9aaf83c8b27bf23782d07d030a065c92b3610a6572cda52ad8a5724b931597a3",
+          "source_frame": 109,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/b37a5b9d84f286046a14b4ad88197f7652d85a185f56e8afb43b6034fe1b915a.png",
+          "sha256": "b37a5b9d84f286046a14b4ad88197f7652d85a185f56e8afb43b6034fe1b915a",
+          "source_frame": 110,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/bd728683157c4f10e4fb4c74b9ce393487a9cd94217a44d554db548f9e935886.png",
+          "sha256": "bd728683157c4f10e4fb4c74b9ce393487a9cd94217a44d554db548f9e935886",
+          "source_frame": 111,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/caff48c43be50845289a7a477c2b4340b6b37c8989e475e190282682fef64872.png",
+          "sha256": "caff48c43be50845289a7a477c2b4340b6b37c8989e475e190282682fef64872",
+          "source_frame": 112,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/4cf288efe8f15f4dca49aac47801c70e78c14cca973754b35af8bee6885b04c5.png",
+          "sha256": "4cf288efe8f15f4dca49aac47801c70e78c14cca973754b35af8bee6885b04c5",
+          "source_frame": 113,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/8ce73a7d6dc799d07393b53bb7012de466f1f424d7da8b19ffa1167eab752bdb.png",
+          "sha256": "8ce73a7d6dc799d07393b53bb7012de466f1f424d7da8b19ffa1167eab752bdb",
+          "source_frame": 114,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/83a82f684e054297a14487c3ed5763c329d2a2c0b1dda186a0b2e68cb9de6408.png",
+          "sha256": "83a82f684e054297a14487c3ed5763c329d2a2c0b1dda186a0b2e68cb9de6408",
+          "source_frame": 115,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/2503d732bc64575536edeebc0cf3f6cd39219565e4f3a3c8220f5534c39fe742.png",
+          "sha256": "2503d732bc64575536edeebc0cf3f6cd39219565e4f3a3c8220f5534c39fe742",
+          "source_frame": 116,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/2831bf4d413ff7f5dd4a8dc8d2ac81e2e8791416ea10f2fe3bfec2d9e4e8c61e.png",
+          "sha256": "2831bf4d413ff7f5dd4a8dc8d2ac81e2e8791416ea10f2fe3bfec2d9e4e8c61e",
+          "source_frame": 117,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/e8a0ff325bd9191f2f42acd2621bc5f6ca1fe5e526edfc34e7f43a2c93b1aeee.png",
+          "sha256": "e8a0ff325bd9191f2f42acd2621bc5f6ca1fe5e526edfc34e7f43a2c93b1aeee",
+          "source_frame": 118,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/d885c31242ed65317c4fb36f38f9e89165c7f25bd43656076a11208259d98b40.png",
+          "sha256": "d885c31242ed65317c4fb36f38f9e89165c7f25bd43656076a11208259d98b40",
+          "source_frame": 119,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/c8f0192cb559ee44f6d95e095f625a4b29cd8a875c9f35041ada2b75d396ed57.png",
+          "sha256": "c8f0192cb559ee44f6d95e095f625a4b29cd8a875c9f35041ada2b75d396ed57",
+          "source_frame": 120,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/c4f39701204cf019d6bb6c167a5c0dafca24ba87869bd3401725b5dc17775bfc.png",
+          "sha256": "c4f39701204cf019d6bb6c167a5c0dafca24ba87869bd3401725b5dc17775bfc",
+          "source_frame": 121,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/e5e2c17de1ea61bc7581e052f58dc308ee3187efe0b16d2a18fa52c4452dd099.png",
+          "sha256": "e5e2c17de1ea61bc7581e052f58dc308ee3187efe0b16d2a18fa52c4452dd099",
+          "source_frame": 122,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/c415ee46a148d378b2bd2b231013a8399150be7b8dc29714c590d0617419751d.png",
+          "sha256": "c415ee46a148d378b2bd2b231013a8399150be7b8dc29714c590d0617419751d",
+          "source_frame": 123,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/8c061c9501c991e885f32a0470cd6bcdceefb61fa94ae4d46d6cf71640b9c17a.png",
+          "sha256": "8c061c9501c991e885f32a0470cd6bcdceefb61fa94ae4d46d6cf71640b9c17a",
+          "source_frame": 124,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/bce7a7e9b211176db7113189373622ef952b5ec5f870d833563cdfef81404ae9.png",
+          "sha256": "bce7a7e9b211176db7113189373622ef952b5ec5f870d833563cdfef81404ae9",
+          "source_frame": 125,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/e715b1cad9f7d29d1377db15201c50d1342f2fb5e2a0b536b1cc74b902a52296.png",
+          "sha256": "e715b1cad9f7d29d1377db15201c50d1342f2fb5e2a0b536b1cc74b902a52296",
+          "source_frame": 126,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/53ce0eebc314a08968dfeedd49ae2c9d8f3c94d52a45ae7d98f8465bfc621765.png",
+          "sha256": "53ce0eebc314a08968dfeedd49ae2c9d8f3c94d52a45ae7d98f8465bfc621765",
+          "source_frame": 127,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/00cdae3a4114472e83bb2449f85a1899b036ba7dd83057fc8ea82b22b0911aac.png",
+          "sha256": "00cdae3a4114472e83bb2449f85a1899b036ba7dd83057fc8ea82b22b0911aac",
+          "source_frame": 128,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/99307eb045b28e47f630cafde63997e8b003b74e866f97b2680588d98ded45c2.png",
+          "sha256": "99307eb045b28e47f630cafde63997e8b003b74e866f97b2680588d98ded45c2",
+          "source_frame": 129,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/4f9e788f3401d69ed45852cae881395c85e21716f2f573401a2baff84606fe8e.png",
+          "sha256": "4f9e788f3401d69ed45852cae881395c85e21716f2f573401a2baff84606fe8e",
+          "source_frame": 130,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/1df1ef6dafff92f2860bda25f3c4ffc9066799a0177b437e1df719264df4c07c.png",
+          "sha256": "1df1ef6dafff92f2860bda25f3c4ffc9066799a0177b437e1df719264df4c07c",
+          "source_frame": 131,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/b3c8fd079ed7fd55a5d8e424cd5497ee6e45157eb61242077914d470541a616a.png",
+          "sha256": "b3c8fd079ed7fd55a5d8e424cd5497ee6e45157eb61242077914d470541a616a",
+          "source_frame": 132,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/ccbb5f077c17a38dc80c6150cbd4644969eabcb2327b8ac0042ee46f8de4cc57.png",
+          "sha256": "ccbb5f077c17a38dc80c6150cbd4644969eabcb2327b8ac0042ee46f8de4cc57",
+          "source_frame": 133,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/c96d20924dec84afaf1bd977a06430b60c91e7b6187683b241e8cdbf80d6266c.png",
+          "sha256": "c96d20924dec84afaf1bd977a06430b60c91e7b6187683b241e8cdbf80d6266c",
+          "source_frame": 134,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/7a7b3f0be39f4b51cc3c07d96bea6ccba2ece88ce83afe580c97958be367806f.png",
+          "sha256": "7a7b3f0be39f4b51cc3c07d96bea6ccba2ece88ce83afe580c97958be367806f",
+          "source_frame": 135,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/003c1c496272656ecc98e4583d9618933b3cb4520067bd4f227359fd1a6d9fa4.png",
+          "sha256": "003c1c496272656ecc98e4583d9618933b3cb4520067bd4f227359fd1a6d9fa4",
+          "source_frame": 136,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/db48cbc21bca8618469f24f3895160b72121c4336e1ff953986b675afa25f9b6.png",
+          "sha256": "db48cbc21bca8618469f24f3895160b72121c4336e1ff953986b675afa25f9b6",
+          "source_frame": 137,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/7c6d5bc5eef307c75a2f492738c232556ce66d9ed697ab87164de622843b4b55.png",
+          "sha256": "7c6d5bc5eef307c75a2f492738c232556ce66d9ed697ab87164de622843b4b55",
+          "source_frame": 138,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/2b3eabbf6e11ee76cb7016702011dcf96d20db0d8a7185575c7eb7de7e17194d.png",
+          "sha256": "2b3eabbf6e11ee76cb7016702011dcf96d20db0d8a7185575c7eb7de7e17194d",
+          "source_frame": 139,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/1da00eef833a890dd3326909b20c0e7462be420b6d2814661097fa74193a5e75.png",
+          "sha256": "1da00eef833a890dd3326909b20c0e7462be420b6d2814661097fa74193a5e75",
+          "source_frame": 140,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/63beea3bb364a9d4a1da3627b898849802289b8034e182222bf908f39c4f7b6e.png",
+          "sha256": "63beea3bb364a9d4a1da3627b898849802289b8034e182222bf908f39c4f7b6e",
+          "source_frame": 141,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/f2022e5327e72d05d932499bb2f053a06e5585ce81850dfe992afb80a878dbc7.png",
+          "sha256": "f2022e5327e72d05d932499bb2f053a06e5585ce81850dfe992afb80a878dbc7",
+          "source_frame": 142,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/9f781f5fd08f0978838053dc5b7ab2ba519e023136d15b43f819ca263678b9f7.png",
+          "sha256": "9f781f5fd08f0978838053dc5b7ab2ba519e023136d15b43f819ca263678b9f7",
+          "source_frame": 143,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/be5459cc257d2888fd350ad6eeee3a511ea58099d7b00a1d6699e689b06b221c.png",
+          "sha256": "be5459cc257d2888fd350ad6eeee3a511ea58099d7b00a1d6699e689b06b221c",
+          "source_frame": 144,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/16ccf5d0ac726c962f67cfa7bb4d855f8e30c94332e389e10f447ee093434a62.png",
+          "sha256": "16ccf5d0ac726c962f67cfa7bb4d855f8e30c94332e389e10f447ee093434a62",
+          "source_frame": 145,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/9faf457c24f792aee93cb63450585be6eee8f53fb918fa938baea61dec64f078.png",
+          "sha256": "9faf457c24f792aee93cb63450585be6eee8f53fb918fa938baea61dec64f078",
+          "source_frame": 146,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/ef9db5e785aca619df3c7f84117531b07047cf2ed19a462b003c1897fd0902c8.png",
+          "sha256": "ef9db5e785aca619df3c7f84117531b07047cf2ed19a462b003c1897fd0902c8",
+          "source_frame": 147,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/591837c5a6ff8e29d05cf8591708bc0c3a02bea2602a0027558718f979546874.png",
+          "sha256": "591837c5a6ff8e29d05cf8591708bc0c3a02bea2602a0027558718f979546874",
+          "source_frame": 148,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/d3a6ce7f1c874ee194f9127ff1a4842b5a1615d65d6772c38b6db9dc205f6d52.png",
+          "sha256": "d3a6ce7f1c874ee194f9127ff1a4842b5a1615d65d6772c38b6db9dc205f6d52",
+          "source_frame": 149,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/52087565699a8cd547996d141f622fd070ef8b5da34031487abe9517ba7ec2b5.png",
+          "sha256": "52087565699a8cd547996d141f622fd070ef8b5da34031487abe9517ba7ec2b5",
+          "source_frame": 150,
+          "phase": "recovery"
+        }
+      ],
+      "durations": [
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        11.875,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        20,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809,
+        10.212765957446809
+      ],
+      "duration_verified_ms": 1019.9999999999985,
+      "fingerprint": "a791be786af04c644557a360c3850637654abbc7feb71d70cd828e09f829dcf0"
+    },
+    {
+      "id": "mica-attack-up-windup",
+      "character": "Mica",
+      "slot": "attack:up",
+      "phase": "windup",
+      "direction": "Up-right",
+      "attacking": true,
+      "sourceManifest": "dist/assets/heroes/mica-animation.json",
+      "sourceManifestSha256": "93a31efa2340b75b5769ee7c548501d916fa3640f580613965ff70827edb7757",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/mica-native-v1/attack-up-01.ktx2",
+          "sha256": "2a578ee94915daa6af9ba0c6f7d4b700d6c6770413621f9b8825f3a80ac883ab"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          437,
+          597
+        ],
+        "anchor": [
+          189,
+          588
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Authored attack phases; one active firing cycle. Holding fire repeats the active phase.",
+      "frames": [
+        {
+          "url": "baselines/54c0917b39333a68be0e022d081fe050789f09008ef4aa2d5832f0f98b27b92d.png",
+          "sha256": "54c0917b39333a68be0e022d081fe050789f09008ef4aa2d5832f0f98b27b92d",
+          "source_frame": 12,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/5fe3bdce6d71c826c22354c7d85d607c958ddb05248ec7be6fcfa37e783df77f.png",
+          "sha256": "5fe3bdce6d71c826c22354c7d85d607c958ddb05248ec7be6fcfa37e783df77f",
+          "source_frame": 16,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/4acee28facacdacaa414c7eb722f7c1def7f517d47b2e65ce86df7248862ed97.png",
+          "sha256": "4acee28facacdacaa414c7eb722f7c1def7f517d47b2e65ce86df7248862ed97",
+          "source_frame": 20,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/0c265dcca8e2d0644e27a3fb252e45372091e7e45ecde467e65af65e9be01462.png",
+          "sha256": "0c265dcca8e2d0644e27a3fb252e45372091e7e45ecde467e65af65e9be01462",
+          "source_frame": 24,
+          "phase": "windup"
+        },
+        {
+          "url": "baselines/c151181c4addbc78a5b3a748575ced25e6a9073748c38c1576102bde5b40cf11.png",
+          "sha256": "c151181c4addbc78a5b3a748575ced25e6a9073748c38c1576102bde5b40cf11",
+          "source_frame": 28,
+          "phase": "windup"
+        }
+      ],
+      "durations": [
+        113.33333333333333,
+        113.33333333333333,
+        113.33333333333333,
+        113.33333333333333,
+        113.33333333333333
+      ],
+      "duration_verified_ms": 566.6666666666666,
+      "fingerprint": "d03dfdb6057432f79a92a37dfeda24659de2eda3858f1fd064f7bb74d9eaebb0"
+    },
+    {
+      "id": "mica-attack-up-recovery",
+      "character": "Mica",
+      "slot": "attack:up",
+      "phase": "recovery",
+      "direction": "Up-right",
+      "attacking": true,
+      "sourceManifest": "dist/assets/heroes/mica-animation.json",
+      "sourceManifestSha256": "93a31efa2340b75b5769ee7c548501d916fa3640f580613965ff70827edb7757",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/mica-native-v1/attack-up-02.ktx2",
+          "sha256": "d862dd91078c0d8991627277923bbcf3260f0d52583bd41cebe84fc6542b8263"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          437,
+          597
+        ],
+        "anchor": [
+          189,
+          588
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Authored attack phases; one active firing cycle. Holding fire repeats the active phase.",
+      "frames": [
+        {
+          "url": "baselines/f1219cffa2dc10671c478fb61bd4cb2f47bf0cd42c25be68db3e561c370ebb92.png",
+          "sha256": "f1219cffa2dc10671c478fb61bd4cb2f47bf0cd42c25be68db3e561c370ebb92",
+          "source_frame": 118,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/739760271e422e11205e066ce0a02d8440bb17de5931443721949c3947238483.png",
+          "sha256": "739760271e422e11205e066ce0a02d8440bb17de5931443721949c3947238483",
+          "source_frame": 122,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/9caee7d1f34cbe567031d253cad941eec2887b345b6bafadefc639ec4ea5b233.png",
+          "sha256": "9caee7d1f34cbe567031d253cad941eec2887b345b6bafadefc639ec4ea5b233",
+          "source_frame": 128,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/be146c0c76dfaf1e651311ca7f2b1a1c0f1035bc689b3e1aa6d02e50414b7eeb.png",
+          "sha256": "be146c0c76dfaf1e651311ca7f2b1a1c0f1035bc689b3e1aa6d02e50414b7eeb",
+          "source_frame": 134,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/5b56d9e210caafedfbceb41a78ef792fba97569840dfd9be9fb1a24c2b105429.png",
+          "sha256": "5b56d9e210caafedfbceb41a78ef792fba97569840dfd9be9fb1a24c2b105429",
+          "source_frame": 140,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/d8dc3bbba3805829dd5b18123ebf33f9882020bd17534df0a08b11fc235019a1.png",
+          "sha256": "d8dc3bbba3805829dd5b18123ebf33f9882020bd17534df0a08b11fc235019a1",
+          "source_frame": 145,
+          "phase": "recovery"
+        },
+        {
+          "url": "baselines/df43feb8d09e525dc7a5870bef3b94b2b4174e6a7bede47d68e019c69222c7ba.png",
+          "sha256": "df43feb8d09e525dc7a5870bef3b94b2b4174e6a7bede47d68e019c69222c7ba",
+          "source_frame": 150,
+          "phase": "recovery"
+        }
+      ],
+      "durations": [
+        157.14285714285714,
+        157.14285714285714,
+        157.14285714285714,
+        157.14285714285714,
+        157.14285714285714,
+        157.14285714285714,
+        157.14285714285714
+      ],
+      "duration_verified_ms": 1100,
+      "fingerprint": "f8bbfac2712e51a65d7ca494e752059f8f6fbe796c034154b15bb17856b6dd02"
+    },
+    {
+      "id": "mica-attack-up-active",
+      "character": "Mica",
+      "slot": "attack:up",
+      "phase": "active",
+      "direction": "Up-right",
+      "attacking": true,
+      "sourceManifest": "dist/assets/heroes/mica-animation.json",
+      "sourceManifestSha256": "93a31efa2340b75b5769ee7c548501d916fa3640f580613965ff70827edb7757",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/mica-native-v1/attack-up-01.ktx2",
+          "sha256": "2a578ee94915daa6af9ba0c6f7d4b700d6c6770413621f9b8825f3a80ac883ab"
+        },
+        {
+          "path": "dist/assets/heroes/mica-native-v1/attack-up-02.ktx2",
+          "sha256": "d862dd91078c0d8991627277923bbcf3260f0d52583bd41cebe84fc6542b8263"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          437,
+          597
+        ],
+        "anchor": [
+          189,
+          588
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Authored attack phases; one active firing cycle. Holding fire repeats the active phase.",
+      "frames": [
+        {
+          "url": "baselines/0150b6446037ed7cf2fcb98626abb1d536330857e204cf7a993b00d472e60aaf.png",
+          "sha256": "0150b6446037ed7cf2fcb98626abb1d536330857e204cf7a993b00d472e60aaf",
+          "source_frame": 106,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/d13232320713527ad20a27bc53b1fa62545d20ca50d2dae7c8a88351e28bf318.png",
+          "sha256": "d13232320713527ad20a27bc53b1fa62545d20ca50d2dae7c8a88351e28bf318",
+          "source_frame": 107,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/79e86d1c356144ef9b670cbc76bfb57bf767e445f265426d6494bb34a8159ecb.png",
+          "sha256": "79e86d1c356144ef9b670cbc76bfb57bf767e445f265426d6494bb34a8159ecb",
+          "source_frame": 108,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/0b245a29b810a0d1fb224590e23fb7daca15e41648a45a48bcffadce3d786442.png",
+          "sha256": "0b245a29b810a0d1fb224590e23fb7daca15e41648a45a48bcffadce3d786442",
+          "source_frame": 109,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/1f5d7cfe3cd5f6c67a03e3edc0e96f99c4add4d7ae3d36f43beea067bd9d3ec9.png",
+          "sha256": "1f5d7cfe3cd5f6c67a03e3edc0e96f99c4add4d7ae3d36f43beea067bd9d3ec9",
+          "source_frame": 110,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/09156601203e37ef922e9dfe62bb8be0485381a97f2adc27c4c7c115c89777d9.png",
+          "sha256": "09156601203e37ef922e9dfe62bb8be0485381a97f2adc27c4c7c115c89777d9",
+          "source_frame": 111,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/2793b930ecf2f2c5489426b5fd004671dbfc29a5caa2cd267f881cdec9bab824.png",
+          "sha256": "2793b930ecf2f2c5489426b5fd004671dbfc29a5caa2cd267f881cdec9bab824",
+          "source_frame": 112,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/606f3167d309b1d8ebd889c722569ac6ed8c97da3ed5c1d74471114c0681512f.png",
+          "sha256": "606f3167d309b1d8ebd889c722569ac6ed8c97da3ed5c1d74471114c0681512f",
+          "source_frame": 113,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/9653ca4143af242d5f74af215313a7c3397a05be65219e41ce2da92ec9e91fed.png",
+          "sha256": "9653ca4143af242d5f74af215313a7c3397a05be65219e41ce2da92ec9e91fed",
+          "source_frame": 114,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/295f1b0682b81f3a5c0908f5ffac1152307d0de4cfa63145611a28684b937e8b.png",
+          "sha256": "295f1b0682b81f3a5c0908f5ffac1152307d0de4cfa63145611a28684b937e8b",
+          "source_frame": 115,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/d4d797942408513720943ef051f661199f9d13ee5460df037cdf1af42d3c1479.png",
+          "sha256": "d4d797942408513720943ef051f661199f9d13ee5460df037cdf1af42d3c1479",
+          "source_frame": 116,
+          "phase": "active"
+        },
+        {
+          "url": "baselines/19aba197d902369e880930c2ffc1f93aa4ae6420e5a8af48d9473e6e23d7ef26.png",
+          "sha256": "19aba197d902369e880930c2ffc1f93aa4ae6420e5a8af48d9473e6e23d7ef26",
+          "source_frame": 117,
+          "phase": "active"
+        }
+      ],
+      "durations": [
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75,
+        75
+      ],
+      "duration_verified_ms": 900,
+      "fingerprint": "91cfe21d75d0bdf3e3b7ca8cdc0d86cf4b4f84111b9db23831c6563467646a78"
+    },
+    {
+      "id": "mica-walk-down-cycle",
+      "character": "Mica",
+      "slot": "walk:down",
+      "phase": "cycle",
+      "direction": "Down-right",
+      "attacking": false,
+      "sourceManifest": "dist/assets/heroes/mica-animation.json",
+      "sourceManifestSha256": "93a31efa2340b75b5769ee7c548501d916fa3640f580613965ff70827edb7757",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/mica-native-v1/walk-down-01.ktx2",
+          "sha256": "57e05e83174c7ddf56afb8111e368cd241e169339c29c190ad52f988fda2c16f"
+        },
+        {
+          "path": "dist/assets/heroes/mica-native-v1/walk-down-02.ktx2",
+          "sha256": "1216aae4c2b72c3b1203103c5216b47dac5284c42c4dbb31c84053468dff4632"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          356,
+          668
+        ],
+        "anchor": [
+          172,
+          634
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Nominal gameplay gait cadence; actual speed changes with movement.",
+      "frames": [
+        {
+          "url": "baselines/346cfdcc41d81b1346388a2ff3043769f38688af198e30a89573f2be9e37e044.png",
+          "sha256": "346cfdcc41d81b1346388a2ff3043769f38688af198e30a89573f2be9e37e044",
+          "source_frame": 36,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/3fdb8f40560f273ff0b354f6d8ecd75ce94edc36e4d5558b95aad01429da2d83.png",
+          "sha256": "3fdb8f40560f273ff0b354f6d8ecd75ce94edc36e4d5558b95aad01429da2d83",
+          "source_frame": 39,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a1ca77171bf7f39758545ced7acece223132f6a8d1ab4e3cf4ec6cfd6238710f.png",
+          "sha256": "a1ca77171bf7f39758545ced7acece223132f6a8d1ab4e3cf4ec6cfd6238710f",
+          "source_frame": 41,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5418ccd60d9b16a27b41d5a87bca88efd25d20d888fb5e717b2eb6c80aea8125.png",
+          "sha256": "5418ccd60d9b16a27b41d5a87bca88efd25d20d888fb5e717b2eb6c80aea8125",
+          "source_frame": 44,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/346820e283373676f4b92891ad2c7eed295bb3cd33d7c28b506af5e23bd91740.png",
+          "sha256": "346820e283373676f4b92891ad2c7eed295bb3cd33d7c28b506af5e23bd91740",
+          "source_frame": 46,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/bd4bef936c2c33b40c2278704969382b5682e9f9ae921690a3e8dfd39f85a99d.png",
+          "sha256": "bd4bef936c2c33b40c2278704969382b5682e9f9ae921690a3e8dfd39f85a99d",
+          "source_frame": 49,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0f59679a064382c39dcc0630c0448a8a8baeb4f7bb9508511900c4d7f159c116.png",
+          "sha256": "0f59679a064382c39dcc0630c0448a8a8baeb4f7bb9508511900c4d7f159c116",
+          "source_frame": 51,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5ea2ddc2c83b53247a127539c7f4ddfb450b88703b397b9589097fbe643dc0d9.png",
+          "sha256": "5ea2ddc2c83b53247a127539c7f4ddfb450b88703b397b9589097fbe643dc0d9",
+          "source_frame": 54,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7ec28c85aa110cfcb40161c5dd8ae99ca5ae9f7ff6dfe479c6d479f69f3b7449.png",
+          "sha256": "7ec28c85aa110cfcb40161c5dd8ae99ca5ae9f7ff6dfe479c6d479f69f3b7449",
+          "source_frame": 56,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/56aaee706e9158801bd186a9ed858ebdb0b40f82e2a231c89b3bc9c242c13d05.png",
+          "sha256": "56aaee706e9158801bd186a9ed858ebdb0b40f82e2a231c89b3bc9c242c13d05",
+          "source_frame": 59,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9dd8a7d97f3312865f9f3b348fa7d50ad5b64dd0f3a7cafcba6c28144e1f143b.png",
+          "sha256": "9dd8a7d97f3312865f9f3b348fa7d50ad5b64dd0f3a7cafcba6c28144e1f143b",
+          "source_frame": 61,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e983055afa63fd765980e9873b19ec03f37eb539b582ebb511f5648b0ca8ad49.png",
+          "sha256": "e983055afa63fd765980e9873b19ec03f37eb539b582ebb511f5648b0ca8ad49",
+          "source_frame": 64,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/214312c4f8f5db665f3c36e5d14d66d307be475d567601d400296fd971a46260.png",
+          "sha256": "214312c4f8f5db665f3c36e5d14d66d307be475d567601d400296fd971a46260",
+          "source_frame": 66,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9594b2accabb18b6613f72a303be03d505aec9104858851961e6ea8424665fc8.png",
+          "sha256": "9594b2accabb18b6613f72a303be03d505aec9104858851961e6ea8424665fc8",
+          "source_frame": 69,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/d1e3b877963950672bf5005158d61b43b3a5ea0f08f9d44333a1fd0e593f8048.png",
+          "sha256": "d1e3b877963950672bf5005158d61b43b3a5ea0f08f9d44333a1fd0e593f8048",
+          "source_frame": 71,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5aeed1e0b609bfd6a5fa319bd81df0769e00aa62e14420c20c21f682098b2ed0.png",
+          "sha256": "5aeed1e0b609bfd6a5fa319bd81df0769e00aa62e14420c20c21f682098b2ed0",
+          "source_frame": 74,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ff2657c75e28f268261df36afb3025b1a329cee9895e87a61336283e841f4e1a.png",
+          "sha256": "ff2657c75e28f268261df36afb3025b1a329cee9895e87a61336283e841f4e1a",
+          "source_frame": 76,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/790b62ee8b33378941eba2b0f45d76ddb3bad56611c7321be5482eb84eda75a1.png",
+          "sha256": "790b62ee8b33378941eba2b0f45d76ddb3bad56611c7321be5482eb84eda75a1",
+          "source_frame": 79,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6bedb9817edb1b40d9faf1383d1c2bc24ca02814292ce1329775c4680e44fd68.png",
+          "sha256": "6bedb9817edb1b40d9faf1383d1c2bc24ca02814292ce1329775c4680e44fd68",
+          "source_frame": 81,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2d8628766887101c69f03c8a9a3a74300eadfc6989f8cd083679a8662d6920b8.png",
+          "sha256": "2d8628766887101c69f03c8a9a3a74300eadfc6989f8cd083679a8662d6920b8",
+          "source_frame": 84,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/d3c81d3a5e401d8f60c6f3510eb3d4f687035d687ac64f652705c284d18996c9.png",
+          "sha256": "d3c81d3a5e401d8f60c6f3510eb3d4f687035d687ac64f652705c284d18996c9",
+          "source_frame": 86,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/f5d60825e2583197645e8f4fa48872658377a6ecbda948ab6a9f7a31ab879f79.png",
+          "sha256": "f5d60825e2583197645e8f4fa48872658377a6ecbda948ab6a9f7a31ab879f79",
+          "source_frame": 89,
+          "phase": "cycle"
+        }
+      ],
+      "durations": [
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181,
+        81.81818181818181
+      ],
+      "duration_verified_ms": 1799.999999999999,
+      "fingerprint": "0008bb5e2777612d73974d739bb18ad6f99aa804fd14cc1d4c477e954e1dac0c"
+    },
+    {
+      "id": "vale-walk-right-cycle",
+      "character": "Vale",
+      "slot": "walk:right",
+      "phase": "cycle",
+      "direction": "Right",
+      "attacking": false,
+      "sourceManifest": "dist/assets/heroes/vale-animation.json",
+      "sourceManifestSha256": "ae09b8af747dcf97e653b6d36855a8a2173101675a472bfcfd9603ef048645a0",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/vale-native-v1/walk-right-01.ktx2",
+          "sha256": "76115ff1b93f48faa1f34e9a643d455d97450200f62aec676dd733dd6a1b2b3b"
+        },
+        {
+          "path": "dist/assets/heroes/vale-native-v1/walk-right-02.ktx2",
+          "sha256": "38e69f9a1e2a0a9e9e7e469add1fd3ce649dc63ece7b173d757455655d549785"
+        },
+        {
+          "path": "dist/assets/heroes/vale-native-v1/walk-right-03.ktx2",
+          "sha256": "edad12d765292778a3162662f77f1fd0f56545db57ed2bc4072512903ef56592"
+        },
+        {
+          "path": "dist/assets/heroes/vale-native-v1/walk-right-04.ktx2",
+          "sha256": "b29823f73bcf447a7e7be9e767a3b3687c95238358d3812778cfb6c2cd9f8be1"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          322,
+          596
+        ],
+        "anchor": [
+          150,
+          588
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Nominal gameplay gait cadence; actual speed changes with movement.",
+      "frames": [
+        {
+          "url": "baselines/2b89fb23a4d78b7090ef2c35a6108f75af78380d01d009964bf88c7bc5288747.png",
+          "sha256": "2b89fb23a4d78b7090ef2c35a6108f75af78380d01d009964bf88c7bc5288747",
+          "source_frame": 62,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/dcd3918ed898a323d989d30c039e0b1aa4c2710c89d15f96a99143fcbd48c931.png",
+          "sha256": "dcd3918ed898a323d989d30c039e0b1aa4c2710c89d15f96a99143fcbd48c931",
+          "source_frame": 63,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8fb29cb24b43ab4ea4e6cafcc388e81bb167e873c95a71e50647dfbb5151abcd.png",
+          "sha256": "8fb29cb24b43ab4ea4e6cafcc388e81bb167e873c95a71e50647dfbb5151abcd",
+          "source_frame": 64,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/efe8e27099178b29d257cecdc812e9665d1fab998072868e334574d1028e07e6.png",
+          "sha256": "efe8e27099178b29d257cecdc812e9665d1fab998072868e334574d1028e07e6",
+          "source_frame": 65,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/3b6caeb0f256649acac745b4a87a0efea6cc052bf370d5e5a545630b8387971a.png",
+          "sha256": "3b6caeb0f256649acac745b4a87a0efea6cc052bf370d5e5a545630b8387971a",
+          "source_frame": 66,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/343cf111d514a7abcc895c0ec43a1d46108da6c718aa35578364d91453144f89.png",
+          "sha256": "343cf111d514a7abcc895c0ec43a1d46108da6c718aa35578364d91453144f89",
+          "source_frame": 67,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/703cac5b76089d35e4a3d9e1c0e04b634eb35badb82bc88666d447a5e8532d6f.png",
+          "sha256": "703cac5b76089d35e4a3d9e1c0e04b634eb35badb82bc88666d447a5e8532d6f",
+          "source_frame": 68,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/620238577d7fdfe01ef00c5075aa65ba0026c6f66f5cb91f06eafd0bc65a640e.png",
+          "sha256": "620238577d7fdfe01ef00c5075aa65ba0026c6f66f5cb91f06eafd0bc65a640e",
+          "source_frame": 69,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/dc6404229beb91a22c6b59bb63f9cc0b3c84e2995b21ed60470c338043528251.png",
+          "sha256": "dc6404229beb91a22c6b59bb63f9cc0b3c84e2995b21ed60470c338043528251",
+          "source_frame": 70,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1d369b724b03dc5d0c8a566f28265bcf4d4f489710a3793a85b91dfafb75aa54.png",
+          "sha256": "1d369b724b03dc5d0c8a566f28265bcf4d4f489710a3793a85b91dfafb75aa54",
+          "source_frame": 71,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0ecbdd1fa2d0c7b6ae981f12938db10ed4609839b7d6984e0275aad3bbd5dc44.png",
+          "sha256": "0ecbdd1fa2d0c7b6ae981f12938db10ed4609839b7d6984e0275aad3bbd5dc44",
+          "source_frame": 72,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8187c0b4c9abe8f2555b2cec6888e68319f79b9b33d4e168636ba57f51fc95af.png",
+          "sha256": "8187c0b4c9abe8f2555b2cec6888e68319f79b9b33d4e168636ba57f51fc95af",
+          "source_frame": 73,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/4fc813f88dcab2a03fb0c6b26f711b800d3c0939f56c854a15117d2c45d86440.png",
+          "sha256": "4fc813f88dcab2a03fb0c6b26f711b800d3c0939f56c854a15117d2c45d86440",
+          "source_frame": 74,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8c03cf076a4237fb2b0966a4cb92bbdc7eacd2b74971f46d3da105c5d0546327.png",
+          "sha256": "8c03cf076a4237fb2b0966a4cb92bbdc7eacd2b74971f46d3da105c5d0546327",
+          "source_frame": 75,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a4764574d329dc391d56b74eeca1d8e413ee6f0bc1506bac5d8a5dbc31827400.png",
+          "sha256": "a4764574d329dc391d56b74eeca1d8e413ee6f0bc1506bac5d8a5dbc31827400",
+          "source_frame": 76,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/78ba80f3ee87a8840b99c125b4620802fd04a57463bf3af8b49031027cf8ba3c.png",
+          "sha256": "78ba80f3ee87a8840b99c125b4620802fd04a57463bf3af8b49031027cf8ba3c",
+          "source_frame": 77,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/b85473df09379207793e71cf99734c3836b91ab560cb3d458ad9ba14421164d9.png",
+          "sha256": "b85473df09379207793e71cf99734c3836b91ab560cb3d458ad9ba14421164d9",
+          "source_frame": 78,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a69895b79bd4ee5288bbf1c880a56c6f60d17993ebcf65f6d912d6eb4aed0217.png",
+          "sha256": "a69895b79bd4ee5288bbf1c880a56c6f60d17993ebcf65f6d912d6eb4aed0217",
+          "source_frame": 79,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/11ccaf51ec308a31c811d0a13bc460c5426fd8e0a0386836decf880636e2ea15.png",
+          "sha256": "11ccaf51ec308a31c811d0a13bc460c5426fd8e0a0386836decf880636e2ea15",
+          "source_frame": 80,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2d51606623f06db3e735f0d255665f1844ea3eb2df997b592e7783e20713a391.png",
+          "sha256": "2d51606623f06db3e735f0d255665f1844ea3eb2df997b592e7783e20713a391",
+          "source_frame": 81,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/451776d6e10f55e32e227979b0d5490c46edd4b99a9d10ab5b2afed1df158f4c.png",
+          "sha256": "451776d6e10f55e32e227979b0d5490c46edd4b99a9d10ab5b2afed1df158f4c",
+          "source_frame": 82,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/325d0a5b4d21d9c298efc43deb30c0bf494e663d6cec23a48939321d811d47f6.png",
+          "sha256": "325d0a5b4d21d9c298efc43deb30c0bf494e663d6cec23a48939321d811d47f6",
+          "source_frame": 83,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ae8f25ba4c73db750cc5ae7594ed781e5f0a861cbbe4cae90eea5fea043d9e7a.png",
+          "sha256": "ae8f25ba4c73db750cc5ae7594ed781e5f0a861cbbe4cae90eea5fea043d9e7a",
+          "source_frame": 84,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2a35382126eb0ef0231e1752503bfc42c8e0b4f9313a0e7524a997f1ba707be4.png",
+          "sha256": "2a35382126eb0ef0231e1752503bfc42c8e0b4f9313a0e7524a997f1ba707be4",
+          "source_frame": 85,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7bea478ffcceff33f909b0b66532ef7aa613576360edade3478bf3a291a08b13.png",
+          "sha256": "7bea478ffcceff33f909b0b66532ef7aa613576360edade3478bf3a291a08b13",
+          "source_frame": 86,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a7beb3d2cdb6a4980c5ee74ea413044f33aa81b1e97ea02ddc7811b6100c9e77.png",
+          "sha256": "a7beb3d2cdb6a4980c5ee74ea413044f33aa81b1e97ea02ddc7811b6100c9e77",
+          "source_frame": 87,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/712faa3ed6fdad17e0345d1346366e58a527b5cd1e5d1a1c05962fdee84c71db.png",
+          "sha256": "712faa3ed6fdad17e0345d1346366e58a527b5cd1e5d1a1c05962fdee84c71db",
+          "source_frame": 88,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ae02d7ecae3769a320dc4011c9abb4b2086251a8ac97cf86d6e9e84602b8969b.png",
+          "sha256": "ae02d7ecae3769a320dc4011c9abb4b2086251a8ac97cf86d6e9e84602b8969b",
+          "source_frame": 89,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/b9258c4a9eda74251ac7497c49289802c2a4ec6132090b00fb0c9507b9922a66.png",
+          "sha256": "b9258c4a9eda74251ac7497c49289802c2a4ec6132090b00fb0c9507b9922a66",
+          "source_frame": 90,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e1393e8d0a720ee146371cc8968793d45e09630def15f1a9b1ec92594ec5ea3e.png",
+          "sha256": "e1393e8d0a720ee146371cc8968793d45e09630def15f1a9b1ec92594ec5ea3e",
+          "source_frame": 91,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/abcab7aadaafd9d77873e259ae6e3a89e3809241b95e50135b6407678cce8da7.png",
+          "sha256": "abcab7aadaafd9d77873e259ae6e3a89e3809241b95e50135b6407678cce8da7",
+          "source_frame": 92,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/f73f689becffeb580a9df25c0a290412fbec163f48c44dd9bdbdfb625f9bc51f.png",
+          "sha256": "f73f689becffeb580a9df25c0a290412fbec163f48c44dd9bdbdfb625f9bc51f",
+          "source_frame": 93,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/f7381dcb65af09daa1cfc1083f7fb342e70053e0c4411656e4c4a8325d8c6f2b.png",
+          "sha256": "f7381dcb65af09daa1cfc1083f7fb342e70053e0c4411656e4c4a8325d8c6f2b",
+          "source_frame": 94,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/13046c1df15caeecf91bd171b2f9a24e73f2b55ec6b9463d6b82c64668a48cc6.png",
+          "sha256": "13046c1df15caeecf91bd171b2f9a24e73f2b55ec6b9463d6b82c64668a48cc6",
+          "source_frame": 95,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2ebf3f89aed99810fc6661457d2109bb0b51280fef4eef23f9be78672350c566.png",
+          "sha256": "2ebf3f89aed99810fc6661457d2109bb0b51280fef4eef23f9be78672350c566",
+          "source_frame": 96,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/25b8f4d0c61009924c6c1ed1425fe2c53a7f0e7341a2a49652eb58be94c16e48.png",
+          "sha256": "25b8f4d0c61009924c6c1ed1425fe2c53a7f0e7341a2a49652eb58be94c16e48",
+          "source_frame": 97,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e6dc3771a2410b9a8d6432ff2080282e6234ec4ff499ea2e701518f3d1d7a956.png",
+          "sha256": "e6dc3771a2410b9a8d6432ff2080282e6234ec4ff499ea2e701518f3d1d7a956",
+          "source_frame": 98,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/d3f5d595bd29c8193a5fe4fb9df58b2ecbecbda13a2f528a9305ce83f42d226d.png",
+          "sha256": "d3f5d595bd29c8193a5fe4fb9df58b2ecbecbda13a2f528a9305ce83f42d226d",
+          "source_frame": 99,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e51b6930ca170946d200c832d172527788574e5219b16222cecfc17573de4349.png",
+          "sha256": "e51b6930ca170946d200c832d172527788574e5219b16222cecfc17573de4349",
+          "source_frame": 100,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ec5fb7dbb688583799973d5501773854c6eeba609d99d6ca3656c69fb54e3736.png",
+          "sha256": "ec5fb7dbb688583799973d5501773854c6eeba609d99d6ca3656c69fb54e3736",
+          "source_frame": 101,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/b691dcb4033ae52faecda77b1ed898fcd45dc38af0902e52004046c21550c6de.png",
+          "sha256": "b691dcb4033ae52faecda77b1ed898fcd45dc38af0902e52004046c21550c6de",
+          "source_frame": 102,
+          "phase": "cycle"
+        }
+      ],
+      "durations": [
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595,
+        23.314203730272595
+      ],
+      "duration_verified_ms": 955.8823529411754,
+      "fingerprint": "fce3d3dd417ce27a0ac61ec82ee295385b19c6b912dfed02bb74a0afeadb4c73"
+    },
+    {
+      "id": "rook-walk-up-cycle",
+      "character": "Rook",
+      "slot": "walk:up",
+      "phase": "cycle",
+      "direction": "Up",
+      "attacking": false,
+      "sourceManifest": "dist/assets/heroes/rook-animation.json",
+      "sourceManifestSha256": "321f711d1fae273cd17c843f63420428bb77254291baa3c4e17450261e09345f",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-up-01.ktx2",
+          "sha256": "099c3dac7fe8a9c2240fc3a3bf53dc92048b68b40be482abccfa35b6b59f3ff5"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-up-02.ktx2",
+          "sha256": "6afad50dcfcc446469f9dde721560c23674e4e310d37e06ad65cd212a1d83e03"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-up-03.ktx2",
+          "sha256": "69abebf6756da73edb3a77650d9dce6b8bb716b20bc8b55e1d64ba0718429081"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-up-04.ktx2",
+          "sha256": "aa10dc63a59a090df0883490355d4eea99ed495982e4a262342953bfbee132b4"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          491,
+          702
+        ],
+        "anchor": [
+          252,
+          674
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Nominal gameplay gait cadence; actual speed changes with movement.",
+      "frames": [
+        {
+          "url": "baselines/e595bc47cf4bc684337b6f1d0e69ded9fbb328b9046e369308ac74b129ca59f8.png",
+          "sha256": "e595bc47cf4bc684337b6f1d0e69ded9fbb328b9046e369308ac74b129ca59f8",
+          "source_frame": 58,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/48bce5fa4c6a8c74023e065b0815bfc208d8c500807a3848f6822c93fe6747bf.png",
+          "sha256": "48bce5fa4c6a8c74023e065b0815bfc208d8c500807a3848f6822c93fe6747bf",
+          "source_frame": 59,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0aa3c29e2fcd91243b45bdd820d56145fbd22723e3ed5b24ac734a19eaf7c0c0.png",
+          "sha256": "0aa3c29e2fcd91243b45bdd820d56145fbd22723e3ed5b24ac734a19eaf7c0c0",
+          "source_frame": 60,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/bcee3e525b5df8f55e14a6a661a53f61f9445510f6bcb4c980aa0ef0d78275b8.png",
+          "sha256": "bcee3e525b5df8f55e14a6a661a53f61f9445510f6bcb4c980aa0ef0d78275b8",
+          "source_frame": 61,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c22afa5742e70f6fb8a1c92e49dc4b352ae549ae8ab5e4a00a46a619a2b0e242.png",
+          "sha256": "c22afa5742e70f6fb8a1c92e49dc4b352ae549ae8ab5e4a00a46a619a2b0e242",
+          "source_frame": 62,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/440630c811b46e3a56956f4f3e4c4b896c78235eccf3b41caf852e1ce18c25fa.png",
+          "sha256": "440630c811b46e3a56956f4f3e4c4b896c78235eccf3b41caf852e1ce18c25fa",
+          "source_frame": 63,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/28505b899ebdae17c78012e555cc56920754ee0fc1b500768004a85e2498f079.png",
+          "sha256": "28505b899ebdae17c78012e555cc56920754ee0fc1b500768004a85e2498f079",
+          "source_frame": 64,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/b4e612d5a42b7ef2b4a0913a1e0c0b6756ca46098f450305578a5a86302ec9f0.png",
+          "sha256": "b4e612d5a42b7ef2b4a0913a1e0c0b6756ca46098f450305578a5a86302ec9f0",
+          "source_frame": 65,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1bf03b9cfdbd9cf1a1f8c7b76185aba873ca06f29090a13f2aa832e135e6bf7e.png",
+          "sha256": "1bf03b9cfdbd9cf1a1f8c7b76185aba873ca06f29090a13f2aa832e135e6bf7e",
+          "source_frame": 66,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/590802ce2d78f5d7505c8030f2fd3097a90fe428aef9f7eb1e051ce8fefd6cd8.png",
+          "sha256": "590802ce2d78f5d7505c8030f2fd3097a90fe428aef9f7eb1e051ce8fefd6cd8",
+          "source_frame": 67,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/51b085f974e5d85a967f582ec068db5eace2cb0445cd141dc590c96d0a190ca4.png",
+          "sha256": "51b085f974e5d85a967f582ec068db5eace2cb0445cd141dc590c96d0a190ca4",
+          "source_frame": 68,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/001cf2f60a16210d3f9291c05d005d4f99ac3464dc95b666395281d1f04c5352.png",
+          "sha256": "001cf2f60a16210d3f9291c05d005d4f99ac3464dc95b666395281d1f04c5352",
+          "source_frame": 69,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/30c21b6befd706966129e82d6c92f71b42473c0e7c3bdc88ec9f62e478b57170.png",
+          "sha256": "30c21b6befd706966129e82d6c92f71b42473c0e7c3bdc88ec9f62e478b57170",
+          "source_frame": 70,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e0d18cf4b341404b9dbce169dc7c6ffc634899506322dcc1b97e3aec2d7c85bf.png",
+          "sha256": "e0d18cf4b341404b9dbce169dc7c6ffc634899506322dcc1b97e3aec2d7c85bf",
+          "source_frame": 71,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6230711abf9633599b48c311abaf1413d794d94e44cae863455d6b0a3cde09af.png",
+          "sha256": "6230711abf9633599b48c311abaf1413d794d94e44cae863455d6b0a3cde09af",
+          "source_frame": 72,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/426bef87401e2a736d7349014929f5c4f2deffbb02c6372c973dc019025be0ed.png",
+          "sha256": "426bef87401e2a736d7349014929f5c4f2deffbb02c6372c973dc019025be0ed",
+          "source_frame": 73,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6d616f5c3936860ddb8a65ba078fd7124f44b74a004b5affe192b8997ded94c0.png",
+          "sha256": "6d616f5c3936860ddb8a65ba078fd7124f44b74a004b5affe192b8997ded94c0",
+          "source_frame": 74,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/990ae10770e02dcf6f619592f50989208547a919068b3a4b53d49c500eeba9a9.png",
+          "sha256": "990ae10770e02dcf6f619592f50989208547a919068b3a4b53d49c500eeba9a9",
+          "source_frame": 75,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/85b9f10233de311674c736c90305ae9498c8fd4994e4e39e625c14a587300ff9.png",
+          "sha256": "85b9f10233de311674c736c90305ae9498c8fd4994e4e39e625c14a587300ff9",
+          "source_frame": 76,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/34ac17f6bf971d64bf5785313203dc52065636e550330330df9646704b832e2f.png",
+          "sha256": "34ac17f6bf971d64bf5785313203dc52065636e550330330df9646704b832e2f",
+          "source_frame": 77,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e8bca4e54f5df9f81fbb9e7457733c0be1c11ed4b85fc89a13748ac08ba979a0.png",
+          "sha256": "e8bca4e54f5df9f81fbb9e7457733c0be1c11ed4b85fc89a13748ac08ba979a0",
+          "source_frame": 78,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/05584200687ac62fbd35734535ebb1a42699f1a077cfdc0481178b205064acf8.png",
+          "sha256": "05584200687ac62fbd35734535ebb1a42699f1a077cfdc0481178b205064acf8",
+          "source_frame": 79,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/46c422736ad896c3316ca1b6031fee9b1ae18c98cd3770d5e890e0bd96e5dd9b.png",
+          "sha256": "46c422736ad896c3316ca1b6031fee9b1ae18c98cd3770d5e890e0bd96e5dd9b",
+          "source_frame": 80,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/fe055a2bdfa6159a6afc82135caa4c845156ac54b8bd8c91711c860f8683f07d.png",
+          "sha256": "fe055a2bdfa6159a6afc82135caa4c845156ac54b8bd8c91711c860f8683f07d",
+          "source_frame": 81,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/be1b0a48daa3e8ea0e2fc8b9f922041879ff244bf0c16a64ef9482e4d4405124.png",
+          "sha256": "be1b0a48daa3e8ea0e2fc8b9f922041879ff244bf0c16a64ef9482e4d4405124",
+          "source_frame": 82,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/85ec15d3d3019cfe69c8ded7c0542e45980c8820b291bfde847e17e75e5dfb1e.png",
+          "sha256": "85ec15d3d3019cfe69c8ded7c0542e45980c8820b291bfde847e17e75e5dfb1e",
+          "source_frame": 83,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/47b446eb642a21e44fb4b44d4a81ff9a1f468fc04fb5d249a4a7b71a708ad656.png",
+          "sha256": "47b446eb642a21e44fb4b44d4a81ff9a1f468fc04fb5d249a4a7b71a708ad656",
+          "source_frame": 84,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/a359bbe8630bb8f59c2b39c86b7c222abd801a6b42f466beee55403da8b3929c.png",
+          "sha256": "a359bbe8630bb8f59c2b39c86b7c222abd801a6b42f466beee55403da8b3929c",
+          "source_frame": 85,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/453a0598942e0a45280fc4a935398485becf5aab76aa3bad91f4c80ce543ade0.png",
+          "sha256": "453a0598942e0a45280fc4a935398485becf5aab76aa3bad91f4c80ce543ade0",
+          "source_frame": 86,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/df5269a9818212b90d329d7401ddcc28ff303fc6b63562a1661b855217bd2ea6.png",
+          "sha256": "df5269a9818212b90d329d7401ddcc28ff303fc6b63562a1661b855217bd2ea6",
+          "source_frame": 87,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7538fdaf4b9d4035b5ff8072ca8a812f2168e3ee58fd210123f939bc22748d73.png",
+          "sha256": "7538fdaf4b9d4035b5ff8072ca8a812f2168e3ee58fd210123f939bc22748d73",
+          "source_frame": 88,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/00bbf77dec4fd764d473508b8df50582bb6f8b50547894b190f6132cb3f0c47f.png",
+          "sha256": "00bbf77dec4fd764d473508b8df50582bb6f8b50547894b190f6132cb3f0c47f",
+          "source_frame": 89,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/84774de1e5377981319f0f8796ef36ded0bce9bffd5511dc5eb32946666bb1ea.png",
+          "sha256": "84774de1e5377981319f0f8796ef36ded0bce9bffd5511dc5eb32946666bb1ea",
+          "source_frame": 90,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/3c567ac528f5fe29108487179200f4209ce4dde6cfc94dd464a032cedbd2d12f.png",
+          "sha256": "3c567ac528f5fe29108487179200f4209ce4dde6cfc94dd464a032cedbd2d12f",
+          "source_frame": 91,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/d9502f07844d69cf3dc31ee6f7f698ba7ecbda172b12e938a11ff26da176436d.png",
+          "sha256": "d9502f07844d69cf3dc31ee6f7f698ba7ecbda172b12e938a11ff26da176436d",
+          "source_frame": 92,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/f4c6fbb31e78e48843899ac4d255c052e00d6dfabdbfd0dc20f2d6f07659797a.png",
+          "sha256": "f4c6fbb31e78e48843899ac4d255c052e00d6dfabdbfd0dc20f2d6f07659797a",
+          "source_frame": 93,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/519b6cc26a4e027350f3af59d8413647fc0b5846592246cbed098b32d553277a.png",
+          "sha256": "519b6cc26a4e027350f3af59d8413647fc0b5846592246cbed098b32d553277a",
+          "source_frame": 94,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/baf4e83d63a2b4ba21342bd9a072d8959872d5d898b43b402be77001ff2a5beb.png",
+          "sha256": "baf4e83d63a2b4ba21342bd9a072d8959872d5d898b43b402be77001ff2a5beb",
+          "source_frame": 95,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6bfc4fa15f9178be37a984674d424365cbf6ea132fba73c9f426620e9eb179fc.png",
+          "sha256": "6bfc4fa15f9178be37a984674d424365cbf6ea132fba73c9f426620e9eb179fc",
+          "source_frame": 96,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5153e5ca3daf87f8ba294c1d7ebb8c2457fced108082320da36b41e9de5ae802.png",
+          "sha256": "5153e5ca3daf87f8ba294c1d7ebb8c2457fced108082320da36b41e9de5ae802",
+          "source_frame": 97,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/94d98c02da7fee0ef2436efcd32056c7e5f1a3af8dbddfc7b2672ef3072b369b.png",
+          "sha256": "94d98c02da7fee0ef2436efcd32056c7e5f1a3af8dbddfc7b2672ef3072b369b",
+          "source_frame": 98,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ce677b2e1fccf3d60616131e0a082b38fdf1a54c0f6ab8bc5b364a28a7f4d01e.png",
+          "sha256": "ce677b2e1fccf3d60616131e0a082b38fdf1a54c0f6ab8bc5b364a28a7f4d01e",
+          "source_frame": 99,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/2eb75a8504139e4afdd7609eb4cabd0ffe43c897ef4b497da51495a167cb1f09.png",
+          "sha256": "2eb75a8504139e4afdd7609eb4cabd0ffe43c897ef4b497da51495a167cb1f09",
+          "source_frame": 100,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/3b8557bbd667f9ef918ad48736d9741ac40837f152112d99dbafda97c485a460.png",
+          "sha256": "3b8557bbd667f9ef918ad48736d9741ac40837f152112d99dbafda97c485a460",
+          "source_frame": 101,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/ee804b03e6c1f3737717ae7302fef40604885d7a36a495108b5a02841efbea72.png",
+          "sha256": "ee804b03e6c1f3737717ae7302fef40604885d7a36a495108b5a02841efbea72",
+          "source_frame": 102,
+          "phase": "cycle"
+        }
+      ],
+      "durations": [
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185,
+        31.85185185185185
+      ],
+      "duration_verified_ms": 1433.3333333333346,
+      "fingerprint": "ea2daf0b3c301e0724375776bb09177ea8fc2ca303ab4eb4c59e6bd246b84c2f"
+    },
+    {
+      "id": "rook-walk-down-cycle",
+      "character": "Rook",
+      "slot": "walk:down",
+      "phase": "cycle",
+      "direction": "Down",
+      "attacking": false,
+      "sourceManifest": "dist/assets/heroes/rook-animation.json",
+      "sourceManifestSha256": "321f711d1fae273cd17c843f63420428bb77254291baa3c4e17450261e09345f",
+      "sourceCommit": "f362fc3066987fc7938403eb1e836956f0144134",
+      "pages": [
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-down-01.ktx2",
+          "sha256": "bf24a853a75f67737f0252f1def0595b48130db15fb7d01734bb80576f37351a"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-down-02.ktx2",
+          "sha256": "4cd6f4100cae43046bbfee764efe86c12db2a37da848e7de38dca23c56f942b6"
+        },
+        {
+          "path": "dist/assets/heroes/rook-native-v6/walk-down-03.ktx2",
+          "sha256": "1e9bfac1c0fd525ddb19d726ae2ceb09120a2d885996db5c6f5581e2211e7891"
+        }
+      ],
+      "geometry": {
+        "canvas": [
+          432,
+          697
+        ],
+        "anchor": [
+          206,
+          679
+        ],
+        "renderScale": 0.1
+      },
+      "timing": "Nominal gameplay gait cadence; actual speed changes with movement.",
+      "frames": [
+        {
+          "url": "baselines/4d5258c49fb6d86133adbe7a4c129ee87205fdd54065e51fa48041fae01b1a6d.png",
+          "sha256": "4d5258c49fb6d86133adbe7a4c129ee87205fdd54065e51fa48041fae01b1a6d",
+          "source_frame": 60,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/07bb3f2932055033c47dcbe2229843408dfcc09ac7f15e404f1b3ca0c4b613b6.png",
+          "sha256": "07bb3f2932055033c47dcbe2229843408dfcc09ac7f15e404f1b3ca0c4b613b6",
+          "source_frame": 61,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9df75e0f6c8a38a6f3f22ac4bdb2219a8f202608e21aa45a8963650da19baab9.png",
+          "sha256": "9df75e0f6c8a38a6f3f22ac4bdb2219a8f202608e21aa45a8963650da19baab9",
+          "source_frame": 62,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/e657a94ba63b10b1617acda4a3effaca4073dce9d1911df018f25cb48db83933.png",
+          "sha256": "e657a94ba63b10b1617acda4a3effaca4073dce9d1911df018f25cb48db83933",
+          "source_frame": 63,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/fcc0bf451cc9e3b5db6baf88148dc62c8386c0bf50604038f11cde1412080eee.png",
+          "sha256": "fcc0bf451cc9e3b5db6baf88148dc62c8386c0bf50604038f11cde1412080eee",
+          "source_frame": 64,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9c840bf3810031c5220c028541605a869808ccdbe5718537dc1b6c7e5bc1ff93.png",
+          "sha256": "9c840bf3810031c5220c028541605a869808ccdbe5718537dc1b6c7e5bc1ff93",
+          "source_frame": 65,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/45ae69b68cfe8ad3980a5a21b6971763ce65f2ea5c86e5d9426d35838ade1d05.png",
+          "sha256": "45ae69b68cfe8ad3980a5a21b6971763ce65f2ea5c86e5d9426d35838ade1d05",
+          "source_frame": 66,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7a6dea1dd9585ad7104b872220671d64f9e7b01eb55a4b224b2a01127700c8b6.png",
+          "sha256": "7a6dea1dd9585ad7104b872220671d64f9e7b01eb55a4b224b2a01127700c8b6",
+          "source_frame": 67,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/044ac0864c522409915ff835b99a66c8993cf262d3b49cb309ae97b50c13e9d9.png",
+          "sha256": "044ac0864c522409915ff835b99a66c8993cf262d3b49cb309ae97b50c13e9d9",
+          "source_frame": 68,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0eecb9090c9a0726d18d2b9399ce7d1275e12125d4aea30a366c954384231beb.png",
+          "sha256": "0eecb9090c9a0726d18d2b9399ce7d1275e12125d4aea30a366c954384231beb",
+          "source_frame": 69,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/dc727a7f7a3820d8d5691d83f599282597d776a2ea79207db890f697907bdfde.png",
+          "sha256": "dc727a7f7a3820d8d5691d83f599282597d776a2ea79207db890f697907bdfde",
+          "source_frame": 70,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/20f9781799a0eddfb2409d58beeaf99dbd0a7f80b05e85703226f851cd68bd9d.png",
+          "sha256": "20f9781799a0eddfb2409d58beeaf99dbd0a7f80b05e85703226f851cd68bd9d",
+          "source_frame": 71,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6f8a3b21e27106c9d44634e85dee6d9aad6b059c4bd2c3cfeb6ee2d76e76965f.png",
+          "sha256": "6f8a3b21e27106c9d44634e85dee6d9aad6b059c4bd2c3cfeb6ee2d76e76965f",
+          "source_frame": 72,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/77597693d3c215e54b879750937ad18f42c7636bcf5735e8cfa655501f597b93.png",
+          "sha256": "77597693d3c215e54b879750937ad18f42c7636bcf5735e8cfa655501f597b93",
+          "source_frame": 73,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/bfeba2abfb496eff9bfb39c8be06d404abc7314af5b0e074ee2fa3f04d80fac1.png",
+          "sha256": "bfeba2abfb496eff9bfb39c8be06d404abc7314af5b0e074ee2fa3f04d80fac1",
+          "source_frame": 74,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8505abf129feaea0c5d4ac4d5671829ffd1e82305c24e9876ceed24e8bdd31f0.png",
+          "sha256": "8505abf129feaea0c5d4ac4d5671829ffd1e82305c24e9876ceed24e8bdd31f0",
+          "source_frame": 75,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/8078736fb6a19b7b7d1da7250b89ba1e3b97884176b096c76c4b4c0e70ddfac0.png",
+          "sha256": "8078736fb6a19b7b7d1da7250b89ba1e3b97884176b096c76c4b4c0e70ddfac0",
+          "source_frame": 76,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c3ad14e256acc47da6f85d1eb6742bd87be96d4728eaa9d53968f742c88a2cb8.png",
+          "sha256": "c3ad14e256acc47da6f85d1eb6742bd87be96d4728eaa9d53968f742c88a2cb8",
+          "source_frame": 77,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7b75356c2d206fdd130d2048bd4de2f73321f5f2c0e3c9d2c7ab8c175cab4bfd.png",
+          "sha256": "7b75356c2d206fdd130d2048bd4de2f73321f5f2c0e3c9d2c7ab8c175cab4bfd",
+          "source_frame": 78,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/1dd6ba0428addba828f34498822cfafcdc97264104f31996d090d24f89718176.png",
+          "sha256": "1dd6ba0428addba828f34498822cfafcdc97264104f31996d090d24f89718176",
+          "source_frame": 79,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0d8fa4f913e02cde58488a78f45ae0d0e562ab167333b3ab030191b81bf0642b.png",
+          "sha256": "0d8fa4f913e02cde58488a78f45ae0d0e562ab167333b3ab030191b81bf0642b",
+          "source_frame": 80,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/137881501d6e2a87e4e959c2dcd16a4d7920063c2f99a256aa09134839d2e4d2.png",
+          "sha256": "137881501d6e2a87e4e959c2dcd16a4d7920063c2f99a256aa09134839d2e4d2",
+          "source_frame": 81,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/7dbc53bcd705a9ae453145b8fb22a82161416b2893ba36dba897737b6117d449.png",
+          "sha256": "7dbc53bcd705a9ae453145b8fb22a82161416b2893ba36dba897737b6117d449",
+          "source_frame": 82,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/af046cf43e8ed7af914af301ba13251bceeb29a5abc66f976226ed7681fbe2b8.png",
+          "sha256": "af046cf43e8ed7af914af301ba13251bceeb29a5abc66f976226ed7681fbe2b8",
+          "source_frame": 83,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/b671965461c08e0951902f8fc51a42f172830c9c94d50f6d8d2f6dd80957d140.png",
+          "sha256": "b671965461c08e0951902f8fc51a42f172830c9c94d50f6d8d2f6dd80957d140",
+          "source_frame": 84,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/9c1cccb390609208a581a6310cff07980e3ffeccbee114e972f5803cdb0fc746.png",
+          "sha256": "9c1cccb390609208a581a6310cff07980e3ffeccbee114e972f5803cdb0fc746",
+          "source_frame": 85,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/08d477d82b6f9dfd6523e37ab5d16e1190965b1675220bd41a36bb201a01a83d.png",
+          "sha256": "08d477d82b6f9dfd6523e37ab5d16e1190965b1675220bd41a36bb201a01a83d",
+          "source_frame": 86,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/6082453cf62967ef026f12006c5fdecc3ae48e30e0018d5793bdadb41e580c9d.png",
+          "sha256": "6082453cf62967ef026f12006c5fdecc3ae48e30e0018d5793bdadb41e580c9d",
+          "source_frame": 87,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/753737034de70f9d5e66c3ad832744f9e304c6d401403eff6cddeed2cbdacc70.png",
+          "sha256": "753737034de70f9d5e66c3ad832744f9e304c6d401403eff6cddeed2cbdacc70",
+          "source_frame": 88,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/5ab8db13c9b369fef925cfda1796becf28af2319d7d1a07869538dc4be1f23ac.png",
+          "sha256": "5ab8db13c9b369fef925cfda1796becf28af2319d7d1a07869538dc4be1f23ac",
+          "source_frame": 89,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c16d1cc31b86326b39fb788599fc66758cf306bd7cebda2a6d977a1c83cc5202.png",
+          "sha256": "c16d1cc31b86326b39fb788599fc66758cf306bd7cebda2a6d977a1c83cc5202",
+          "source_frame": 90,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/0742527227a1049991e6134b67d03f58c07245c52933982585433b57667e28ca.png",
+          "sha256": "0742527227a1049991e6134b67d03f58c07245c52933982585433b57667e28ca",
+          "source_frame": 91,
+          "phase": "cycle"
+        },
+        {
+          "url": "baselines/c1f9dce2f1de8f037bdc3cca20fb25f9d7e1344a5bf72475448c1a6a2d112d13.png",
+          "sha256": "c1f9dce2f1de8f037bdc3cca20fb25f9d7e1344a5bf72475448c1a6a2d112d13",
+          "source_frame": 92,
+          "phase": "cycle"
+        }
+      ],
+      "durations": [
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343,
+        43.43434343434343
+      ],
+      "duration_verified_ms": 1433.333333333333,
+      "fingerprint": "ca24fcc5c39025ab84f957f43cad657ba54f4759d9112632b917cb9803951dfc"
+    }
+  ]
+}

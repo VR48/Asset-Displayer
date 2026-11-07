@@ -1,13 +1,16 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Asset Displayer · Lanternwake</title>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
-<link rel="stylesheet" href="style.css?v=1.2.0">
+<link rel="stylesheet" href="style.css?v=1.3.0">
 <header><div><h1>Asset Displayer</h1><small>Lanternwake animation review · lossless frame sets · original timing</small></div><div class="handoff-actions"><button id="export">Download handoff</button></div></header>
 <div class="handoff-status"><span id="handoff-status" role="status">Choose decisions and add notes, then download the handoff JSON and attach it in chat. Reviews stay private until you share the file.</span></div>
 <main><aside><div class="filters"><select id="character"><option value="">All characters</option></select><select id="category"><option value="">All package categories</option></select></div><small id="counts"></small><div id="list"></div></aside><article>
 <div class="title"><div><h2 id="title">Loading…</h2><div class="badge" id="approval"></div></div><select id="decision"><option value="undecided">Undecided</option><option value="keep">Keep candidate</option><option value="hold">Hold / compare</option><option value="skip">Do not add</option></select></div>
-<div class="stage checker" id="stage"><canvas id="canvas"></canvas></div>
+<div class="comparison-bar"><p id="usage"></p><button id="compare" hidden aria-pressed="false">Compare</button></div>
+<p class="muted" id="comparison-reason"></p>
+<div class="previews" id="previews"><section id="original-pane" hidden><h3 id="original-label">Current original</h3><div class="stage checker" id="original-stage"><canvas id="original-canvas"></canvas></div><p class="muted" id="original-info" role="status"></p></section><section><h3 id="candidate-label" hidden>Cleaned candidate</h3><div class="stage checker" id="stage"><canvas id="canvas"></canvas></div></section></div>
+<label class="replacement-approval" id="replacement-row" hidden><input type="checkbox" id="replace-approved"> <span id="replacement-label"></span></label>
 <div class="controls"><button id="play">Pause</button><button id="previous">◀ Frame</button><button id="next">Frame ▶</button><select id="speed"><option value="0.25">¼ speed</option><option value="0.5">½ speed</option><option value="1" selected>Original timing</option></select><label><input type="checkbox" id="loop" checked> Repeat preview</label><label><input type="checkbox" id="pivot"> Show anchor</label><select id="background"><option value="checker">Checker</option><option value="dark">Dark</option><option value="light">Light</option></select><span id="time"></span></div>
 <input type="range" id="scrub" class="scrub" min="0" max="1" step="1" value="0">
 <div class="details"><div class="panel"><strong>Provenance & playback</strong><p id="geometry"></p><code id="uuid"></code><p class="muted" id="frameInfo"></p><div class="status">Delivered PNGs only. Stabilization offsets are not applied again.</div></div><div class="panel"><strong>Package caveats</strong><ul id="caveats"></ul><label for="notes">Requested changes / review notes</label><textarea id="notes" maxlength="4000" placeholder="What should change? Which version or frames should be used?"></textarea><small>When finished, download the handoff and attach the JSON in chat. Nothing is uploaded from this page.</small></div></div>
 </article></main>
-<script type="module" src="app.js?v=1.2.0"></script></html>
+<script type="module" src="app.js?v=1.3.0"></script></html>
