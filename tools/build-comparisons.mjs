@@ -26,6 +26,7 @@ const labels={1:['Rook','Sprint','Right',false],2:['Kest','Fire / raise / lower'
 const data=JSON.parse(await readFile(path.join(root,'data.json'),'utf8')),baselines=[];
 await mkdir(path.join(root,'baselines'),{recursive:true});
 for(const set of data.sets){
+ if(!labels[set.number]){if(!set.usage||set.replacement)throw Error('Unmapped candidate '+set.name);continue;}
  const [character,action,direction,attacking]=labels[set.number];
  set.usage={character,action,direction,attacking,status:targets[set.number]?'replacement':'new-feature'};
  delete set.replacement;

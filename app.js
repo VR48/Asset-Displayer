@@ -1,6 +1,6 @@
 
-import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff} from './handoff.mjs?v=1.3.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.3.0';
+import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.4.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.4.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -13,8 +13,8 @@ const snapshot=()=>buildHandoff(data.sets,versions,decisions,revision);
 function persistBrowser(){try{localStorage.setItem('asset-displayer-lanternwake-review-v1',JSON.stringify(decisions));}catch{handoffStatus('Browser storage is unavailable. Download your handoff before closing this page.',true);}}
 let current,frame=0,position=0,elapsed=0,playing=true,last=performance.now(),generation=0,comparing=false,baseline=null,originalFrame=-1,originalPaint=0;
 const cache=new Map();
-const character=s=>s.name.toLowerCase().includes('seb')?'Seb':['Rook','Kest','Mica','Vale','Chaser','Runner','Heavy'].find(c=>s.name.includes(c.toLowerCase()))||'Other';
-const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review'};
+const character=s=>s.usage?.character??'Other';
+const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review','06_NEW_CHARACTER_CANDIDATES':'06 · New character candidates'};
 for(const value of [...new Set(data.sets.map(character))]){const o=document.createElement('option');o.value=value;o.textContent=value;$('character').append(o);}
 for(const [value,label] of Object.entries(categoryLabels)){const o=document.createElement('option');o.value=value;o.textContent=label;$('category').append(o);}
 function list(){
@@ -45,8 +45,8 @@ async function drawOriginal(force=false){
 async function draw(index){
  frame=index;$('scrub').value=index;
  const selected=current,stamp=generation;
- $('time').textContent=`${index+1} / ${selected.frames.length} · ${(position/1000).toFixed(2)}s`;
- $('frameInfo').textContent=`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · offsets retained as provenance`;
+ $('time').textContent=selected.media_kind==='image'?'Still reference':`${index+1} / ${selected.frames.length} · ${(position/1000).toFixed(2)}s`;
+ $('frameInfo').textContent=selected.media_kind==='image'?'Original RGBA still · approximate foot anchor retained':`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · ${selected.source.provider==='Pika'?'chronological preview timing retained':'offsets retained as provenance'}`;
  try{const img=await image(index);if(stamp!==generation||frame!==index)return;paint($('canvas'),img,selected.geometry);
  }catch{$('time').textContent='Frame could not be loaded';}
 }
@@ -54,8 +54,11 @@ function select(s){
  generation++;cache.clear();current=s;position=0;elapsed=0;frame=0;last=performance.now();comparing=false;baseline=baselineFor(s,comparisons);originalFrame=-1;originalPaint++;
  $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category]+(decisions[s.name]?.needsReview?' · Previous '+decisions[s.name].previousDecision+' needs source-version review':'');
  const [w,h]=s.actual_dimensions[0];$('canvas').width=w;$('canvas').height=h;$('scrub').max=s.frames.length-1;
- $('geometry').textContent=`${w} × ${h} native canvas · ${s.unique_png_files} unique PNGs · ${(s.duration_verified_ms/1000).toFixed(3)} seconds`;
- $('uuid').textContent='MJ UUID: '+s.source.mj_job_uuid;$('caveats').replaceChildren();
+ const still=s.media_kind==='image';
+ $('geometry').textContent=`${w} × ${h} native canvas · ${still?'Still reference (not animated)':s.unique_png_files+' unique PNGs · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
+ $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);$('caveats').replaceChildren();
+ for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still;
+ if(still)playing=false;$('play').textContent=still?'Still image':playing?'Pause':'Play';
  for(const text of s.caveats||[]){const li=document.createElement('li');li.textContent=text;$('caveats').append(li);}
  $('decision').value=decisions[s.name]?.decision||'undecided';$('notes').value=decisions[s.name]?.notes||'';list();draw(0);
  $('usage').textContent=`${s.usage.character} · ${s.usage.action} · ${s.usage.direction} · ${s.usage.attacking?'Attacking in this direction':'Not firing'}`;
@@ -65,7 +68,7 @@ function select(s){
  $('replacement-row').hidden=!baseline;$('replace-approved').disabled=!baseline;$('replace-approved').checked=decisions[s.name]?.replaceApproved===true;
  $('replacement-label').textContent=baseline?`Authorize replacing ${s.replacement.slot} (${s.replacement.phase}) with this candidate.`:'';
 }
-function save(){if($('decision').value!=='keep')$('replace-approved').checked=false;decisions[current.name]={decision:$('decision').value,notes:$('notes').value,mjJobUuid:current.source.mj_job_uuid,packageCategory:current.approval_category,assetFingerprint:versions.get(current.name),replaceApproved:!!baseline&&$('replace-approved').checked,replacementFingerprint:current.replacement?.baselineFingerprint};persistBrowser();list();revision++;}
+function save(){if($('decision').value!=='keep')$('replace-approved').checked=false;decisions[current.name]={decision:$('decision').value,notes:$('notes').value,mjJobUuid:current.source.mj_job_uuid,sourceKey:sourceIdentity(current),packageCategory:current.approval_category,assetFingerprint:versions.get(current.name),replaceApproved:!!baseline&&$('replace-approved').checked,replacementFingerprint:current.replacement?.baselineFingerprint};persistBrowser();list();revision++;}
 $('replace-approved').onchange=()=>{if($('replace-approved').checked)$('decision').value='keep';save();};
 $('compare').onclick=()=>{if(!baseline)return;comparing=!comparing;generation++;originalPaint++;originalFrame=-1;$('previews').classList.toggle('comparing',comparing);$('original-pane').hidden=!comparing;$('candidate-label').hidden=!comparing;$('compare').textContent=comparing?'Close comparison':'Compare';$('compare').setAttribute('aria-pressed',String(comparing));$('original-label').textContent=`Current original · ${current.replacement.slot} · ${baseline.phase}`;
  const [w,h]=current.actual_dimensions[0];$('canvas').width=comparing?640:w;$('canvas').height=comparing?640:h;$('original-canvas').width=640;$('original-canvas').height=640;draw(frame);drawOriginal(true);};

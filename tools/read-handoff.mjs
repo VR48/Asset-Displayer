@@ -12,7 +12,7 @@ const sections=['Asset Displayer — private review handoff',`Read from: ${sourc
 for(const state of ['keep','hold','skip','undecided']){
  const group=handoff.assets.filter(a=>a.decision===state);
  sections.push(`${state.toUpperCase()} (${group.length})`);
- for(const item of group){sections.push(`- ${item.assetId} | MJ ${item.sourceJobId}`);if(item.usage)sections.push(`  ${item.usage.action} | ${item.usage.direction} | ${item.usage.attacking?'attacking':'not firing'} | ${item.usage.status}`);if(item.replacement)sections.push(`  Replacement ${item.replacement.approved?'AUTHORIZED':'NOT authorized'}: ${item.replacement.slot} (${item.replacement.phase}), baseline ${item.replacement.baselineFingerprint}`);if(item.requestedChanges)sections.push(`  Requested changes: ${item.requestedChanges}`);}
+ for(const item of group){sections.push(`- ${item.assetId} | ${item.sourceProvider??'MJ'} ${item.sourceJobId??'source SHA-256 '+item.sourceAssetSha256}`);if(item.usage)sections.push(`  ${item.usage.action} | ${item.usage.direction} | ${item.usage.attacking?'attacking':'not firing'} | ${item.usage.status}`);if(item.replacement)sections.push(`  Replacement ${item.replacement.approved?'AUTHORIZED':'NOT authorized'}: ${item.replacement.slot} (${item.replacement.phase}), baseline ${item.replacement.baselineFingerprint}`);if(item.requestedChanges)sections.push(`  Requested changes: ${item.requestedChanges}`);}
  sections.push('');
 }
 if(checked.unknown.length)sections.push('Assets absent from current catalog: '+checked.unknown.join(', '));

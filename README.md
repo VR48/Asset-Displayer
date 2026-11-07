@@ -1,7 +1,8 @@
 # Asset Displayer
 
 A static, shareable animation review gallery for Lanternwake. The initial
-collection has 34 cleaned animation sets from 25 Midjourney source jobs.
+collection has 34 cleaned animation sets from 25 Midjourney source jobs, plus
+four Denis idle loops and four Denis character references.
 
 Open the published GitHub Pages site, select a character or package category,
 and play, pause, scrub or step through the frames. Original frame durations,
@@ -61,7 +62,8 @@ storage without a separately planned history migration.
   and package caveats. Package categories preserve historical approval context;
   viewing or marking a candidate does not install it in the game.
 - `assets/` stores 2,754 unique, unchanged lossless RGBA PNGs by SHA-256. Shared
-  frames are stored once and referenced in the intended timeline order.
+  original collection frames plus 484 Denis frames/references (3,238 total).
+  Shared frames are stored once and referenced in the intended timeline order.
 - `comparisons.json` identifies the ASUS checkout's Original runtime bank
   snapshot, with source commit, manifest/page hashes and attack-phase semantics.
   `baselines/` contains 282 native-size RGBA PNGs decoded from those existing
@@ -78,6 +80,29 @@ storage without a separately planned history migration.
 
 This viewer is independent of both Lanternwake game runtimes. It does not alter
 Web or Godot gameplay, and it does not request new Midjourney generations.
+
+## New character candidates
+
+Select **Denis** under Character or **New character candidates** under package
+category. His latest cleaned idle set includes the v5 rear replacement and the
+unchanged v4 front/left/right previews: four 120-frame, five-second animations.
+The original WebP timings and decoded RGBA pixels are preserved. The newer v6
+weathered design is also available as four unchanged, full-resolution still
+references. These stills are a separate design revision, not regenerated idles;
+their animation controls are disabled so a still is not presented as motion.
+
+Denis has no existing runtime character bank, so all eight entries are marked
+New feature and have no Compare or replacement-authorization controls. Decisions
+and notes work normally in the private handoff. Pika job IDs, source/preview
+hashes and ImageGen source hashes identify these assets without fictitious MJ
+UUIDs. Earlier Denis design revisions and rejected animation takes remain in
+the local source archive, outside this review collection.
+
+`python tools/import-denis.py /absolute/path/to/lanternwake` reproducibly imports
+these existing previews with Pillow; it does not regenerate media or alter the
+source files. Future characters can use the same explicit `usage.character`,
+media kind and provider provenance fields; the viewer derives its character
+filter from that metadata rather than a fixed roster.
 
 ## Local verification and hosting
 
