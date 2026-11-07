@@ -7,7 +7,7 @@ const frames=new Map();let entries=0;
 assert(manifest.sets.length>=34);assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
 for(const set of manifest.sets){
  if(set.source.mj_job_uuid)assert.match(set.source.mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);
- else{assert(['Pika','ImageGen'].includes(set.source.provider));assert.match(set.source.sha256,/^[a-f0-9]{64}$/);if(set.source.provider==='Pika'){assert.match(set.source.job_id,/^creation_[a-f0-9-]{36}$/);assert.match(set.source.preview_sha256,/^[a-f0-9]{64}$/);}assert(['animation','image'].includes(set.media_kind));if(set.media_kind==='image')assert.equal(set.frames.length,1);}
+ else{assert(['Pika','ImageGen','Reference'].includes(set.source.provider));assert.match(set.source.sha256,/^[a-f0-9]{64}$/);if(set.source.provider==='Pika'){assert.match(set.source.job_id,/^creation_[a-f0-9-]{36}$/);assert.match(set.source.preview_sha256,/^[a-f0-9]{64}$/);}assert(['animation','image'].includes(set.media_kind));if(set.media_kind==='image')assert.equal(set.frames.length,1);if(set.source.origin_mj_job_uuid)assert.match(set.source.origin_mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);}
  assert.equal(set.frames.length,set.durations.length);
  assert(set.durations.every(ms=>Number.isFinite(ms)&&ms>0));
  assert(Math.abs(set.durations.reduce((a,b)=>a+b,0)-set.duration_verified_ms)<0.01);

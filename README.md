@@ -2,7 +2,8 @@
 
 A static, shareable animation review gallery for Lanternwake. The initial
 collection has 34 cleaned animation sets from 25 Midjourney source jobs, plus
-four Denis idle loops and four Denis character references.
+four Denis idle loops, four Denis character references and four Seb standing
+MASTER candidates with a relaxed low sword carry.
 
 Open the published GitHub Pages site, select a character or package category,
 and play, pause, scrub or step through the frames. Original frame durations,
@@ -62,7 +63,8 @@ storage without a separately planned history migration.
   and package caveats. Package categories preserve historical approval context;
   viewing or marking a candidate does not install it in the game.
 - `assets/` stores 2,754 unique, unchanged lossless RGBA PNGs by SHA-256. Shared
-  original collection frames plus 484 Denis frames/references (3,238 total).
+  original collection frames plus 484 Denis frames/references and four Seb
+  MASTER candidates (3,242 total).
   Shared frames are stored once and referenced in the intended timeline order.
 - `comparisons.json` identifies the ASUS checkout's Original runtime bank
   snapshot, with source commit, manifest/page hashes and attack-phase semantics.
@@ -103,6 +105,18 @@ these existing previews with Pillow; it does not regenerate media or alter the
 source files. Future characters can use the same explicit `usage.character`,
 media kind and provider provenance fields; the viewer derives its character
 filter from that metadata rather than a fixed roster.
+
+Seb's **Standing MASTER reference · low sword** entries are new-character stills
+for front, rear, left and right. The front retains the existing low-sword source;
+the other views originate in MJ image jobs and receive owner-authorized ImageGen
+repairs for horn count, identity and anatomical equipment placement. MJ job UUIDs
+and selected image indices remain attached as origin evidence; the repaired
+PNG's own fingerprint identifies the actual review asset. They are not relabeled
+as unmodified MJ output. The magenta backdrop is retained, and only opaque alpha
+is added for the viewer; RGB pixels are unchanged. New rear/side surfaces remain
+proposed design, not approved historical detail. No new walk animation or runtime
+replacement is installed. `tools/import-seb-masters.py` imports only a completed
+four-direction candidate manifest from the local source archive.
 
 ## Local verification and hosting
 
