@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {catalogVersions,buildHandoff,importHandoff,sourceIdentity} from './handoff.mjs';
+import {catalogVersions,buildHandoff,importHandoff,sourceIdentity,sanitizeDecisions} from './handoff.mjs';
 const sets=JSON.parse(await readFile(new URL('./data.json',import.meta.url))).sets;
 test('Seb masters distinguish retained reference and hybrid repairs with exact MJ origin',async()=>{
  const masters=sets.filter(s=>s.name.startsWith('seb-master-'));assert.equal(masters.length,4);
@@ -11,4 +11,10 @@ test('Seb masters distinguish retained reference and hybrid repairs with exact M
  for(const s of masters){assert.equal(s.media_kind,'image');assert.equal(s.frames.length,1);assert.equal(s.replacement,undefined);assert.equal(s.usage.status,'new-feature');assert.equal(s.source.mj_job_uuid,undefined);assert.equal(s.source.provider,s.usage.direction==='Front / down'?'Reference':'ImageGen');}
  const rear=file.assets.find(a=>a.assetId==='seb-master-rear-low-sword-v1');assert.equal(rear.sourceJobId,null);assert.equal(rear.sourceProvider,'ImageGen');assert.equal(rear.sourceOrigin.jobId,masters[1].source.origin_mj_job_uuid);assert.equal(rear.sourceOrigin.imageIndex,3);
  const changed=structuredClone(file);changed.assets.find(a=>a.assetId===rear.assetId).sourceOrigin.jobId='00000000-0000-0000-0000-000000000000';assert.throws(()=>importHandoff(changed,sets,versions),/Source origin changed/);
+});
+test('known prior rear revision retains notes but requires a fresh decision',async()=>{
+ const rear=sets.find(s=>s.name==='seb-master-rear-low-sword-v1'),versions=await catalogVersions(sets);assert(rear.source.previous_sha256);
+ const previous={decision:'keep',notes:'Back too plain',sourceKey:rear.source.previous_sha256,assetFingerprint:'old'};
+ const reset=sanitizeDecisions({[rear.name]:previous},sets,versions)[rear.name];assert.equal(reset.decision,'undecided');assert.equal(reset.notes,'Back too plain');assert.equal(reset.needsReview,true);
+ assert.equal(sanitizeDecisions({[rear.name]:{...previous,sourceKey:'unrelated-source'}},sets,versions)[rear.name],undefined);
 });

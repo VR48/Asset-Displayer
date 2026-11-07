@@ -8,6 +8,7 @@ from PIL import Image
 import hashlib
 import io
 import json
+import re
 import sys
 
 root = Path(__file__).resolve().parent.parent
@@ -43,10 +44,14 @@ for offset, item in enumerate(selected):
     if item.get('baseMidjourneyJob'):
         source['origin_mj_job_uuid'] = item['baseMidjourneyJob']
         source['origin_image_index'] = item['baseImageIndex']
+    if item.get('revisionParentSha256'):
+        source['previous_sha256'] = item['revisionParentSha256']
     caveats = ['Static neutral standing MASTER candidate, not an animation or approval to replace gameplay assets.',
                'Sword belongs to anatomical right hand and hangs low; projector belongs to anatomical left forearm; shield off.',
                'Pure magenta background retained for future cleanup. Review PNG adds opaque alpha without changing RGB pixels.',
                'No runtime anchor, sprite scale, action timing or animation bank has been calibrated.']
+    if item.get('revision'):
+        caveats.append(f"Revision {item['revision']}: added angular back armor plates, segmented spine and layered lumbar plates. Previous plain-back source is archived locally; review this revised artwork again.")
     if direction == 'front':
         caveats.append('Existing relaxed low-sword source retained unchanged, used by MJ job cbb51156-6c74-4d87-af82-e6c93535b391; original image-generation provider is not asserted.')
     else:
@@ -66,8 +71,15 @@ for offset, item in enumerate(selected):
                                    direction=labels[direction], attacking=False, status='new-feature',
                                    reason='Seb has no existing playable character animation bank. These are new standing references for future animation, not replacements for an existing runtime slot.')))
 names = {s['name'] for s in entries}
+previous_urls = {f['url'] for s in data['sets'] if s['name'] in names for f in s['frames']}
 data['sets'] = [s for s in data['sets'] if s['name'] not in names] + entries
 assert len({s['name'] for s in data['sets']}) == len(data['sets'])
 assert len({s['number'] for s in data['sets']}) == len(data['sets'])
 (root / 'data.json').write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+referenced = {f['url'] for s in data['sets'] for f in s['frames']}
+for url in previous_urls - referenced:
+    assert re.fullmatch(r'assets/[a-f0-9]{64}\.png', url)
+    obsolete = (root / url).resolve()
+    assert obsolete.parent == (root / 'assets').resolve()
+    obsolete.unlink()  # Previous MASTER source stays in the local source archive.
 print(json.dumps(dict(imported=len(entries), character='Seb', totalSets=len(data['sets']))))
