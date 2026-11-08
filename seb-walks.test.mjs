@@ -33,9 +33,14 @@ test('rejected v1 assets stay retired and approved rear v4 is the displayed stil
 test('underbuilt v2 side masters and walks stay retired while approved front remains exact',()=>{
  for(const id of ['seb-master-left-low-sword-v2','seb-master-right-low-sword-v2','seb-walk-left-low-sword-v2','seb-walk-right-low-sword-v2'])assert(!sets.some(s=>s.name===id));
  const front=sets.find(s=>s.name==='seb-walk-front-low-sword-v2');assert.equal(front.source.mj_job_uuid,'20a2fb03-fca2-4150-8318-393372ca732b');assert.equal(front.original_video.sha256,'1cb1706538ec6a7a47414c256f4022ac224575ea1dfa681040bd911866df6fe2');
- for(const d of ['left','right'])assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v4'));
+ for(const d of ['left','right'])assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v5'));
 });
 
-test('strength-approved but short v3 masters are superseded by proportion-review v4',()=>{
- for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v4'));}
+test('strength-approved but short v3 masters are retired after later master refinements',()=>{
+ for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v5'));}
+});
+
+test('fresh v5 side provenance anchors armor/material to original front and retires edited v4',()=>{
+ const front=sets.find(s=>s.name==='seb-master-front-low-sword-v1');
+ for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v4'));const side=sets.find(s=>s.name==='seb-master-'+d+'-low-sword-v5');assert(side);assert.equal(side.source.render_basis,'fresh-reference-guided-redraw');assert.equal(side.source.armor_reference_sha256,front.source.sha256);assert(side.source.reference_sha256s.includes(front.source.sha256));}
 });

@@ -93,7 +93,7 @@ metadata rather than a fixed roster.
 
 Seb's standing references cover front, rear, left and right. The front keeps
 the original low-sword source. Rear v4 retains its MJ origin and ImageGen repair
-provenance. Side v4 stills retain the accepted strength and correct body length against the canonical front,
+provenance. Side v5 stills are freshly redrawn from the original front armor/material authority,
 while preserving the liked facial likeness and relaxed body language. Their new
 proportions remain subject to visual review before side video generation.
 
@@ -158,3 +158,14 @@ Side v4 masters redraw length below the head while retaining the stronger build,
 likeness and relaxed pose. The left correction is stronger; the right remains
 more compact. These are proportion-review stills. V3 sources remain archived
 locally as strength references; new side motion awaits the proportion judgment.
+
+## Fresh armor and texture redraw
+
+Side v5 replaces the edited v4 stills with fresh reference-guided renders. The
+final inputs are the original front for armor/material and the clean head
+reference for likeness; prior edited side bodies are excluded. Two main chest
+courses meet the black fabric flank, with two separate central abdominal shields
+below. OMP found the extra lateral rib tier absent and surface detail improved.
+Brighter bevel edging, a busier right chevron wrap and oblique torso presentation
+remain visible review caveats. Full hidden-plate equivalence is not asserted.
+Earlier edited and failed redraw attempts remain archived locally.
