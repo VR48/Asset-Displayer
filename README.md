@@ -91,7 +91,7 @@ Standing references are clearly distinguished from animation clips, and their
 animation controls are disabled. The character filter is derived from catalog
 metadata rather than a fixed roster.
 
-Seb's standing references cover front, rear, left and right. The front keeps
+Seb's standing references cover front, rear, oblique left/right and near-profile left/right. The front keeps
 the original low-sword source. Rear v4 retains its MJ origin and ImageGen repair
 provenance. Side v6 displays an exact supplied existing left render and a right material redraw.
 The right uses separate longer-proportion and restored-texture references with
@@ -99,7 +99,7 @@ the original front armor authority; its complete likeness/material result remain
 subject to visual review before side video generation.
 
 The current raw videos are the retained front/down walk, the undecided rear
-walk and the separate rear/up sneak candidate. The rear walk still identifies
+walk, the separate rear/up sneak candidate and the shallow diagonal-left walk. The rear walk still identifies
 its actual v6 input; the sneak retains its v3 input. Neither is relabeled as
 having used the displayed rear v4 still. Retired side v1/v2 masters and walks
 remain archived locally and absent from the live catalog.
@@ -180,3 +180,20 @@ The right v6 redraw combines the supplied longer-proportion reference with the
 restored v5 texture reference. Its richer surface variation, face, plate contours
 and steeper low-sword angle remain reviewable. No new videos or runtime changes.
 Private review decisions remain outside the published catalog.
+
+## AV diagonal walk and profile candidates
+
+The v6 left walk is classified **Diagonal left (shallow)**, with its original
+MP4 and all 122 chronological frames retained. It is a tentative motion candidate,
+not a horizontal-left walk. Its opening/closing stance may create a cadence
+hesitation; blade shape and foot contact still need playback review. A stronger
+diagonal sprite/run will be handled separately.
+
+The v6 right original remains local: sword-tip contact with the canvas edge
+around 2.96–3.00 seconds prevents recommending its framing. It is not published.
+
+Both v6 standing sources remain as oblique references, with their exact pixels
+and video-source provenance unchanged. New v7 left/right stills improve whole-body
+profile alignment. Some chest frontage, boot-top visibility and foot stagger
+remain; exact 90-degree projection is not certified. They await master review
+before any new horizontal walking generation. No game runtime changes.

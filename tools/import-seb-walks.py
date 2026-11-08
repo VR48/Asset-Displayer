@@ -79,7 +79,7 @@ for item in plan['directions'] + plan.get('additionalCandidates', []):
                                     master_asset_id=item.get('masterAssetId', f'seb-master-{direction}-low-sword-v1'), batch_size=1,
                                     speed=plan['speed'], motion=plan['motion'], loop_requested=plan['loop']),
                         original_video=dict(url=video_url, sha256=item['outputSha256'], mime_type='video/mp4'),
-                        usage=dict(character='Seb', action=item.get('action', 'Walk in place · low sword'), direction=labels[direction], attacking=False,
+                        usage=dict(character='Seb', action=item.get('action', 'Walk in place · low sword'), direction=item.get('usageDirection', labels[direction]), attacking=False,
                                    status='new-feature', reason='Seb has no existing runtime character bank. This is a new animation candidate for visual review, not authorization to install a new character or replace a gameplay slot.')))
 assert len({e['name'] for e in entries}) == len(entries)
 names = {s['name'] for s in entries}
