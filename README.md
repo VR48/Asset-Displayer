@@ -210,3 +210,15 @@ byte-identical to each input. Original sources and superseded exports are
 archived locally. New tones await review; numerical material samples do not
 certify visual equivalence. Historical videos remain unchanged and still name
 the exact original input hashes, available through their master history.
+
+## Explicit oblique head references v9
+
+All five non-front full-body stills were regenerated with separately attached
+native oblique head close-ups alongside full-body and front references. Each
+visible-face direction used the corresponding oblique head; rear used both for
+hair/horns/ear/nape identity while remaining back-facing. Color restoration
+followed the redraws. The original reference faces remain recognizable; this
+is continuity rather than a claimed novel facial redesign. Near-profile body
+alignment remains, with sharper right-profile nose/chin and horn overlap, plus
+inherited rear sword foreshortening, left for review. Final head previews are
+exact crops of the published full-body PNGs. Front and videos are unchanged.

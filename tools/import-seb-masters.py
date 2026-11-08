@@ -48,6 +48,10 @@ for offset, item in enumerate(selected):
         source['origin_image_index'] = item['baseImageIndex']
     if item.get('referenceSha256s'):
         source['reference_sha256s'] = item['referenceSha256s']
+    if item.get('headReferenceSha256s'):
+        source['head_reference_sha256s'] = item['headReferenceSha256s']
+    if item.get('generationInputSha256s'):
+        source['generation_input_sha256s'] = item['generationInputSha256s']
     if item.get('colorGrade'):
         source['color_grade'] = item['colorGrade']
     if item.get('renderMethod'):

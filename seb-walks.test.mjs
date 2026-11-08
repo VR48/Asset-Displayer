@@ -40,10 +40,10 @@ test('strength-approved but short v3 masters are retired after later master refi
  for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v6'));}
 });
 
-test('v6 side provenance distinguishes supplied still from material redraw',()=>{
+test('oblique references preserve original lineage across explicit head-reference redraws',()=>{
  const front=sets.find(s=>s.name==='seb-master-front-low-sword-v1');
  for(const d of ['left','right'])for(const v of [4,5])assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v'+v));
  const left=sets.find(s=>s.name==='seb-master-left-low-sword-v6'),right=sets.find(s=>s.name==='seb-master-right-low-sword-v6');assert(left&&right);
- assert.equal(left.source.render_basis,'existing-supplied-render');assert(left.source.previous_sha256s.includes('17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622'));assert.equal(left.source.color_grade.input_sha256,'17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622');
- assert.equal(right.source.render_basis,'fresh-material-render-with-proportion-reference');assert.equal(right.source.armor_reference_sha256,front.source.sha256);assert(right.source.reference_sha256s.includes(front.source.sha256));
+ assert.equal(left.source.render_basis,'explicit-oblique-head-reference-redraw');assert(left.source.previous_sha256s.includes('17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622'));assert.equal(left.source.head_reference_sha256s.length,1);assert.equal(left.source.color_grade.revision,9);
+ assert.equal(right.source.render_basis,'explicit-oblique-head-reference-redraw');assert.equal(right.source.armor_reference_sha256,front.source.sha256);assert(right.source.reference_sha256s.includes(front.source.sha256));
 });
