@@ -93,9 +93,10 @@ metadata rather than a fixed roster.
 
 Seb's standing references cover front, rear, left and right. The front keeps
 the original low-sword source. Rear v4 retains its MJ origin and ImageGen repair
-provenance. Side v5 stills are freshly redrawn from the original front armor/material authority,
-while preserving the liked facial likeness and relaxed body language. Their new
-proportions remain subject to visual review before side video generation.
+provenance. Side v6 displays an exact supplied existing left render and a right material redraw.
+The right uses separate longer-proportion and restored-texture references with
+the original front armor authority; its complete likeness/material result remains
+subject to visual review before side video generation.
 
 The current raw videos are the retained front/down walk, the undecided rear
 walk and the separate rear/up sneak candidate. The rear walk still identifies
@@ -169,3 +170,13 @@ below. OMP found the extra lateral rib tier absent and surface detail improved.
 Brighter bevel edging, a busier right chevron wrap and oblique torso presentation
 remain visible review caveats. Full hidden-plate equivalence is not asserted.
 Earlier edited and failed redraw attempts remain archived locally.
+
+## Side selection and material redraw v6
+
+The supplied left image is preserved exactly; its RGB pixels match the first
+fresh left render from the v5 work, with no further edits. The final v5 pair is
+archived locally as face/material references after body-proportion review.
+The right v6 redraw combines the supplied longer-proportion reference with the
+restored v5 texture reference. Its richer surface variation, face, plate contours
+and steeper low-sword angle remain reviewable. No new videos or runtime changes.
+Private review decisions remain outside the published catalog.

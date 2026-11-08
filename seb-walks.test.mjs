@@ -33,14 +33,17 @@ test('rejected v1 assets stay retired and approved rear v4 is the displayed stil
 test('underbuilt v2 side masters and walks stay retired while approved front remains exact',()=>{
  for(const id of ['seb-master-left-low-sword-v2','seb-master-right-low-sword-v2','seb-walk-left-low-sword-v2','seb-walk-right-low-sword-v2'])assert(!sets.some(s=>s.name===id));
  const front=sets.find(s=>s.name==='seb-walk-front-low-sword-v2');assert.equal(front.source.mj_job_uuid,'20a2fb03-fca2-4150-8318-393372ca732b');assert.equal(front.original_video.sha256,'1cb1706538ec6a7a47414c256f4022ac224575ea1dfa681040bd911866df6fe2');
- for(const d of ['left','right'])assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v5'));
+ for(const d of ['left','right'])assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v6'));
 });
 
 test('strength-approved but short v3 masters are retired after later master refinements',()=>{
- for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v5'));}
+ for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v6'));}
 });
 
-test('fresh v5 side provenance anchors armor/material to original front and retires edited v4',()=>{
+test('v6 side provenance distinguishes supplied still from material redraw',()=>{
  const front=sets.find(s=>s.name==='seb-master-front-low-sword-v1');
- for(const d of ['left','right']){assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v4'));const side=sets.find(s=>s.name==='seb-master-'+d+'-low-sword-v5');assert(side);assert.equal(side.source.render_basis,'fresh-reference-guided-redraw');assert.equal(side.source.armor_reference_sha256,front.source.sha256);assert(side.source.reference_sha256s.includes(front.source.sha256));}
+ for(const d of ['left','right'])for(const v of [4,5])assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v'+v));
+ const left=sets.find(s=>s.name==='seb-master-left-low-sword-v6'),right=sets.find(s=>s.name==='seb-master-right-low-sword-v6');assert(left&&right);
+ assert.equal(left.source.render_basis,'existing-supplied-render');assert.equal(left.source.sha256,'17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622');
+ assert.equal(right.source.render_basis,'fresh-material-render-with-proportion-reference');assert.equal(right.source.armor_reference_sha256,front.source.sha256);assert(right.source.reference_sha256s.includes(front.source.sha256));
 });
