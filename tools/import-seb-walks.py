@@ -10,10 +10,11 @@ import sys
 
 root = Path(__file__).resolve().parent.parent
 game = Path(sys.argv[1]).resolve()
-source = game / 'art-source/seb/walk-v1'
+source = (game / (sys.argv[2] if len(sys.argv) > 2 else 'art-source/seb/walk-v1')).resolve()
+assert source.is_relative_to((game / 'art-source/seb').resolve())
 plan = json.loads((source / 'manifest.json').read_text(encoding='utf-8'))
 assert plan['status'] == 'draft-ready-for-owner-review'
-assert len(plan['directions']) == 4
+assert 1 <= len(plan['directions']) <= 4
 data = json.loads((root / 'data.json').read_text(encoding='utf-8'))
 existing = {s['name']: s['number'] for s in data['sets']}
 next_number = max(existing.values()) + 1
@@ -22,6 +23,8 @@ sha = lambda b: hashlib.sha256(b).hexdigest()
 labels = {'front': 'Front / down', 'rear': 'Rear / up', 'left': 'Left', 'right': 'Right'}
 entries = []
 for item in plan['directions'] + plan.get('additionalCandidates', []):
+    if item.get('ownerReview', {}).get('decision') == 'do-not-add':
+        continue
     direction = item['direction']
     assert direction in labels and item['status'] == 'completed'
     assert item['filesCount'] == 1 and item['providerBatchOneConfirmed'] is True
@@ -48,8 +51,7 @@ for item in plan['directions'] + plan.get('additionalCandidates', []):
         frames.append(dict(url=url, sha256=frame['sha256'], source_frame=frame['source_frame'],
                            duration_numerator=frame['duration_numerator'], duration_denominator=frame['duration_denominator']))
     name = item.get('assetId', f'seb-walk-{direction}-low-sword-v1')
-    assert re.fullmatch(r'seb-(walk|sneak)-(front|rear|left|right)-low-sword-v1', name)
-    assert name in (f'seb-walk-{direction}-low-sword-v1', f'seb-sneak-{direction}-low-sword-v1')
+    assert re.fullmatch(r'seb-(walk|sneak)-' + direction + r'-low-sword-v[1-9][0-9]*', name)
     number = existing.get(name)
     if number is None:
         number = next_number
@@ -72,13 +74,12 @@ for item in plan['directions'] + plan.get('additionalCandidates', []):
                                     uploaded_source_sha256=item['sourceSha256'],
                                     source_transform=item.get('sourceTransform'),
                                     master_revision=item.get('selectedRevision', 1),
-                                    master_asset_id=f'seb-master-{direction}-low-sword-v1', batch_size=1,
+                                    master_asset_id=item.get('masterAssetId', f'seb-master-{direction}-low-sword-v1'), batch_size=1,
                                     speed=plan['speed'], motion=plan['motion'], loop_requested=plan['loop']),
                         original_video=dict(url=video_url, sha256=item['outputSha256'], mime_type='video/mp4'),
                         usage=dict(character='Seb', action=item.get('action', 'Walk in place · low sword'), direction=labels[direction], attacking=False,
                                    status='new-feature', reason='Seb has no existing runtime character bank. This is a new animation candidate for visual review, not authorization to install a new character or replace a gameplay slot.')))
-assert len({e['usage']['direction'] for e in entries}) == 4
-assert sum(e['name'].startswith('seb-walk-') for e in entries) == 4
+assert len({e['name'] for e in entries}) == len(entries)
 names = {s['name'] for s in entries}
 data['sets'] = [s for s in data['sets'] if s['name'] not in names] + entries
 assert len({s['name'] for s in data['sets']}) == len(data['sets'])

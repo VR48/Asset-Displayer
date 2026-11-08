@@ -129,3 +129,7 @@ preview it; opening index.html directly may block JSON loading in browsers.
 GitHub Pages publishes `main` from the repository root. `.nojekyll` preserves the
 static files directly. Relative asset URLs also support a project subdirectory
 such as `/Asset-Displayer/`.
+
+## Seb review update
+
+Five rejected first-pass Seb entries (left/right standing masters and front/left/right walks) were removed from the live catalog after a checksum-verified local archive was made. Their original files and decisions remain on ASUS. The rear/up sneak remains available, and the displayed rear standing reference is the owner-accepted v4 image. The undecided rear walk still records its actual v6 generation source. Replacement side references and walks receive new v2 asset IDs; previous rejected IDs stay retired.
