@@ -12,7 +12,9 @@ root = Path(__file__).resolve().parent.parent
 game = Path(sys.argv[1]).resolve()
 source = (game / (sys.argv[2] if len(sys.argv) > 2 else 'art-source/seb/walk-v1')).resolve()
 assert source.is_relative_to((game / 'art-source/seb').resolve())
-plan = json.loads((source / 'manifest.json').read_text(encoding='utf-8'))
+plan_file = source / (sys.argv[3] if len(sys.argv) > 3 else 'manifest.json')
+assert plan_file.resolve().parent == source
+plan = json.loads(plan_file.read_text(encoding='utf-8'))
 assert plan['status'] == 'draft-ready-for-owner-review'
 assert 1 <= len(plan['directions']) <= 4
 data = json.loads((root / 'data.json').read_text(encoding='utf-8'))
@@ -60,7 +62,7 @@ for item in plan['directions'] + plan.get('additionalCandidates', []):
                'Original MP4 retained unchanged and available to download. PNG review frames preserve chronological timestamps; no trimming, retiming, mirroring or reversed playback.',
                'Magenta background retained. Not cleaned, alpha-keyed, stabilized or integrated into gameplay.',
                'Loop/start-end reference requested; seamless foot contact and loop continuity are not certified by matching endpoints.',
-               'Anatomical right hand carries one low blade-down sword; left forearm projector stays attached with shield off.']
+               'Low right-hand sword carry was requested; inspect its actual angle and consistency throughout playback. Left forearm projector remains attached with shield off.']
     caveats.extend(item.get('reviewCaveats', []))
     if item.get('sourceTransform'):
         transform = item['sourceTransform']

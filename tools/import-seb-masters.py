@@ -60,7 +60,7 @@ for offset, item in enumerate(selected):
                'No runtime anchor, sprite scale, action timing or animation bank has been calibrated.']
     if item.get('revision'):
         description = item.get('revisionDescription', 'Added angular back armor plates, segmented spine and layered lumbar plates.')
-        caveats.append(f"Revision {item['revision']}: {description} Previous rear versions are archived locally; review this revised artwork again.")
+        caveats.append(f"Revision {item['revision']}: {description} Earlier versions are archived locally; review this revised artwork again.")
     if direction == 'front':
         caveats.append('Existing relaxed low-sword source retained unchanged, used by MJ job cbb51156-6c74-4d87-af82-e6c93535b391; original image-generation provider is not asserted.')
     else:

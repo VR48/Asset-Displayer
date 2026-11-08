@@ -94,8 +94,9 @@ metadata rather than a fixed roster.
 
 Seb's **Standing MASTER reference · low sword** entries are new-character stills
 for front, rear, left and right. The front retains the existing low-sword source;
-the other views originate in MJ image jobs and receive owner-authorized ImageGen
-repairs for horn count, identity and anatomical equipment placement. MJ job UUIDs
+the rear originates in a MJ image job with owner-authorized ImageGen repairs.
+The replacement side v2 references are ImageGen redraws using the retained front
+identity and approved rear v4 armor, followed by a focused posture edit. MJ job UUIDs
 and selected image indices remain attached as origin evidence; the repaired
 PNG's own fingerprint identifies the actual review asset. They are not relabeled
 as unmodified MJ output. The magenta backdrop is retained, and only opaque alpha
@@ -105,9 +106,9 @@ installed. `tools/import-seb-masters.py` imports only a completed
 four-direction candidate manifest from the local source archive.
 
 Seb's four **Walk in place · low sword** entries are raw Midjourney videos
-generated from those updated masters with low motion and `--bs 1`. Front and
-right use the original master canvas. Rear and left use modest magenta side
-padding; character pixels are preserved without resampling. Per-clip provenance
+generated from those updated masters with low motion and `--bs 1`. The new front/left/right walks use their source canvas. The retained rear
+walk and sneak use modest magenta side padding; source character pixels were
+preserved without resampling. Per-clip provenance
 records any canvas transform and the actual uploaded input fingerprint.
 The viewer preserves every decoded frame and its original timestamp duration.
 The magenta background and generation defects remain visible for review; these
@@ -133,3 +134,14 @@ such as `/Asset-Displayer/`.
 ## Seb review update
 
 Five rejected first-pass Seb entries (left/right standing masters and front/left/right walks) were removed from the live catalog after a checksum-verified local archive was made. Their original files and decisions remain on ASUS. The rear/up sneak remains available, and the displayed rear standing reference is the owner-accepted v4 image. The undecided rear walk still records its actual v6 generation source. Replacement side references and walks receive new v2 asset IDs; previous rejected IDs stay retired.
+
+The replacement v2 walking trials prioritize calmer everyday motion and low
+foot clearance. Their technical/OMP review leaves naturalness, remaining
+stiffness, profile likeness and seamless foot contact for owner playback review.
+The public review metadata identifies the exact newly uploaded source, while
+rejected v1 IDs remain absent.
+
+The redo publication includes new left/right reference stills and front/left/right
+walking candidates. The right job had an inconclusive acceptance receipt; its
+completed UUID was recovered by matching the actual uploaded source and prompt.
+It was downloaded without submitting a duplicate generation.
