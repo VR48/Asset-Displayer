@@ -1,7 +1,7 @@
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.18.1';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.18.1';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.18.1';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.18.2';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.18.2';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.18.2';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -18,7 +18,7 @@ persistBrowser();
 let current,frame=0,position=0,elapsed=0,playing=true,last=performance.now(),generation=0,comparing=false,baseline=null,originalFrame=-1,originalPaint=0;
 const cache=new Map();
 const character=s=>s.usage?.character??'Other';
-const decisionLabels={undecided:'Undecided',keep:'Keep candidate',hold:'Hold / compare',skip:'Do not add',delete:'Delete candidate'};
+const decisionLabels={undecided:'Undecided',keep:'Keep candidate',hold:'Hold / compare',skip:'Redo',delete:'Delete candidate'};
 function decisionVisuals(){const state=decisions[current.name]?.decision??'undecided';$('decision').dataset.decision=state;$('candidate-panel').dataset.decision=state;$('decision-info').textContent=state==='delete'?'Marked for deletion when your handoff is applied in the next update.':decisionLabels[state];}
 const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review','06_NEW_CHARACTER_CANDIDATES':'06 · New character candidates'};
 for(const value of [...new Set(data.sets.map(character))]){const o=document.createElement('option');o.value=value;o.textContent=value;$('character').append(o);}

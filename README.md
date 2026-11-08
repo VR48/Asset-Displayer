@@ -1,6 +1,15 @@
 # Asset Displayer
 
-## Jane directional candidates · 1.18.1
+The **Redo** choice replaces the former “Do not add” label. It requests another
+version; use the notes field to describe the repair. Existing grey choices stay
+grey. Handoff files retain the legacy `skip` code for compatibility and include
+`decisionLabels.skip: "Redo"`. Undecided leaves a candidate awaiting a decision.
+
+Jane’s rear and left v1 candidates were removed from AD by the supplied explicit
+Delete decisions. Their originals and private weapon-orientation/carry notes
+remain local for future redrawing. Front and right remain available.
+
+## Jane directional candidates · 1.18.2
 
 Four new standing references—front, rear, left and right—use the supplied
 red-armor character sheet, its native standing/face crops and original palette.
@@ -40,12 +49,12 @@ no Compare button: no approximate walk, attack or other slot is substituted.
 
 The **Authorize replacing** checkbox records approval of the named slot and
 phase against an exact original fingerprint in the downloaded handoff. Keep
-candidate alone does not authorize replacement. Changing to Hold, Do not add, Delete or
+candidate alone does not authorize replacement. Changing to Hold, Redo, Delete or
 Undecided clears that approval. Source or target changes invalidate old approval
 and preserve notes for re-review. Nothing is installed or removed by the viewer.
 
 New choices and notes stay in the viewer's browser until the downloaded handoff
-is shared. Applied Keep choices are green, Do not add choices grey, and pending
+is shared. Applied Keep choices are green, Redo choices grey, and pending
 Delete choices red. Grey entries stay selectable and their artwork is not recolored.
 When finished, click **Download handoff**, then attach `asset-displayer-handoff.json`
 in the project chat. The download includes all asset decisions, requested changes,
@@ -83,8 +92,7 @@ node tools/apply-handoff.mjs /absolute/path/to/asset-displayer-handoff.json
 The preview validates the exact source/target fingerprints and shows the planned
 status counts, candidate deletions and unused resource removals. Applying the
 handoff updates `review-state.json`; only explicit **Delete** choices remove
-catalog entries and unshared AV PNG/MP4 files. **Do not add** remains a grey
-reference, never an instruction to delete. Shared candidate files and original
+catalog entries and unshared AV PNG/MP4 files. **Redo** requests a revised candidate and remains grey until a new version is reviewed; it never instructs deletion. Shared candidate files and original
 comparison resources are protected. Removed input masters leave their exact
 source hash history on retained videos. No game/runtime or source-master files
 are deleted. Replaying an applied handoff is safe.

@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 1,
+  "revision": 2,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -231,6 +231,16 @@
       "decision": "keep",
       "sourceKey": "184d9510-86bb-4619-a68f-00c371004cde",
       "assetFingerprint": "4828506fce5f946797ed040f92d30f5918607dfd8096075ec1a8548d6b1fe69e"
+    },
+    "red-armor-heroine-master-front-v1": {
+      "decision": "undecided",
+      "sourceKey": "ecd35cc3094a00b1b3f5498e444012bce2350dba63ad5caed01b95ed7ce2a9a9",
+      "assetFingerprint": "204b6c52a5f4fe06f2cdf62fa4c96b3564876cbfd2118d30b9bdbdf45ab0381b"
+    },
+    "red-armor-heroine-master-right-v1": {
+      "decision": "undecided",
+      "sourceKey": "b6bf64b211c16b6ca18e2c018f11916ccc9b49c395f78f1ae9a08617e4f75c5d",
+      "assetFingerprint": "b1ec37217d1f4f8403c506a0dfa9c3352c4a63c0cdd57adf6558ffdc312e9872"
     }
   }
 }
