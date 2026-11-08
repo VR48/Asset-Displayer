@@ -61,7 +61,7 @@ for item in plan['directions'] + plan.get('additionalCandidates', []):
     caveats = ['Raw Midjourney walking candidate from the updated standing master; exactly one --bs 1 video requested and confirmed.',
                'Original MP4 retained unchanged and available to download. PNG review frames preserve chronological timestamps; no trimming, retiming, mirroring or reversed playback.',
                'Magenta background retained. Not cleaned, alpha-keyed, stabilized or integrated into gameplay.',
-               'Loop/start-end reference requested; seamless foot contact and loop continuity are not certified by matching endpoints.',
+               ('Loop/start-end reference requested; seamless foot contact and loop continuity are not certified by matching endpoints.' if plan['loop'] else 'Continuous walking requested; actual cycle boundaries, foot contact and loop continuity require review.'),
                'Low right-hand sword carry was requested; inspect its actual angle and consistency throughout playback. Left forearm projector remains attached with shield off.']
     caveats.extend(item.get('reviewCaveats', []))
     if item.get('sourceTransform'):

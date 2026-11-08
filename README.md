@@ -222,3 +222,19 @@ is continuity rather than a claimed novel facial redesign. Near-profile body
 alignment remains, with sharper right-profile nose/chin and horn overlap, plus
 inherited rear sword foreshortening, left for review. Final head previews are
 exact crops of the published full-body PNGs. Front and videos are unchanged.
+
+## V9 side-profile walking candidates
+
+Two new side-facing raw MJ walks use the exact explicit-head v9 profile masters,
+with Relax / low motion and exactly one `--bs 1` confirmed per request. Left uses
+the targeted second take for improved boot/contact contours; the first take is
+held locally. Both final originals are 512×768 H.264, 125 frames, 5.208 seconds.
+Every decoded frame and native timestamp is retained. These are continuous
+walking trials (`loop_requested: false`), with no forced closing standing pose.
+
+OMP found recognizable near-profile walking, low sword carry and no obvious
+sampled progressive zoom/cutoff. Deliberate leading steps, small sole/shadow
+slivers, green contact residue and blade-angle variation remain review points.
+Contact, cadence and a usable cycle are subject to playback judgment. The old
+shallow diagonal-left candidate remains separate; front, rear and static masters
+are unchanged. No game runtime changes.
