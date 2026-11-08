@@ -1,10 +1,10 @@
 # Asset Displayer
 
-## New heroine directional candidates · 1.18.0
+## Jane directional candidates · 1.18.1
 
 Four new standing references—front, rear, left and right—use the supplied
 red-armor character sheet, its native standing/face crops and original palette.
-The temporary filter label is **New heroine**. The malformed crouch panel was
+The character filter label is **Jane**. The malformed crouch panel was
 excluded as an anatomy reference. The corrected complete sheet remains local.
 These are ImageGen review candidates with magenta backgrounds, not animations
 or gameplay replacements. OMP flagged cross-view face, equipment and registration
