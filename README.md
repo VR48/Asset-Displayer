@@ -1,5 +1,15 @@
 # Asset Displayer
 
+## Jane visible-handle repairs · 1.19.1
+
+Rear/left v3 supersede the rejected v2 drafts. Left now has a clenched grip
+occluding the handle instead of a silver bar across finger faces. Rear returns
+to the narrower wrist pose with an end-on handle in the cupped fist. OMP found
+both suitable for owner review; the rear circular end can still resemble a
+bolt/button because the shaft is mostly hidden. It is a review uncertainty,
+not a certified mechanical solution. Original/v2/intermediate art remains local;
+front/right, other characters and saved review statuses are unchanged.
+
 ## Jane rear/left carry repairs · 1.19.0
 
 New v2 rear and left standing candidates replace the deleted v1 entries for
