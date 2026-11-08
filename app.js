@@ -1,26 +1,32 @@
 
-import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.16.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.16.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.17.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.17.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.17.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
-let decisions={};try{decisions=JSON.parse(localStorage.getItem('asset-displayer-lanternwake-review-v1')||'{}');}catch{}
-decisions=sanitizeDecisions(decisions,data.sets,versions);
-try{localStorage.setItem('asset-displayer-lanternwake-review-v1',JSON.stringify(decisions));}catch{}
-let revision=0;
+let published;
+try{const response=await fetch('./review-state.json',{cache:'no-cache'});if(!response.ok)throw Error('Saved status request failed.');published=validateReviewState(await response.json());}
+catch(error){$('handoff-status').textContent='Saved decisions could not be loaded. Reload before reviewing or downloading a handoff.';$('export').disabled=true;throw error;}
+let stored=null,legacy=null;try{stored=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');legacy=JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY)||'null');}catch{}
+const restored=loadReviewSession(published,stored,legacy,data.sets,versions),session=restored.session;
+let decisions=restored.decisions,revision=session.editRevision;
 const handoffStatus=(text,error=false)=>{$('handoff-status').textContent=text;$('handoff-status').parentElement.classList.toggle('error',error);};
 const snapshot=()=>buildHandoff(data.sets,versions,decisions,revision);
-function persistBrowser(){try{localStorage.setItem('asset-displayer-lanternwake-review-v1',JSON.stringify(decisions));}catch{handoffStatus('Browser storage is unavailable. Download your handoff before closing this page.',true);}}
+function persistBrowser(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(session));}catch{handoffStatus('Browser storage is unavailable. Download your handoff before closing this page.',true);}}
+persistBrowser();
 let current,frame=0,position=0,elapsed=0,playing=true,last=performance.now(),generation=0,comparing=false,baseline=null,originalFrame=-1,originalPaint=0;
 const cache=new Map();
 const character=s=>s.usage?.character??'Other';
+const decisionLabels={undecided:'Undecided',keep:'Keep candidate',hold:'Hold / compare',skip:'Do not add',delete:'Delete candidate'};
+function decisionVisuals(){const state=decisions[current.name]?.decision??'undecided';$('decision').dataset.decision=state;$('candidate-panel').dataset.decision=state;$('decision-info').textContent=state==='delete'?'Marked for deletion when your handoff is applied in the next update.':decisionLabels[state];}
 const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review','06_NEW_CHARACTER_CANDIDATES':'06 · New character candidates'};
 for(const value of [...new Set(data.sets.map(character))]){const o=document.createElement('option');o.value=value;o.textContent=value;$('character').append(o);}
 for(const [value,label] of Object.entries(categoryLabels)){const o=document.createElement('option');o.value=value;o.textContent=label;$('category').append(o);}
 function list(){
  $('list').replaceChildren();const shown=data.sets.filter(s=>(!$('character').value||character(s)===$('character').value)&&(!$('category').value||s.approval_category===$('category').value));
  $('counts').textContent=shown.length+' sets · '+Object.keys(decisions).filter(k=>decisions[k].decision!=='undecided').length+' choices saved';
- for(const s of shown){const b=document.createElement('button');b.className='clip'+(current?.number===s.number?' active':'');b.textContent=String(s.number).padStart(2,'0')+' · '+s.name;const sub=document.createElement('span');sub.textContent=s.usage.action+' · '+s.usage.direction+' · '+(s.replacement?'Replacement candidate':'New feature')+' · '+(decisions[s.name]?.decision||'undecided');b.append(sub);b.onclick=()=>select(s);$('list').append(b);}
+ for(const s of shown){const b=document.createElement('button'),state=decisions[s.name]?.decision??'undecided';b.className='clip'+(current?.number===s.number?' active':'');b.dataset.decision=state;b.textContent=String(s.number).padStart(2,'0')+' · '+s.name;const sub=document.createElement('span');sub.textContent=s.usage.action+' · '+s.usage.direction+' · '+(s.replacement?'Replacement candidate':'New feature')+' · '+decisionLabels[state];b.append(sub);b.onclick=()=>select(s);$('list').append(b);}
 }
 function image(index,set=current){
  const key=set.frames[index].url;
@@ -62,7 +68,7 @@ function select(s){
  for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still;
  if(still)playing=false;$('play').textContent=still?'Still image':playing?'Pause':'Play';
  for(const text of s.caveats||[]){const li=document.createElement('li');li.textContent=text;$('caveats').append(li);}
- $('decision').value=decisions[s.name]?.decision||'undecided';$('notes').value=decisions[s.name]?.notes||'';list();draw(0);
+ $('decision').value=decisions[s.name]?.decision||'undecided';$('notes').value=decisions[s.name]?.notes||'';decisionVisuals();list();draw(0);
  $('usage').textContent=`${s.usage.character} · ${s.usage.action} · ${s.usage.direction} · ${s.usage.attacking?'Attacking in this direction':'Not firing'}`;
  $('comparison-reason').textContent=baseline?`Existing slot: ${s.replacement.slot} · ${s.replacement.phase}. Compare against the Original runtime bank snapshot (${comparisons.sourceCommit.slice(0,8)}). Approval applies to this slot and phase only.`:s.usage.reason??'The original for this target is unavailable.';
  $('compare').hidden=!baseline;$('compare').textContent='Compare';$('compare').setAttribute('aria-pressed','false');$('previews').classList.remove('comparing');$('original-pane').hidden=true;$('candidate-label').hidden=true;
@@ -70,7 +76,7 @@ function select(s){
  $('replacement-row').hidden=!baseline;$('replace-approved').disabled=!baseline;$('replace-approved').checked=decisions[s.name]?.replaceApproved===true;
  $('replacement-label').textContent=baseline?`Authorize replacing ${s.replacement.slot} (${s.replacement.phase}) with this candidate.`:'';
 }
-function save(){if($('decision').value!=='keep')$('replace-approved').checked=false;decisions[current.name]={decision:$('decision').value,notes:$('notes').value,mjJobUuid:current.source.mj_job_uuid,sourceKey:sourceIdentity(current),packageCategory:current.approval_category,assetFingerprint:versions.get(current.name),replaceApproved:!!baseline&&$('replace-approved').checked,replacementFingerprint:current.replacement?.baselineFingerprint};persistBrowser();list();revision++;}
+function save(){if($('decision').value!=='keep')$('replace-approved').checked=false;decisions[current.name]={decision:$('decision').value,notes:$('notes').value,mjJobUuid:current.source.mj_job_uuid,sourceKey:sourceIdentity(current),packageCategory:current.approval_category,assetFingerprint:versions.get(current.name),replaceApproved:!!baseline&&$('replace-approved').checked,replacementFingerprint:current.replacement?.baselineFingerprint};session.overrides[current.name]=decisions[current.name];session.editRevision=++revision;persistBrowser();list();decisionVisuals();}
 $('replace-approved').onchange=()=>{if($('replace-approved').checked)$('decision').value='keep';save();};
 $('compare').onclick=()=>{if(!baseline)return;comparing=!comparing;generation++;originalPaint++;originalFrame=-1;$('previews').classList.toggle('comparing',comparing);$('original-pane').hidden=!comparing;$('candidate-label').hidden=!comparing;$('compare').textContent=comparing?'Close comparison':'Compare';$('compare').setAttribute('aria-pressed',String(comparing));$('original-label').textContent=`Current original · ${current.replacement.slot} · ${baseline.phase}`;
  const [w,h]=current.actual_dimensions[0];$('canvas').width=comparing?640:w;$('canvas').height=comparing?640:h;$('original-canvas').width=640;$('original-canvas').height=640;draw(frame);drawOriginal(true);};
@@ -81,4 +87,6 @@ $('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('s
 $('pivot').onchange=()=>{draw(frame);drawOriginal(true);};$('background').onchange=()=>{for(const id of ['stage','original-stage'])$(id).className='stage '+$('background').value;};
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(snapshot(),null,2)+'\n'],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=FILE_NAME;a.click();handoffStatus('Download requested. Attach '+FILE_NAME+' in chat when it finishes.');setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
 function tick(now){const delta=now-last;last=now;if(current&&playing){elapsed+=delta*Number($('speed').value);const duration=comparing?Math.max(current.duration_verified_ms,baseline.duration_verified_ms):current.duration_verified_ms;if(!$('loop').checked&&elapsed>=duration){elapsed=duration-.001;playing=false;$('play').textContent='Play';}position=$('loop').checked?elapsed%current.duration_verified_ms:Math.min(elapsed,current.duration_verified_ms-.001);const index=frameAt(current.durations,position,false);if(index!==frame)draw(index);drawOriginal();for(let j=1;j<=3;j++)image((index+j)%current.frames.length).catch(()=>{});}requestAnimationFrame(tick);}
-select(data.sets[0]);requestAnimationFrame(tick);
+if(data.sets.length)select(data.sets[0]);
+else{list();$('title').textContent='No candidates';$('pixel-status').textContent='New candidates will appear here when they are added.';for(const id of ['play','previous','next','scrub','speed','loop','pivot','decision','notes'])$(id).disabled=true;$('compare').hidden=true;}
+requestAnimationFrame(tick);

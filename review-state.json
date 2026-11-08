@@ -1,0 +1,236 @@
+{
+  "schema": "asset-displayer-review-state-v1",
+  "revision": 1,
+  "decisions": {
+    "rook-sprint-loop-A": {
+      "decision": "undecided",
+      "sourceKey": "cd8a36d1-415c-4b8e-b072-ddfb49587734",
+      "assetFingerprint": "49771de307a753b39a0f24f0615eb4b7ecd87629449be60cc2d64bf44ed9b20a"
+    },
+    "kest-repaired-firing": {
+      "decision": "undecided",
+      "sourceKey": "510e79ad-f881-4ee6-8145-7839b087606e",
+      "assetFingerprint": "e49b21f5d2b3c122de1d1aaf4776870a51ddea39020701f0b26ee8591377d841"
+    },
+    "chaser-recovery-final": {
+      "decision": "undecided",
+      "sourceKey": "dafa55f5-354b-445e-be5a-1e0c8b88c7a0",
+      "assetFingerprint": "3260c67ded51e182b28d88c35a7545fadba97d78a30f9a706bd4644467b521f5"
+    },
+    "chaser-stun-final": {
+      "decision": "undecided",
+      "sourceKey": "dafa55f5-354b-445e-be5a-1e0c8b88c7a0",
+      "assetFingerprint": "508eb7e29b7173b191a9a0f106afd0cafeb03f738beba8877c68694630af9670"
+    },
+    "heavy-gesture-final": {
+      "decision": "undecided",
+      "sourceKey": "0fd72962-7654-4843-a460-ef2dc18bad96",
+      "assetFingerprint": "9db770bba01adc0dece3bbf83a06d8b398b4dee75ad6cd12bf0adb5512de229a"
+    },
+    "heavy-stun-KO-final": {
+      "decision": "undecided",
+      "sourceKey": "d632e10d-c800-403e-bac7-fe75772404be",
+      "assetFingerprint": "f110b6e5fcc9f73aecfc89bc2a3f638e4e00bb20436092f288060ec19a96d2ed"
+    },
+    "mica-crouch-full-final": {
+      "decision": "undecided",
+      "sourceKey": "9c128501-03d9-4850-8b48-fa7e8b264ee8",
+      "assetFingerprint": "2bd50427bd68387ca08a9f91db2468229a7036565fd0be8a79c256d3c9d3378b"
+    },
+    "mica-crouch-lower-final": {
+      "decision": "undecided",
+      "sourceKey": "9c128501-03d9-4850-8b48-fa7e8b264ee8",
+      "assetFingerprint": "4413329da1b25b877927359f3a8dc5e4eaf84d3210c8c80226f0bd86a99d0915"
+    },
+    "mica-crouch-rise-final": {
+      "decision": "undecided",
+      "sourceKey": "9c128501-03d9-4850-8b48-fa7e8b264ee8",
+      "assetFingerprint": "24c3d2f08cf38bfd6ce05e500279975613f28439eddd58b2c8377a8809eeb27b"
+    },
+    "mica-ready-lift-final": {
+      "decision": "undecided",
+      "sourceKey": "d63f06be-6304-43bf-9716-e13b757e926a",
+      "assetFingerprint": "63f2486dea40f3e585ceda8abd7b16a10c7d33c3d1bf8af9f3e12633ca22b6c6"
+    },
+    "mica-ready-lower-final": {
+      "decision": "undecided",
+      "sourceKey": "d63f06be-6304-43bf-9716-e13b757e926a",
+      "assetFingerprint": "fa02262cbd35c78ff59c435ceb3f6df80dccb35c44470052cf937c6de56da3d9"
+    },
+    "mica-shooting-final": {
+      "decision": "undecided",
+      "sourceKey": "d63f06be-6304-43bf-9716-e13b757e926a",
+      "assetFingerprint": "e206f6384229a53f13e1976b5b8a0fcb9f005466dd417bef162ecb9515dec836"
+    },
+    "mica-walk-down-right-final": {
+      "decision": "undecided",
+      "sourceKey": "b79df556-267e-48b8-8ddc-371610b3ed05",
+      "assetFingerprint": "37c0dfdd9a910f0d397e4302155c179c4670699bd642a9d788c911d84427d8b6"
+    },
+    "runner-recovery-final": {
+      "decision": "undecided",
+      "sourceKey": "c71afc73-5fd8-463c-9b42-e3d9c01f1a46",
+      "assetFingerprint": "d8da1f40ef8714e1d752c696ebf8646214ac97b5a3eea7f47a88710152c1d219"
+    },
+    "runner-stun-final": {
+      "decision": "undecided",
+      "sourceKey": "c71afc73-5fd8-463c-9b42-e3d9c01f1a46",
+      "assetFingerprint": "546ad26d02b4e7105847bde50c9a4cf6a46e44f90cc4b21b0e2dc045f656dcfd"
+    },
+    "chaser-approved-bite-footlock-final": {
+      "decision": "undecided",
+      "sourceKey": "c0da8c18-4f32-47e4-a92e-a1669df5d56f",
+      "assetFingerprint": "c21ff8e20525041fba3e3835714b104668c1702baf9cdf5a98f4642467358666"
+    },
+    "chaser-approved-idle-pingpong-final": {
+      "decision": "undecided",
+      "sourceKey": "72d393da-27df-48d4-9e3c-7cf5dfb91638",
+      "assetFingerprint": "3149315b7f30c41488b91e3fadd4d9d9f842d5cf655db1215606be515c163cb9"
+    },
+    "chaser-owner-selected-full-attack-final": {
+      "decision": "undecided",
+      "sourceKey": "7b9862fd-2f8a-4ae3-b4bd-22ed6971131e",
+      "assetFingerprint": "46dcc1716ce1f1b5c3ba783aa7b427eed7f2926a4ba27add28bd0371e5769d32"
+    },
+    "heavy-cc273814-idle-full-as-is-final": {
+      "decision": "undecided",
+      "sourceKey": "cc273814-3e6c-4877-b355-ae6e4d6051be",
+      "assetFingerprint": "fdfe60243f4b7c006ccda169e587a24c215bcf955df365f2f40649d452d99788"
+    },
+    "heavy-old-choppy-walk-full-source-final": {
+      "decision": "undecided",
+      "sourceKey": "4f6c8f79-dbd8-4ae0-968a-78ba1e2e957b",
+      "assetFingerprint": "fc732053b12f9584b68abeacaef35c28851be2022acada99eac0f4b3d77156f2"
+    },
+    "heavy-perfect-walk-as-is-final": {
+      "decision": "undecided",
+      "sourceKey": "2c2e5743-0e29-45e9-8990-943ce3fbc9dd",
+      "assetFingerprint": "250ac6886dfbd85564be1eeaa872a5be518e700cb48ad737ebeaccb4728070ac"
+    },
+    "mica-sneak-down-right-as-is-final": {
+      "decision": "undecided",
+      "sourceKey": "7666762b-e4f9-46e8-823d-93728ad658ec",
+      "assetFingerprint": "b7ed7ec4f91c2cfd1380fe580641598015ef20c99a93cc105d9124b474bf1a39"
+    },
+    "mica-sneak-top-right-001-061-final": {
+      "decision": "undecided",
+      "sourceKey": "2723499f-b537-4867-a0d8-3a5717380be9",
+      "assetFingerprint": "c87b8717fe953dd40208185bfeec7083e63361319f585b80b86f7df334927314"
+    },
+    "mica-sneak-top-right-full-final": {
+      "decision": "undecided",
+      "sourceKey": "2723499f-b537-4867-a0d8-3a5717380be9",
+      "assetFingerprint": "a4e070a79357999e1ecac163262a8fbda4f9ce4616c6b3395784e5bb855fb6e8"
+    },
+    "rook-original-sneak-step-stop-full-final": {
+      "decision": "undecided",
+      "sourceKey": "78044d6e-c4cf-4d69-ab4a-ab524052e32e",
+      "assetFingerprint": "df86c0b8144314c2583b6f7929e6022b26915210666bce0ed9ca75acafdfc5c5"
+    },
+    "rook-sneak-left-frame01-full-final": {
+      "decision": "undecided",
+      "sourceKey": "6435d492-a2f4-43d4-811f-6afae053dc56",
+      "assetFingerprint": "e7123da9c619608490c0fecc5abc679a8973fb6f044236c6d51644c4b2fb451e"
+    },
+    "rook-sneak-left-projectpose-full-final": {
+      "decision": "undecided",
+      "sourceKey": "af6e5ac4-3ff4-4be8-bb2d-37a47b8cc118",
+      "assetFingerprint": "5972c13236089d9cb796eaaea03fd819c40903ace5149c1b51e0aecdc1432dca"
+    },
+    "rook-sneak-top-right-full-reversed-final": {
+      "decision": "undecided",
+      "sourceKey": "78044d6e-c4cf-4d69-ab4a-ab524052e32e",
+      "assetFingerprint": "79bcbf20be48ce29f1313203913934626185bab876222301106c4acd7809506b"
+    },
+    "runner-approved-idle-pingpong-final": {
+      "decision": "undecided",
+      "sourceKey": "651ea5df-ff8b-4cb1-8c72-42bab94aa561",
+      "assetFingerprint": "a4c5eeab2e66f2ce0355059c189fa4a05f7a6e5ba3f8e69e74505799c2b78f82"
+    },
+    "vale-walk-right-056-091-loop-final": {
+      "decision": "undecided",
+      "sourceKey": "869678cc-e4fd-4587-9001-8d90ecfb82df",
+      "assetFingerprint": "dcbd1b579d84f0f1657d017cff4d2d0412c5cf64950bcd79a68bd71b25f12a35"
+    },
+    "vale-walk-right-092-122-stop-final": {
+      "decision": "undecided",
+      "sourceKey": "869678cc-e4fd-4587-9001-8d90ecfb82df",
+      "assetFingerprint": "108cf19b66bd8679b6f7065cc36081244d1b31464378c15e2cd6fc0d61d25533"
+    },
+    "lw-rook-walk-up-relax-clearance02-beat-locked": {
+      "decision": "undecided",
+      "sourceKey": "c6cb17fa-706b-4f49-947a-7142f6444108",
+      "assetFingerprint": "99dd31d31262d4b04ff0216c426d9e3a0e6a154b10394976e8e29f8d173bb6f5"
+    },
+    "lw-rook-walk-down-relax-projectpose01-beat-locked": {
+      "decision": "undecided",
+      "sourceKey": "5ebd11f9-20a0-482e-8a4b-9d7b211128d1",
+      "assetFingerprint": "3e5f0029e2a32e54c526350b00b8afe4b12f9ff1623b3fc686016b11f86a56ad"
+    },
+    "Seb-final-MP4-repaired-walk-v3": {
+      "decision": "keep",
+      "sourceKey": "1624c7c0-8f0d-45af-8022-16aa9c4d7619",
+      "assetFingerprint": "5e841cc980bafb15e3001b292679652c66ed35f6c4c2112083bf379df26f104e"
+    },
+    "seb-walk-rear-low-sword-v1": {
+      "decision": "skip",
+      "sourceKey": "eea5dcc4-eb4e-4a55-ad93-d42bd9c39beb",
+      "assetFingerprint": "ea4fa899953bc06ce042c596248e0da537cb46cf59adc23102a74c0d203afb75"
+    },
+    "seb-sneak-rear-low-sword-v1": {
+      "decision": "skip",
+      "sourceKey": "5fbf1781-eaa0-4b56-ad89-4c9164fa735b",
+      "assetFingerprint": "027d9aeda91893e6507717de9e3eb90d639eaab4b30a7e20652a0ab5e60499da"
+    },
+    "seb-walk-front-low-sword-v2": {
+      "decision": "keep",
+      "sourceKey": "20a2fb03-fca2-4150-8318-393372ca732b",
+      "assetFingerprint": "e7aadd21617ccb0f4ac2f615387289c481c7db78c413312305c9cd4f64076f8b"
+    },
+    "seb-master-left-low-sword-v6": {
+      "decision": "skip",
+      "sourceKey": "eb1d74ccdefb949886b8b0674490094a60043fd21ece05788684662f897f128b",
+      "assetFingerprint": "b2072b87b51cb45e0728e41ec65c1eb94c6839c3759a455f6eef8b74e6f9f837"
+    },
+    "seb-master-right-low-sword-v6": {
+      "decision": "skip",
+      "sourceKey": "c106c304c96115346dd71161161e0434bf1b7975506894e5bd770a651cbc4ebe",
+      "assetFingerprint": "0ec6c2b559e7c2bab127440a0988e8841b1fd954b642c6ab0ffc166da84413b4"
+    },
+    "seb-walk-left-low-sword-v6": {
+      "decision": "keep",
+      "sourceKey": "a038d91f-b7fd-492e-b107-3017797998c7",
+      "assetFingerprint": "4e6e0ca20f31f76b4b7d132524d9b902d6e3c9a61040216f093f7f6906811927"
+    },
+    "seb-master-front-low-sword-v1": {
+      "decision": "keep",
+      "sourceKey": "dcf3d93b5bf6c75a0e2817fa49399fc025df76f70db52e717cc8b5e221c3534d",
+      "assetFingerprint": "d0eabf6e0762e95e70f0272ae5653b7a2ab7f0c1136950975e31134e0d9d541e"
+    },
+    "seb-master-rear-low-sword-v1": {
+      "decision": "keep",
+      "sourceKey": "e15646580a898474a196fe5acbe2e0be8014a476b8033e977b3fa2c8df736d85",
+      "assetFingerprint": "fbac2adb05629f470c19a8c63cc69f404bac91551c0edd850275ceb2fa2f94ae"
+    },
+    "seb-master-left-low-sword-v7": {
+      "decision": "keep",
+      "sourceKey": "63be3b789ee99059b583a62d5a0c488bcd1a92c242a052f9076b45b29afd5dc0",
+      "assetFingerprint": "f37663f49a2d4f55d534f21565326848413a05f97c20bd2a09323bcff4973d1c"
+    },
+    "seb-master-right-low-sword-v7": {
+      "decision": "keep",
+      "sourceKey": "3425c56b4ff97888bff935e809596bc7bd103b940c78bd3235717fde3827d113",
+      "assetFingerprint": "51c138205606e0d79ecaf2bc4fc3db98611055558a2e4b572566fde5d15405e3"
+    },
+    "seb-walk-left-low-sword-v9": {
+      "decision": "keep",
+      "sourceKey": "2b367c46-ae5c-4c4f-b73d-38ed8d6c5c70",
+      "assetFingerprint": "0f352cf608f2a55fb1d9a696eabf9b5a6f983bb55526d5b3edfa93af8b6c0305"
+    },
+    "seb-walk-right-low-sword-v9": {
+      "decision": "keep",
+      "sourceKey": "184d9510-86bb-4619-a68f-00c371004cde",
+      "assetFingerprint": "4828506fce5f946797ed040f92d30f5918607dfd8096075ec1a8548d6b1fe69e"
+    }
+  }
+}

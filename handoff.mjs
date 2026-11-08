@@ -1,6 +1,6 @@
 export const SCHEMA='asset-displayer-handoff-v1';
 export const FILE_NAME='asset-displayer-handoff.json';
-const choices=new Set(['undecided','keep','hold','skip']);
+const choices=new Set(['undecided','keep','hold','skip','delete']);
 export const sourceIdentity=set=>set.source.mj_job_uuid??set.source.job_id??set.source.sha256;
 async function sha(value){return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(value))))].map(b=>b.toString(16).padStart(2,'0')).join('');}
 export async function catalogVersions(sets){

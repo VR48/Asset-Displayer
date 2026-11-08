@@ -2,9 +2,11 @@ import {readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {baselineFor} from './comparison.mjs';
+import {catalogVersions,sanitizeDecisions} from './handoff.mjs';
+import {validateReviewState} from './review-state.mjs';
 const manifest=JSON.parse(await readFile(new URL('./data.json',import.meta.url),'utf8'));
 const frames=new Map(),videos=new Map();let entries=0;
-assert(manifest.sets.length>=34);assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
+assert(Array.isArray(manifest.sets));assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
 for(const set of manifest.sets){
  if(set.original_video){assert.equal(set.original_video.url,`videos/${set.original_video.sha256}.mp4`);assert.match(set.original_video.sha256,/^[a-f0-9]{64}$/);assert.equal(set.original_video.sha256,set.source.video_sha256);videos.set(set.original_video.url,set.original_video.sha256);}
  if(set.source.mj_job_uuid)assert.match(set.source.mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);
@@ -39,3 +41,8 @@ for(const s of manifest.sets){assert(s.usage);assert.equal(Boolean(baselineFor(s
 for(const [file,hash]of originalFrames){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);assert.equal(bytes[25],6);}
 assert.equal((await readdir(new URL('./baselines/',import.meta.url))).length,originalFrames.size);
 console.log(JSON.stringify({sets:manifest.sets.length,timelineEntries:entries,uniqueFrames:frames.size,originalVideos:videos.size,replacementCandidates:catalog.baselines.length,originalFrames:originalFrames.size,sha256Verified:true,metadataBoundaryPassed:true}));
+
+const published=validateReviewState(JSON.parse(await readFile(new URL('./review-state.json',import.meta.url),'utf8'))),versions=await catalogVersions(manifest.sets);
+const publicDecisions=sanitizeDecisions(Object.fromEntries(Object.entries(published.decisions).map(([id,e])=>[id,{...e,notes:''}])),manifest.sets,versions);
+for(const [id,entry] of Object.entries(published.decisions)){assert(manifest.sets.some(s=>s.name===id),'Deleted/unknown status retained: '+id);if(publicDecisions[id]?.needsReview)assert.equal(publicDecisions[id].decision,'undecided');else if(publicDecisions[id])assert.equal(publicDecisions[id].decision,entry.decision);}
+console.log(JSON.stringify({publishedReviewRevision:published.revision,keep:Object.values(publicDecisions).filter(e=>e.decision==='keep').length,skip:Object.values(publicDecisions).filter(e=>e.decision==='skip').length,notesPublished:false}));

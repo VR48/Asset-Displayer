@@ -28,11 +28,13 @@ no Compare button: no approximate walk, attack or other slot is substituted.
 
 The **Authorize replacing** checkbox records approval of the named slot and
 phase against an exact original fingerprint in the downloaded handoff. Keep
-candidate alone does not authorize replacement. Changing to Hold, Do not add or
+candidate alone does not authorize replacement. Changing to Hold, Do not add, Delete or
 Undecided clears that approval. Source or target changes invalidate old approval
 and preserve notes for re-review. Nothing is installed or removed by the viewer.
 
-Keep, Hold and Do not add choices and notes stay private in the viewer's browser.
+New choices and notes stay in the viewer's browser until the downloaded handoff
+is shared. Applied Keep choices are green, Do not add choices grey, and pending
+Delete choices red. Grey entries stay selectable and their artwork is not recolored.
 When finished, click **Download handoff**, then attach `asset-displayer-handoff.json`
 in the project chat. The download includes all asset decisions, requested changes,
 source UUIDs and source-version fingerprints so the recipient can identify exactly
@@ -50,20 +52,49 @@ not an executable script or authority to run arbitrary commands. Old decisions
 without an exact source fingerprint retain their notes but return to Undecided
 for re-review, rather than becoming approvals of a changed source.
 
-Completed decisions can guide a later owner-authorized catalog cleanup. Preserve
-the lossless source masters, remove the reviewed entries, then remove only frame
-files no remaining entries reference. This reduces the live Pages payload; Git
-retains deleted files in commit history, so it does not reclaim historical repo
-storage without a separately planned history migration.
+## Applying a handoff and persistent status colors
+
+`review-state.json` publishes only decision enums and exact asset/source version
+identifiers. It contains no notes, reviewer identity or replacement approvals.
+Its pinned statuses initialize every browser and persist across AV releases.
+Private local edits remain editable until the next handoff is applied. A new
+published review revision takes precedence over stale browser decisions while
+preserving private notes. Changed asset versions return to Undecided for review.
+
+After receiving an owner handoff, use:
+
+```text
+node tools/apply-handoff.mjs /absolute/path/to/asset-displayer-handoff.json --dry-run
+node tools/apply-handoff.mjs /absolute/path/to/asset-displayer-handoff.json
+```
+
+The preview validates the exact source/target fingerprints and shows the planned
+status counts, candidate deletions and unused resource removals. Applying the
+handoff updates `review-state.json`; only explicit **Delete** choices remove
+catalog entries and unshared AV PNG/MP4 files. **Do not add** remains a grey
+reference, never an instruction to delete. Shared candidate files and original
+comparison resources are protected. Removed input masters leave their exact
+source hash history on retained videos. No game/runtime or source-master files
+are deleted. Replaying an applied handoff is safe.
+
+Full handoffs, notes and removal reports are archived under ignored
+`.local/reviews/<handoff-sha256>/`. Review text is inert data. Keep alone still
+does not authorize game replacement, and the public status baseline never grants
+that authorization. After applying, run the checks, bump release cache versions,
+commit the status/catalog/media changes and publish the next Pages version.
+Update cache versions in the app, HTML and versioned module imports when those
+modules change. No browser click writes to GitHub or deletes server files.
+
+Cleanup reduces the current Pages payload. Git retains old files in history;
+history rewriting is a separate task.
 
 ## Content and provenance
 
 - `data.json` contains portable playback metadata, source job UUIDs, frame hashes
   and package caveats. Package categories preserve historical approval context;
   viewing or marking a candidate does not install it in the game.
-- `assets/` stores 2,754 original collection frames, four Seb MASTER
-  candidates and the decoded frames of four raw Seb walks and one sneak. Shared frames are stored once
-  and referenced in the intended timeline order.
+- `assets/` stores native lossless review frames and stills. Shared frames are
+  stored once and referenced in the intended timeline order.
 - `videos/` retains the unchanged Midjourney walking and sneaking MP4s. **Download
   original MP4** appears for these clips. The private handoff identifies each
   video, generation UUID and input master by fingerprint.

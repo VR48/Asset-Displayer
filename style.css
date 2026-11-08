@@ -6,3 +6,10 @@
 @media(max-width:600px){.previews.comparing{gap:8px}.previews.comparing .stage{height:32vh}.previews h3{font-size:11px}.previews.comparing .muted{font-size:10px}}
 @media(max-width:600px){.previews.comparing h3{min-height:2.8em;margin-bottom:8px}}
 #original-video-download{display:inline-block;color:#9bdcc6;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+
+.clip[data-decision="keep"]{background:#163d2b;border-color:#55bc86;color:#e2ffed}.clip[data-decision="keep"] span{color:#b0e8c8}
+.clip[data-decision="skip"]{background:#282d34;border-color:#5d6673;color:#acb3bd;opacity:.65}.clip[data-decision="skip"] span{color:#a2a9b4}
+.clip[data-decision="delete"]{background:#4a2028;border-color:#e87180;color:#ffe1e6}.clip[data-decision="delete"] span{color:#ffbdc6}
+.clip.active{box-shadow:inset 0 0 0 2px #f5bc57}.clip[data-decision="skip"].active{opacity:.85}
+#decision[data-decision="keep"]{background:#163d2b;border-color:#55bc86}#decision[data-decision="skip"]{background:#333943;color:#b7bec8}#decision[data-decision="delete"]{background:#4a2028;border-color:#e87180}
+#candidate-panel[data-decision="keep"] #decision-info{color:#8fdfb2}#candidate-panel[data-decision="delete"] #decision-info{color:#ff9cae}
