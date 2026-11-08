@@ -93,7 +93,7 @@ metadata rather than a fixed roster.
 
 Seb's standing references cover front, rear, left and right. The front keeps
 the original low-sword source. Rear v4 retains its MJ origin and ImageGen repair
-provenance. Side v3 stills correct the body build against the canonical front,
+provenance. Side v4 stills retain the accepted strength and correct body length against the canonical front,
 while preserving the liked facial likeness and relaxed body language. Their new
 proportions remain subject to visual review before side video generation.
 
@@ -150,3 +150,11 @@ leg mass against the front. These are body-review stills; replacement side
 videos await the owner’s judgment of those proportions. Rear v4 and the retained
 rear sneak remain available, and the undecided rear walk keeps its historical
 v6 input identity.
+
+## Proportion refinement
+
+The v3 side strength was accepted, but the silhouettes still read too short.
+Side v4 masters redraw length below the head while retaining the stronger build,
+likeness and relaxed pose. The left correction is stronger; the right remains
+more compact. These are proportion-review stills. V3 sources remain archived
+locally as strength references; new side motion awaits the proportion judgment.
