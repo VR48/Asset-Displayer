@@ -1,9 +1,8 @@
 # Asset Displayer
 
-A static, shareable animation review gallery for Lanternwake. The initial
-collection has 34 cleaned animation sets from 25 Midjourney source jobs, plus
-four Seb standing MASTER candidates and four raw directional walking
-candidates and a separate rear/up sneak candidate with a relaxed low sword carry.
+A static, shareable animation review gallery for Lanternwake. The original
+collection has 34 cleaned animation sets from 25 Midjourney source jobs,
+alongside Seb standing references and the currently retained raw video candidates.
 
 Open the published GitHub Pages site, select a character or package category,
 and play, pause, scrub or step through the frames. Original frame durations,
@@ -92,33 +91,28 @@ Standing references are clearly distinguished from animation clips, and their
 animation controls are disabled. The character filter is derived from catalog
 metadata rather than a fixed roster.
 
-Seb's **Standing MASTER reference · low sword** entries are new-character stills
-for front, rear, left and right. The front retains the existing low-sword source;
-the rear originates in a MJ image job with owner-authorized ImageGen repairs.
-The replacement side v2 references are ImageGen redraws using the retained front
-identity and approved rear v4 armor, followed by a focused posture edit. MJ job UUIDs
-and selected image indices remain attached as origin evidence; the repaired
-PNG's own fingerprint identifies the actual review asset. They are not relabeled
-as unmodified MJ output. The magenta backdrop is retained, and only opaque alpha
-is added for the viewer; RGB pixels are unchanged. New rear/side surfaces remain
-proposed design, not approved historical detail. No runtime replacement is
-installed. `tools/import-seb-masters.py` imports only a completed
-four-direction candidate manifest from the local source archive.
+Seb's standing references cover front, rear, left and right. The front keeps
+the original low-sword source. Rear v4 retains its MJ origin and ImageGen repair
+provenance. Side v3 stills correct the body build against the canonical front,
+while preserving the liked facial likeness and relaxed body language. Their new
+proportions remain subject to visual review before side video generation.
 
-Seb's four **Walk in place · low sword** entries are raw Midjourney videos
-generated from those updated masters with low motion and `--bs 1`. The new front/left/right walks use their source canvas. The retained rear
-walk and sneak use modest magenta side padding; source character pixels were
-preserved without resampling. Per-clip provenance
-records any canvas transform and the actual uploaded input fingerprint.
-The viewer preserves every decoded frame and its original timestamp duration.
-The magenta background and generation defects remain visible for review; these
-clips have not been cleaned, stabilized, repaired or installed in either game.
-The earlier narrow/crossing rear take is retained separately as a rear/up sneak
-candidate, including its backward-reading sword carry. A corrected rear standing
-reference anchors the new normal walk with a standard forward low carry.
-Looping was requested from Midjourney, but foot contact and a seamless transition
-remain review decisions. `tools/import-seb-walks.py` accepts only a completed,
-locally reviewed four-direction manifest and verifies the original MP4 hashes.
+The current raw videos are the retained front/down walk, the undecided rear
+walk and the separate rear/up sneak candidate. The rear walk still identifies
+its actual v6 input; the sneak retains its v3 input. Neither is relabeled as
+having used the displayed rear v4 still. Retired side v1/v2 masters and walks
+remain archived locally and absent from the live catalog.
+
+All current raw MJ videos used low motion and `--bs 1`. Their unchanged MP4s
+remain available to download. The viewer preserves every decoded frame and its
+native timestamp duration. Magenta and generation defects remain visible;
+seamless foot contact, loop timing and new likeness/proportion judgments are
+review decisions. These assets are independent of both game runtimes.
+
+`tools/import-seb-masters.py` imports active references while excluding rejected
+selections. `tools/import-seb-walks.py` imports only completed, locally reviewed
+video records with original-file hashes; rejection flags prevent reintroducing
+retired takes.
 
 ## Local verification and hosting
 
@@ -145,3 +139,14 @@ The redo publication includes new left/right reference stills and front/left/rig
 walking candidates. The right job had an inconclusive acceptance receipt; its
 completed UUID was recovered by matching the actual uploaded source and prompt.
 It was downloaded without submitting a duplicate generation.
+
+## Body consistency review
+
+The exact front/down v2 walk is retained. Side v2 stills and walks were
+retired after review found a weaker body build than the canonical front. Their
+originals are archived locally. New left/right v3 MASTER candidates preserve
+the liked face and relaxed body language while correcting torso, arm, hip and
+leg mass against the front. These are body-review stills; replacement side
+videos await the owner’s judgment of those proportions. Rear v4 and the retained
+rear sneak remain available, and the undecided rear walk keeps its historical
+v6 input identity.

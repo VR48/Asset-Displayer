@@ -29,3 +29,9 @@ test('rejected v1 assets stay retired and approved rear v4 is the displayed stil
  assert.equal(sets.find(s=>s.name==='seb-master-rear-low-sword-v1').source.sha256,'fba5020548e06319115799e65490db577cf429407ddff371b7b96844449b6e94');
  assert.equal(sets.find(s=>s.name==='seb-walk-rear-low-sword-v1').source.master_revision,6);
 });
+
+test('underbuilt v2 side masters and walks stay retired while approved front remains exact',()=>{
+ for(const id of ['seb-master-left-low-sword-v2','seb-master-right-low-sword-v2','seb-walk-left-low-sword-v2','seb-walk-right-low-sword-v2'])assert(!sets.some(s=>s.name===id));
+ const front=sets.find(s=>s.name==='seb-walk-front-low-sword-v2');assert.equal(front.source.mj_job_uuid,'20a2fb03-fca2-4150-8318-393372ca732b');assert.equal(front.original_video.sha256,'1cb1706538ec6a7a47414c256f4022ac224575ea1dfa681040bd911866df6fe2');
+ for(const d of ['left','right'])assert(sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v3'));
+});
