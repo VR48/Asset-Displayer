@@ -19,7 +19,7 @@ test('reference sources survive private handoff roundtrip without fictitious MJ 
  const s=references[0],stale=sanitizeDecisions({[s.name]:{...decisions[s.name],assetFingerprint:'old'}},sets,versions)[s.name];assert.equal(stale.decision,'undecided');assert.equal(stale.notes,'Character reference review');
 });
 test('existing MJ catalog fingerprints and legacy browser choices retain compatibility',()=>{
- for(const s of sets.filter(s=>s.source.mj_job_uuid)){
+ for(const s of sets.filter(s=>s.source.mj_job_uuid&&!s.original_video)){
   const old=createHash('sha256').update(JSON.stringify({uuid:s.source.mj_job_uuid,geometry:s.geometry,frames:s.frames.map((f,i)=>[f.sha256,s.durations[i]]),...(s.replacement?{replacement:s.replacement}:{})})).digest('hex');assert.equal(versions.get(s.name),old);
   const entry={decision:'keep',notes:'Earlier review',mjJobUuid:s.source.mj_job_uuid,assetFingerprint:old};assert.equal(sanitizeDecisions({[s.name]:entry},sets,versions)[s.name].decision,'keep');
  }

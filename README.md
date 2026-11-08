@@ -2,8 +2,8 @@
 
 A static, shareable animation review gallery for Lanternwake. The initial
 collection has 34 cleaned animation sets from 25 Midjourney source jobs, plus
-four Seb standing
-MASTER candidates with a relaxed low sword carry.
+four Seb standing MASTER candidates and four raw directional walking
+candidates and a separate rear/up sneak candidate with a relaxed low sword carry.
 
 Open the published GitHub Pages site, select a character or package category,
 and play, pause, scrub or step through the frames. Original frame durations,
@@ -62,9 +62,12 @@ storage without a separately planned history migration.
 - `data.json` contains portable playback metadata, source job UUIDs, frame hashes
   and package caveats. Package categories preserve historical approval context;
   viewing or marking a candidate does not install it in the game.
-- `assets/` stores 2,754 original collection frames plus four Seb MASTER
-  candidates (2,758 unique lossless RGBA PNGs). Shared frames are stored once
+- `assets/` stores 2,754 original collection frames, four Seb MASTER
+  candidates and the decoded frames of four raw Seb walks and one sneak. Shared frames are stored once
   and referenced in the intended timeline order.
+- `videos/` retains the unchanged Midjourney walking and sneaking MP4s. **Download
+  original MP4** appears for these clips. The private handoff identifies each
+  video, generation UUID and input master by fingerprint.
 - `comparisons.json` identifies the ASUS checkout's Original runtime bank
   snapshot, with source commit, manifest/page hashes and attack-phase semantics.
   `baselines/` contains 282 native-size RGBA PNGs decoded from those existing
@@ -97,9 +100,24 @@ and selected image indices remain attached as origin evidence; the repaired
 PNG's own fingerprint identifies the actual review asset. They are not relabeled
 as unmodified MJ output. The magenta backdrop is retained, and only opaque alpha
 is added for the viewer; RGB pixels are unchanged. New rear/side surfaces remain
-proposed design, not approved historical detail. No new walk animation or runtime
-replacement is installed. `tools/import-seb-masters.py` imports only a completed
+proposed design, not approved historical detail. No runtime replacement is
+installed. `tools/import-seb-masters.py` imports only a completed
 four-direction candidate manifest from the local source archive.
+
+Seb's four **Walk in place · low sword** entries are raw Midjourney videos
+generated from those updated masters with low motion and `--bs 1`. Front and
+right use the original master canvas. Rear and left use modest magenta side
+padding; character pixels are preserved without resampling. Per-clip provenance
+records any canvas transform and the actual uploaded input fingerprint.
+The viewer preserves every decoded frame and its original timestamp duration.
+The magenta background and generation defects remain visible for review; these
+clips have not been cleaned, stabilized, repaired or installed in either game.
+The earlier narrow/crossing rear take is retained separately as a rear/up sneak
+candidate, including its backward-reading sword carry. A corrected rear standing
+reference anchors the new normal walk with a standard forward low carry.
+Looping was requested from Midjourney, but foot contact and a seamless transition
+remain review decisions. `tools/import-seb-walks.py` accepts only a completed,
+locally reviewed four-direction manifest and verifies the original MP4 hashes.
 
 ## Local verification and hosting
 

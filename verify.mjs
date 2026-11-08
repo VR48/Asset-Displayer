@@ -3,9 +3,10 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {baselineFor} from './comparison.mjs';
 const manifest=JSON.parse(await readFile(new URL('./data.json',import.meta.url),'utf8'));
-const frames=new Map();let entries=0;
+const frames=new Map(),videos=new Map();let entries=0;
 assert(manifest.sets.length>=34);assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
 for(const set of manifest.sets){
+ if(set.original_video){assert.equal(set.original_video.url,`videos/${set.original_video.sha256}.mp4`);assert.match(set.original_video.sha256,/^[a-f0-9]{64}$/);assert.equal(set.original_video.sha256,set.source.video_sha256);videos.set(set.original_video.url,set.original_video.sha256);}
  if(set.source.mj_job_uuid)assert.match(set.source.mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);
  else{assert(['Pika','ImageGen','Reference'].includes(set.source.provider));assert.match(set.source.sha256,/^[a-f0-9]{64}$/);if(set.source.provider==='Pika'){assert.match(set.source.job_id,/^creation_[a-f0-9-]{36}$/);assert.match(set.source.preview_sha256,/^[a-f0-9]{64}$/);}assert(['animation','image'].includes(set.media_kind));if(set.media_kind==='image')assert.equal(set.frames.length,1);if(set.source.origin_mj_job_uuid)assert.match(set.source.origin_mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);}
  assert.equal(set.frames.length,set.durations.length);
@@ -19,6 +20,8 @@ for(const set of manifest.sets){
 }
 for(const [file,sha]of frames){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),sha);assert.equal(bytes.subarray(1,4).toString(),'PNG');assert.equal(bytes[25],6);}
 assert.equal((await readdir(new URL('./assets/',import.meta.url))).length,frames.size);
+for(const [file,sha]of videos){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),sha);assert.equal(bytes.toString('ascii',4,8),'ftyp');}
+try{assert.equal((await readdir(new URL('./videos/',import.meta.url))).length,videos.size);}catch(error){if(error.code!=='ENOENT'||videos.size)throw error;}
 const content=await readFile(new URL('./data.json',import.meta.url),'utf8');
 for(const privateField of ['provider_local_path','provider_message','owner_evidence','source_root_PRED','senderIp','controlToken','C:\\\\Users','D:\\\\'])assert(!content.includes(privateField),`Private field published: ${privateField}`);
 const app=await readFile(new URL('./app.js',import.meta.url),'utf8');
@@ -35,4 +38,4 @@ for(const b of catalog.baselines){
 for(const s of manifest.sets){assert(s.usage);assert.equal(Boolean(baselineFor(s,catalog)),s.usage.status==='replacement');}
 for(const [file,hash]of originalFrames){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),hash);assert.equal(bytes[25],6);}
 assert.equal((await readdir(new URL('./baselines/',import.meta.url))).length,originalFrames.size);
-console.log(JSON.stringify({sets:manifest.sets.length,timelineEntries:entries,uniqueFrames:frames.size,replacementCandidates:catalog.baselines.length,originalFrames:originalFrames.size,sha256Verified:true,metadataBoundaryPassed:true}));
+console.log(JSON.stringify({sets:manifest.sets.length,timelineEntries:entries,uniqueFrames:frames.size,originalVideos:videos.size,replacementCandidates:catalog.baselines.length,originalFrames:originalFrames.size,sha256Verified:true,metadataBoundaryPassed:true}));

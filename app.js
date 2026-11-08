@@ -1,6 +1,6 @@
 
-import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.6.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.6.0';
+import {FILE_NAME,catalogVersions,sanitizeDecisions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.7.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.7.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -46,7 +46,7 @@ async function draw(index){
  frame=index;$('scrub').value=index;
  const selected=current,stamp=generation;
  $('time').textContent=selected.media_kind==='image'?'Still reference':`${index+1} / ${selected.frames.length} · ${(position/1000).toFixed(2)}s`;
- $('frameInfo').textContent=selected.media_kind==='image'?'Original RGBA still · approximate foot anchor retained':`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · ${selected.source.provider==='Pika'?'chronological preview timing retained':'offsets retained as provenance'}`;
+ $('frameInfo').textContent=selected.media_kind==='image'?'Original RGBA still · source review geometry retained':`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · ${selected.source.preview_basis==='decoded-original-video'?'original video timing retained':selected.source.provider==='Pika'?'chronological preview timing retained':'offsets retained as provenance'}`;
  try{const img=await image(index);if(stamp!==generation||frame!==index)return;paint($('canvas'),img,selected.geometry);
  }catch{$('time').textContent='Frame could not be loaded';}
 }
@@ -55,6 +55,8 @@ function select(s){
  $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category]+(decisions[s.name]?.needsReview?' · Previous '+decisions[s.name].previousDecision+' needs source-version review':'');
  const [w,h]=s.actual_dimensions[0];$('canvas').width=w;$('canvas').height=h;$('scrub').max=s.frames.length-1;
  const still=s.media_kind==='image';
+ $('pixel-status').textContent=s.source.preview_basis==='decoded-original-video'?'Raw MJ video preview. Magenta retained; not cleaned or stabilized.':still?'Source pixels retained. No runtime installation.':'Delivered PNGs only. Stabilization offsets are not applied again.';
+ const original=s.original_video?.url;if(original&&/^videos\/[a-f0-9]{64}\.mp4$/.test(original)){$('original-video-download').href=original;$('original-video-download').download=s.name+'.mp4';$('original-video-download').hidden=false;}else{$('original-video-download').hidden=true;$('original-video-download').removeAttribute('href');}
  $('geometry').textContent=`${w} × ${h} native canvas · ${still?'Still reference (not animated)':s.unique_png_files+' unique PNGs · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
  $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);$('caveats').replaceChildren();
  for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still;
