@@ -197,3 +197,16 @@ and video-source provenance unchanged. New v7 left/right stills improve whole-bo
 profile alignment. Some chest frontage, boot-top visibility and foot stagger
 remain; exact 90-degree projection is not certified. They await master review
 before any new horizontal walking generation. No game runtime changes.
+
+## Material-aware color correction v8
+
+All five current non-front Seb stills have a direct material-aware CIELab grade
+against the unchanged front MASTER: rear, oblique left/right and near-profile
+left/right. Skin moves toward the front's restrained reddish rose-brown;
+graphite, oxblood paint and wear use the same reference hierarchy. The grade
+changes colors at original pixel coordinates; it does not redraw features,
+resample geometry or synthesize texture. Magenta and green emitters remain
+byte-identical to each input. Original sources and superseded exports are
+archived locally. New tones await review; numerical material samples do not
+certify visual equivalence. Historical videos remain unchanged and still name
+the exact original input hashes, available through their master history.

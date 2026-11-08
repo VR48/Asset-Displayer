@@ -24,9 +24,9 @@ test('raw walks retain historical master mapping, native timestamps, one-video p
  const revisedSets=structuredClone(sets);revisedSets.find(s=>s.name===padded.name).source.uploaded_source_sha256='0'.repeat(64);assert.notEqual((await catalogVersions(revisedSets)).get(padded.name),versions.get(padded.name));
 });
 
-test('rejected v1 assets stay retired and approved rear v4 is the displayed still',()=>{
+test('rejected v1 assets stay retired and rear v4 remains in graded still history',()=>{
  for(const id of ['seb-master-left-low-sword-v1','seb-master-right-low-sword-v1','seb-walk-front-low-sword-v1','seb-walk-left-low-sword-v1','seb-walk-right-low-sword-v1'])assert(!sets.some(s=>s.name===id));
- assert.equal(sets.find(s=>s.name==='seb-master-rear-low-sword-v1').source.sha256,'fba5020548e06319115799e65490db577cf429407ddff371b7b96844449b6e94');
+ assert(sets.find(s=>s.name==='seb-master-rear-low-sword-v1').source.previous_sha256s.includes('fba5020548e06319115799e65490db577cf429407ddff371b7b96844449b6e94'));
  assert.equal(sets.find(s=>s.name==='seb-walk-rear-low-sword-v1').source.master_revision,6);
 });
 
@@ -44,6 +44,6 @@ test('v6 side provenance distinguishes supplied still from material redraw',()=>
  const front=sets.find(s=>s.name==='seb-master-front-low-sword-v1');
  for(const d of ['left','right'])for(const v of [4,5])assert(!sets.some(s=>s.name==='seb-master-'+d+'-low-sword-v'+v));
  const left=sets.find(s=>s.name==='seb-master-left-low-sword-v6'),right=sets.find(s=>s.name==='seb-master-right-low-sword-v6');assert(left&&right);
- assert.equal(left.source.render_basis,'existing-supplied-render');assert.equal(left.source.sha256,'17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622');
+ assert.equal(left.source.render_basis,'existing-supplied-render');assert(left.source.previous_sha256s.includes('17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622'));assert.equal(left.source.color_grade.input_sha256,'17d409905bfb5ff8f977eddaa3756558c4524f9e179a041ce0fbb7fad1d67622');
  assert.equal(right.source.render_basis,'fresh-material-render-with-proportion-reference');assert.equal(right.source.armor_reference_sha256,front.source.sha256);assert(right.source.reference_sha256s.includes(front.source.sha256));
 });
