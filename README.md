@@ -1,5 +1,17 @@
 # Asset Displayer
 
+## New heroine directional candidates · 1.18.0
+
+Four new standing references—front, rear, left and right—use the supplied
+red-armor character sheet, its native standing/face crops and original palette.
+The temporary filter label is **New heroine**. The malformed crouch panel was
+excluded as an anatomy reference. The corrected complete sheet remains local.
+These are ImageGen review candidates with magenta backgrounds, not animations
+or gameplay replacements. OMP flagged cross-view face, equipment and registration
+variation; a follow-up redraw raised the right-profile weapon to upper-torso
+height. Profiles overlap far-side limbs and pods. Review grip, likeness and
+palette before animation. Existing assets and applied review colors are retained.
+
 A static, shareable animation review gallery for Lanternwake. The original
 collection has 34 cleaned animation sets from 25 Midjourney source jobs,
 alongside Seb standing references and the currently retained raw video candidates.
