@@ -1,5 +1,16 @@
 # Asset Displayer
 
+## Jane rear/left carry repairs · 1.19.0
+
+New v2 rear and left standing candidates replace the deleted v1 entries for
+review. Retained front/right artwork and all saved decisions are unchanged.
+Left carries the weapon visibly forward with a low right-hand grip; rear uses
+the free hand's relaxed wrist orientation to guide the redesigned handle/grip.
+OMP found no clear remaining anatomy/framing blocker for owner review. The rear
+finger-to-grip contact and exact weapon projection remain uncertain. These are
+new undecided candidates; deleted versions and rejected intermediate attempts
+remain local. No animations or game integration were performed.
+
 The **Redo** choice replaces the former “Do not add” label. It requests another
 version; use the notes field to describe the repair. Existing grey choices stay
 grey. Handoff files retain the legacy `skip` code for compatibility and include
