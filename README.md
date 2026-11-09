@@ -402,3 +402,30 @@ The anchor guide chooses black or white from the underlying pixel and adds an
 opposite-color outline. Raw previews without a supplied anchor use a fixed
 first-frame foreground-baseline guide, including native-video overlays. This
 preview guide does not define or change a gameplay anchor.
+
+
+## Jane gait redos and matte repair (1.23.0)
+
+Five new single-output Fast / low-motion gait trials pair front end/non-end,
+right end/repaired non-end, and rear/left non-end with their unchanged approved
+end tests. Each MJ request uses `--bs 1`; same-start/end requests bind the exact
+master as `--end`. Turning/crossover and clipped attempts were archived locally and retried.
+The current front pair remains explicitly labeled unresolved: it still fails
+straight-ahead gait and has weapon/boot boundary issues. Those attempts are
+provided for review, not presented as successful front-walk fixes.
+The new trials await owner review; an end constraint does not certify seamless
+walking. Approved rear/left end entries, their original media and decisions stay
+unchanged. Existing rejected trials stay available with their saved decisions.
+
+The right matte repair removes guarded detached exterior debris and normalizes
+unprotected edge-connected magenta. Per-frame recognized subject components
+and their protective fringe retain original RGBA bytes. All 125 RGB-lossless
+VP9 review frames were decoded and compared byte-for-byte with the cleaned
+PNGs. Browser checks cover playback and first/middle/last decoded pixels.
+Subject-attached green/dark boot and weapon coloration remains unchanged.
+The repaired WebM and source MP4 have separate download links and hashes.
+
+Three older rejected non-end candidates now use their unchanged original MP4s
+in the native player. Redundant frame-preview files are archived locally; no
+source animation is removed or recompressed. Only those preview fingerprints
+are migrated, preserving their Redo decisions; the approved entries are intact.

@@ -1,6 +1,6 @@
-const candidateFile=/^(assets\/[a-f0-9]{64}\.(?:png|webp)|videos\/[a-f0-9]{64}\.mp4)$/;
+const candidateFile=/^(assets\/[a-f0-9]{64}\.(?:png|webp)|videos\/[a-f0-9]{64}\.(?:mp4|webm))$/;
 function files(set){
- const urls=[...set.frames.map(f=>f.url),...(set.original_video?[set.original_video.url]:[])];
+ const urls=[...set.frames.map(f=>f.url),...(set.original_video?[set.original_video.url]:[]),...(set.review_video?[set.review_video.url]:[])];
  for(const url of urls)if(!candidateFile.test(url))throw Error('Unsafe candidate resource path.');
  return urls;
 }

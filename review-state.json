@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 5,
+  "revision": 6,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -255,17 +255,17 @@
     "jane-walk-front-v1": {
       "decision": "skip",
       "sourceKey": "e4ec8ef0-ac4a-415d-9a9b-5ae23c74a300",
-      "assetFingerprint": "c3cd3fb2305a7fd3d62bd97aa014884857e890716c63793b126470340f92ad9a"
+      "assetFingerprint": "634baf8fb2a42f857e73af8bc44f647bdc92cdfab1ee2b05f376a8b682f82886"
     },
     "jane-walk-rear-v1": {
       "decision": "skip",
       "sourceKey": "554018d6-aa04-46e5-a44e-824c0f0904dc",
-      "assetFingerprint": "ca940f126a7255ca3f7d24492e2c271d499506cba3ffe25724a9287d484b0211"
+      "assetFingerprint": "695b364930e58e606c06c0270064a4243da6d04d292a4dd3a8f5e6e3d721abc9"
     },
     "jane-walk-left-v1": {
       "decision": "skip",
       "sourceKey": "5cbe3256-2289-48c0-ba2d-5b58a00b8afd",
-      "assetFingerprint": "4cd991d5dc8666fe133d71ce089e6865adf4ffdd3eed8d331ec1b19f4bbbc16f"
+      "assetFingerprint": "8beb8a421dc89f7752b0d7882b3faa534e24dd900c344ef22618cc116528495a"
     },
     "jane-walk-right-v1": {
       "decision": "hold",

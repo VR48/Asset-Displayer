@@ -37,3 +37,9 @@ test('lossless WebP deletion preserves shared frames and rejects extension trick
  assert.deepEqual(planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['gone-webp']).removeFiles,['assets/'+b+'.webp']);
  gone.frames[1].url+='/.png';assert.throws(()=>planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['gone-webp']),/Unsafe/);
 });
+
+test('removing a repaired review deletes its WebM while preserving a shared original MP4',()=>{
+ const gone=candidate('repair',9,[b]),kept=candidate('source',8,[a]);gone.review_video={url:'videos/'+b+'.webm'};gone.original_video=kept.original_video={url:'videos/'+v+'.mp4'};
+ assert.deepEqual(planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['repair']).removeFiles,['assets/'+b+'.png','videos/'+b+'.webm']);
+ gone.review_video.url='../outside.webm';assert.throws(()=>planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['repair']),/Unsafe/);
+});

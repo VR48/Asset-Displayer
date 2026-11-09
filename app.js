@@ -1,8 +1,8 @@
-import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.22.1';
+import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.23.0';
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.22.1';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.22.1';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.22.1';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.23.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.23.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.23.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -54,7 +54,7 @@ async function draw(index){
  frame=index;$('scrub').value=index;
  const selected=current,stamp=generation;
  $('time').textContent=selected.media_kind==='image'?'Still reference':`${index+1} / ${selected.frames.length} · ${(position/1000).toFixed(2)}s`;
- if(selected.review_mode==='native-video'){ $('time').textContent='Native video controls';$('frameInfo').textContent=selected.native_frame_count+' original frames · untrimmed original MP4 · use video controls for playback and seeking';try{const img=await image(0);if(stamp===generation){nativeAnchor=previewAnchor(img,selected.geometry);paintNativeAnchor();}}catch{}return;}
+ if(selected.review_mode==='native-video'){ $('time').textContent='Native video controls';$('frameInfo').textContent=selected.native_frame_count+' frames · native video controls';try{const img=await image(0);if(stamp===generation){nativeAnchor=previewAnchor(img,selected.geometry);paintNativeAnchor();}}catch{}return;}
  $('frameInfo').textContent=selected.media_kind==='image'?'Original RGBA still · source review geometry retained':`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · ${selected.source.preview_basis==='decoded-original-video'?'original video timing retained':selected.source.provider==='Pika'?'chronological preview timing retained':'offsets retained as provenance'}`;
  try{const img=await image(index);if(!(selected.geometry.anchor??selected.geometry.native_anchor??selected.geometry.fixed_native_anchor))previewAnchor(await image(0),selected.geometry);if(stamp!==generation||frame!==index)return;paint($('canvas'),img,selected.geometry);
  }catch{$('time').textContent='Frame could not be loaded';}
@@ -65,7 +65,8 @@ function select(s){
  $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category]+(decisions[s.name]?.needsReview?' · Previous '+decisions[s.name].previousDecision+' needs source-version review':'');
  const [w,h]=s.actual_dimensions[0];$('canvas').width=w;$('canvas').height=h;$('scrub').max=s.frames.length-1;
  const still=s.media_kind==='image',native=s.review_mode==='native-video';
- if(native){playing=false;video.src=s.original_video.url;video.poster=s.frames[0].url;video.loop=$('loop').checked;video.playbackRate=Number($('speed').value);video.hidden=false;$('native-player').hidden=false;$('native-player').style.aspectRatio=w+'/'+h;$('anchor-overlay').width=w;$('anchor-overlay').height=h;$('canvas').hidden=true;}
+ if(native){playing=false;video.src=(s.review_video??s.original_video).url;video.poster=s.frames[0].url;video.loop=$('loop').checked;video.playbackRate=Number($('speed').value);video.hidden=false;$('native-player').hidden=false;$('native-player').style.aspectRatio=w+'/'+h;$('anchor-overlay').width=w;$('anchor-overlay').height=h;$('canvas').hidden=true;}
+ const review=s.review_video;if(review&&/^videos\/[a-f0-9]{64}\.webm$/.test(review.url)){$('review-video-download').href=review.url;$('review-video-download').download=s.name+'.webm';$('review-video-download').hidden=false;}else{$('review-video-download').hidden=true;$('review-video-download').removeAttribute('href');}
  const original=s.original_video?.url;if(original&&/^videos\/[a-f0-9]{64}\.mp4$/.test(original)){$('original-video-download').href=original;$('original-video-download').download=s.name+'.mp4';$('original-video-download').hidden=false;}else{$('original-video-download').hidden=true;$('original-video-download').removeAttribute('href');}
  $('geometry').textContent=`${w} × ${h} native canvas · ${native?s.native_frame_count+' native video frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds':still?'Still reference (not animated)':(s.unique_frame_files??s.unique_png_files)+' unique lossless frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
  $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);
