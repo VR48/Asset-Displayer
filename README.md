@@ -1,5 +1,13 @@
 # Asset Displayer
 
+## Jane selected right view · 1.20.1
+
+The right master now uses the exact original render selected by the owner for
+its weapon appearance/color. Its source RGB pixels are preserved; the later
+upper-section redraw and Python material grade are not applied to this entry.
+Front, rear, left and other characters are unchanged. The prior right remains
+archived locally. This explicit selection supersedes the v6 right finishing path.
+
 ## Jane front-anchored rebuild · 1.20.0
 
 All previous non-front Jane masters are retired. New rear, left and right v6
