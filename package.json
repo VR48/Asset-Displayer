@@ -1,11 +1,11 @@
 {
   "name": "asset-displayer",
-  "version": "1.21.0",
+  "version": "1.22.0",
   "private": true,
   "type": "module",
   "scripts": {
     "verify": "node verify.mjs",
-    "test": "node --test --test-concurrency=1 handoff.test.mjs comparison.test.mjs character-candidates.test.mjs seb-masters.test.mjs seb-walks.test.mjs review-state.test.mjs candidate-deletion.test.mjs frame-format.test.mjs",
+    "test": "node --test --test-concurrency=1 handoff.test.mjs comparison.test.mjs character-candidates.test.mjs seb-masters.test.mjs seb-walks.test.mjs review-state.test.mjs candidate-deletion.test.mjs frame-format.test.mjs native-video.test.mjs",
     "handoff": "node tools/read-handoff.mjs",
     "handoff:apply": "node tools/apply-handoff.mjs"
   }

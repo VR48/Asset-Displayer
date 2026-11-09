@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import {catalogVersions,buildHandoff,importHandoff} from './handoff.mjs';
+const sets=JSON.parse(await readFile(new URL('./data.json',import.meta.url))).sets;
+test('native loop trials bind decisions to original videos and preserve pairing in handoffs',async()=>{
+ const videos=sets.filter(s=>s.review_mode==='native-video');assert.equal(videos.length,4);const versions=await catalogVersions(sets),handoff=buildHandoff(sets,versions,{});
+ for(const s of videos){assert.equal(s.frames.length,1);assert(s.native_frame_count>1);assert.equal(s.source.loop_requested,true);assert.equal(s.source.batch_size,1);assert.equal(s.source.speed,'fast');const companion=sets.find(x=>x.name===s.paired_continuous_asset_id);assert(companion);assert.equal(companion.source.master_sha256,s.source.master_sha256);const a=handoff.assets.find(a=>a.assetId===s.name);assert.equal(a.reviewMode,'native-video');assert.equal(a.nativeFrameCount,s.native_frame_count);assert.equal(a.loopRequested,true);assert.equal(a.pairedContinuousAssetId,companion.name);}
+ const a=handoff.assets.find(a=>a.assetId===videos[0].name);a.decision='keep';const result=importHandoff(handoff,sets,versions);assert.equal(result.decisions[videos[0].name].decision,'keep');assert.equal(result.decisions[videos[0].paired_continuous_asset_id].decision,'undecided');
+ const changed=structuredClone(videos[0]);changed.original_video.sha256='0'.repeat(64);assert.notEqual((await catalogVersions([changed])).get(changed.name),versions.get(changed.name));
+});

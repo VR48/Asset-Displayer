@@ -1,7 +1,7 @@
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.21.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.21.0';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.21.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.22.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.22.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.22.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -52,20 +52,25 @@ async function draw(index){
  frame=index;$('scrub').value=index;
  const selected=current,stamp=generation;
  $('time').textContent=selected.media_kind==='image'?'Still reference':`${index+1} / ${selected.frames.length} · ${(position/1000).toFixed(2)}s`;
+ if(selected.review_mode==='native-video'){ $('time').textContent='Native video controls';$('frameInfo').textContent=selected.native_frame_count+' original frames · untrimmed original MP4 · use video controls for playback and seeking';return;}
  $('frameInfo').textContent=selected.media_kind==='image'?'Original RGBA still · source review geometry retained':`Source frame ${selected.frames[index].source_frame??'?'} · ${selected.durations[index].toFixed(3)} ms · ${selected.source.preview_basis==='decoded-original-video'?'original video timing retained':selected.source.provider==='Pika'?'chronological preview timing retained':'offsets retained as provenance'}`;
  try{const img=await image(index);if(stamp!==generation||frame!==index)return;paint($('canvas'),img,selected.geometry);
  }catch{$('time').textContent='Frame could not be loaded';}
 }
 function select(s){
+ const video=$('native-video');video.pause();video.removeAttribute('src');video.load();video.hidden=true;$('canvas').hidden=false;
  generation++;cache.clear();current=s;position=0;elapsed=0;frame=0;last=performance.now();comparing=false;baseline=baselineFor(s,comparisons);originalFrame=-1;originalPaint++;
  $('title').textContent=String(s.number).padStart(2,'0')+' · '+s.name;$('approval').textContent=categoryLabels[s.approval_category]+(decisions[s.name]?.needsReview?' · Previous '+decisions[s.name].previousDecision+' needs source-version review':'');
  const [w,h]=s.actual_dimensions[0];$('canvas').width=w;$('canvas').height=h;$('scrub').max=s.frames.length-1;
- const still=s.media_kind==='image';
+ const still=s.media_kind==='image',native=s.review_mode==='native-video';
+ if(native){playing=false;video.src=s.original_video.url;video.poster=s.frames[0].url;video.loop=$('loop').checked;video.playbackRate=Number($('speed').value);video.hidden=false;$('canvas').hidden=true;}
  $('pixel-status').textContent=s.source.preview_basis==='decoded-original-video'?'Raw MJ video preview. Magenta retained; not cleaned or stabilized.':still?'Source pixels retained. No runtime installation.':'Delivered PNGs only. Stabilization offsets are not applied again.';
  const original=s.original_video?.url;if(original&&/^videos\/[a-f0-9]{64}\.mp4$/.test(original)){$('original-video-download').href=original;$('original-video-download').download=s.name+'.mp4';$('original-video-download').hidden=false;}else{$('original-video-download').hidden=true;$('original-video-download').removeAttribute('href');}
- $('geometry').textContent=`${w} × ${h} native canvas · ${still?'Still reference (not animated)':(s.unique_frame_files??s.unique_png_files)+' unique lossless frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
+ $('geometry').textContent=`${w} × ${h} native canvas · ${native?s.native_frame_count+' native video frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds':still?'Still reference (not animated)':(s.unique_frame_files??s.unique_png_files)+' unique lossless frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
  $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);$('caveats').replaceChildren();
- for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still;
+ for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still||(native&&['previous','next','scrub'].includes(id));
+ $('pivot').disabled=native;
+ if(native)$('pixel-status').textContent='Untouched original MP4. Loop requested with identical start/end master; seamless gait is subject to review.';
  if(still)playing=false;$('play').textContent=still?'Still image':playing?'Pause':'Play';
  for(const text of s.caveats||[]){const li=document.createElement('li');li.textContent=text;$('caveats').append(li);}
  $('decision').value=decisions[s.name]?.decision||'undecided';$('notes').value=decisions[s.name]?.notes||'';decisionVisuals();list();draw(0);
@@ -81,7 +86,9 @@ $('replace-approved').onchange=()=>{if($('replace-approved').checked)$('decision
 $('compare').onclick=()=>{if(!baseline)return;comparing=!comparing;generation++;originalPaint++;originalFrame=-1;$('previews').classList.toggle('comparing',comparing);$('original-pane').hidden=!comparing;$('candidate-label').hidden=!comparing;$('compare').textContent=comparing?'Close comparison':'Compare';$('compare').setAttribute('aria-pressed',String(comparing));$('original-label').textContent=`Current original · ${current.replacement.slot} · ${baseline.phase}`;
  const [w,h]=current.actual_dimensions[0];$('canvas').width=comparing?640:w;$('canvas').height=comparing?640:h;$('original-canvas').width=640;$('original-canvas').height=640;draw(frame);drawOriginal(true);};
 $('decision').onchange=save;$('notes').oninput=save;$('character').onchange=list;$('category').onchange=list;
-$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'Pause':'Play';last=performance.now();};
+$('native-video').onplay=()=>{$('play').textContent='Pause';};$('native-video').onpause=()=>{if(current?.review_mode==='native-video')$('play').textContent='Play';};
+$('speed').onchange=()=>{$('native-video').playbackRate=Number($('speed').value);};$('loop').onchange=()=>{$('native-video').loop=$('loop').checked;};
+$('play').onclick=()=>{if(current.review_mode==='native-video'){const v=$('native-video');if(v.paused)v.play().catch(()=>{$('time').textContent='Video could not play. Check your connection.';});else v.pause();return;}playing=!playing;$('play').textContent=playing?'Pause':'Play';last=performance.now();};
 function seek(i){playing=false;$('play').textContent='Play';i=Math.max(0,Math.min(current.frames.length-1,i));elapsed=position=current.durations.slice(0,i).reduce((a,b)=>a+b,0);draw(i);drawOriginal(true);}
 $('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('scrub').oninput=()=>seek(Number($('scrub').value));
 $('pivot').onchange=()=>{draw(frame);drawOriginal(true);};$('background').onchange=()=>{for(const id of ['stage','original-stage'])$(id).className='stage '+$('background').value;};

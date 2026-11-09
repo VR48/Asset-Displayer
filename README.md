@@ -366,3 +366,28 @@ New review frames use lossless WebP at native resolution and original timing.
 Every decoded RGBA byte was checked against its untouched source PNG; original
 PNGs remain local. The catalog retains encoded-file and decoded-pixel hashes.
 Existing assets, saved decisions and Seb are unchanged. No runtime integration.
+
+
+## Paired loop-constrained trials (1.22.0)
+
+Jane now has a separate same-start/end trial for every direction, paired by asset
+ID with the existing non-end-frame version. All four additions use Fast, low
+motion, the same exact master as start and `--end`, and one `--bs 1` video. Future
+locomotion work generates the loop-constrained trial first, then its non-end
+companion. Existing completed non-end versions were reused for these pairs.
+
+The new trials use native playback of the untouched original MP4, including
+browser seeking, speed and repeat controls. Each has its own review decision.
+A single lossless poster is cataloged per video; `native_frame_count` describes
+the actual video. Poster count is not presented as a frame-by-frame extraction.
+All decoded frames, original videos, request receipts, endpoint sheets and
+numeric seam diagnostics remain local. Existing frame-based reviews keep their
+native timestamps and stepping controls.
+
+A loop request is not a seamless-walk approval. OMP reviews endpoint pose,
+terminal behavior, sampled gait, weapon carry and framing. Matching endpoints
+can hide a standing hold and restart. Preserve useful start/walk/stop motion as
+its own candidate; inspect gait phase and velocity across a proposed internal
+cut before accepting a locomotion loop. Pixel-similarity rankings are inspection
+suggestions only. These raw trials are untrimmed; no internal cycle or gameplay
+installation is silently approved.

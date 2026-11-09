@@ -1,4 +1,4 @@
-import {sanitizeDecisions} from './handoff.mjs?v=1.21.0';
+import {sanitizeDecisions} from './handoff.mjs?v=1.22.0';
 
 export const STORAGE_KEY='asset-displayer-lanternwake-review-v2';
 export const LEGACY_STORAGE_KEY='asset-displayer-lanternwake-review-v1';
