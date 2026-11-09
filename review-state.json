@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 2,
+  "revision": 3,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -237,10 +237,20 @@
       "sourceKey": "ecd35cc3094a00b1b3f5498e444012bce2350dba63ad5caed01b95ed7ce2a9a9",
       "assetFingerprint": "204b6c52a5f4fe06f2cdf62fa4c96b3564876cbfd2118d30b9bdbdf45ab0381b"
     },
-    "red-armor-heroine-master-right-v1": {
+    "red-armor-heroine-master-right-v6": {
       "decision": "undecided",
-      "sourceKey": "b6bf64b211c16b6ca18e2c018f11916ccc9b49c395f78f1ae9a08617e4f75c5d",
-      "assetFingerprint": "b1ec37217d1f4f8403c506a0dfa9c3352c4a63c0cdd57adf6558ffdc312e9872"
+      "sourceKey": "942bce471326651dfc0fc7dff72f1a2b8a60259919cd4af8f7dd21e42ba296d3",
+      "assetFingerprint": "e0c1a791108db2013370661775ca9779c99e5af05236ca538db91475cd17ae77"
+    },
+    "red-armor-heroine-master-rear-v6": {
+      "decision": "undecided",
+      "sourceKey": "8ef59e6e870d7685befb367f232d6dbd15091d4c9eaa6c8f75bbcfebdf455736",
+      "assetFingerprint": "f23c0b25c86fe8cbaf6435062253b4d2bad0bd2a31dbfd6af36d38c60e61637f"
+    },
+    "red-armor-heroine-master-left-v6": {
+      "decision": "undecided",
+      "sourceKey": "57e295ca95ce87db18b0921e27736e94e9c2e47b8b29793bb2e9844bb1d92ba0",
+      "assetFingerprint": "18fa6f2953eb2c0498039dcfb044d9aaf2cb965781e0beb73e61c5ed069caf75"
     }
   }
 }

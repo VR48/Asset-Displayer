@@ -1,5 +1,22 @@
 # Asset Displayer
 
+## Jane front-anchored rebuild · 1.20.0
+
+All previous non-front Jane masters are retired. New rear, left and right v6
+candidates use the unchanged front MASTER, original concept standing views and
+native front face/weapon crops. Seb and every other asset are unchanged.
+
+Python material measurements confirmed the old brighter/warmer drift. Fresh
+renders restore the substantial stepped upper and split lower weapon casing;
+targeted repairs address right upper-section length, rear wrist and left resting
+arm. A material-aware CIELab grade matches front paint/metal/skin at fixed pixel
+coordinates, with separately reviewed face/ear/neck masks. Magenta and blue
+emission remain unchanged from each raw render. OMP reviewed whole carries,
+weapon proportions, texture/color and mask coverage; all are candidates for owner
+review. Hidden mount/opposite-face geometry and exact lighting remain inferred.
+The front is byte-identical. Old masters, raw renders, prompts, Python reports
+and superseded catalog entries remain local. New v6 decisions begin Undecided.
+
 ## Jane rear-guided left carry · 1.19.2
 
 Left v4 replaces the rejected left v3. The preferred rear v3 is unchanged.
