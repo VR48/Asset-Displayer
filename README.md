@@ -1,5 +1,15 @@
 # Asset Displayer
 
+## Jane rear-guided left carry · 1.19.2
+
+Left v4 replaces the rejected left v3. The preferred rear v3 is unchanged.
+The whole carrying arm, horizontal fore-aft grip and prop side projection were
+checked together by OMP. A second redraw replaced the rear-facing rail façade
+with angular side casing/channels while preserving the low cupped wrist and
+forward placement. OMP found no remaining visible mandatory correction for
+owner review. Hidden mount/opposite casing details remain inferred; this is not
+a certified exact 3D turnaround. All other assets and saved statuses are retained.
+
 ## Jane visible-handle repairs · 1.19.1
 
 Rear/left v3 supersede the rejected v2 drafts. Left now has a clenched grip
