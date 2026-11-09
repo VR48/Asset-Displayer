@@ -345,3 +345,24 @@ slivers, green contact residue and blade-angle variation remain review points.
 Contact, cadence and a usable cycle are subject to playback judgment. The old
 shallow diagonal-left candidate remains separate; front, rear and static masters
 are unchanged. No game runtime changes.
+
+
+## Jane four-direction walking trials (1.21.0)
+
+Four raw walking trials use the exact selected front, rear, left and right masters,
+with low motion and exactly one `--bs 1` video confirmed per request. Front and
+left had already run in Relax; right and the selected rear ran in Fast. The rear
+is the third attempt; two turning attempts are archived locally. Each selected
+original is an unchanged 512×768 H.264 MP4, 125 frames and 5.208 seconds.
+
+OMP sampled the native frames and contact sheets. Direction and carry remain
+recognizable, but crossover/floaty steps, variable boot shapes, torso yaw and
+weapon detail changes remain review points. Left has backdrop color drift;
+right has lower-leg discoloration and backdrop specks. Rear has tight top
+clearance and turnout. These are review candidates, not gameplay approvals or
+certified seamless cycles. The original videos are available for download.
+
+New review frames use lossless WebP at native resolution and original timing.
+Every decoded RGBA byte was checked against its untouched source PNG; original
+PNGs remain local. The catalog retains encoded-file and decoded-pixel hashes.
+Existing assets, saved decisions and Seb are unchanged. No runtime integration.

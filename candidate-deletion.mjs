@@ -1,4 +1,4 @@
-const candidateFile=/^(assets\/[a-f0-9]{64}\.png|videos\/[a-f0-9]{64}\.mp4)$/;
+const candidateFile=/^(assets\/[a-f0-9]{64}\.(?:png|webp)|videos\/[a-f0-9]{64}\.mp4)$/;
 function files(set){
  const urls=[...set.frames.map(f=>f.url),...(set.original_video?[set.original_video.url]:[])];
  for(const url of urls)if(!candidateFile.test(url))throw Error('Unsafe candidate resource path.');

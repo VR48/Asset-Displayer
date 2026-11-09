@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {baselineFor} from './comparison.mjs';
 import {catalogVersions,sanitizeDecisions} from './handoff.mjs';
 import {validateReviewState} from './review-state.mjs';
+import {inspectLosslessFrameHeader} from './frame-format.mjs';
 const manifest=JSON.parse(await readFile(new URL('./data.json',import.meta.url),'utf8'));
 const frames=new Map(),videos=new Map();let entries=0;
 assert(Array.isArray(manifest.sets));assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
@@ -15,12 +16,13 @@ for(const set of manifest.sets){
  assert(set.durations.every(ms=>Number.isFinite(ms)&&ms>0));
  assert(Math.abs(set.durations.reduce((a,b)=>a+b,0)-set.duration_verified_ms)<0.01);
  for(const [i,frame]of set.frames.entries()){
-  assert.match(frame.url,/^assets\/[a-f0-9]{64}\.png$/);assert(frame.url.includes(frame.sha256));
+  if(frame.url.endsWith('.webp'))assert.match(frame.rgba_sha256,/^[a-f0-9]{64}$/);
+  assert.match(frame.url,/^assets\/[a-f0-9]{64}\.(?:png|webp)$/);assert(frame.url.includes(frame.sha256));
   const duration=frame.duration_numerator!==undefined?1000*frame.duration_numerator/frame.duration_denominator:frame.duration_ms;
   assert(Math.abs(duration-set.durations[i])<1e-6);frames.set(frame.url,frame.sha256);entries++;
  }
 }
-for(const [file,sha]of frames){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),sha);assert.equal(bytes.subarray(1,4).toString(),'PNG');assert.equal(bytes[25],6);}
+for(const [file,sha]of frames){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),sha);inspectLosslessFrameHeader(bytes,file.split('.').at(-1));}
 assert.equal((await readdir(new URL('./assets/',import.meta.url))).length,frames.size);
 for(const [file,sha]of videos){const bytes=await readFile(new URL(file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),sha);assert.equal(bytes.toString('ascii',4,8),'ftyp');}
 try{assert.equal((await readdir(new URL('./videos/',import.meta.url))).length,videos.size);}catch(error){if(error.code!=='ENOENT'||videos.size)throw error;}

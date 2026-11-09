@@ -30,3 +30,10 @@ test('handoff apply previews safely, deletes explicit unused resources, keeps pr
   handoff.assets[1].assetFingerprint='0'.repeat(64);await writeFile(file,JSON.stringify(handoff));await assert.rejects(run(process.execPath,[script,file,'--root',root]));assert.equal(await readFile(path.join(root,'review-state.json'),'utf8'),state);
  }finally{const target=await realpath(root);assert.equal(path.dirname(target),await realpath(tmpdir()));assert(path.basename(target).startsWith('av-review-test-'));await rm(target,{recursive:true,force:true});}
 });
+
+test('lossless WebP deletion preserves shared frames and rejects extension tricks',()=>{
+ const gone=candidate('gone-webp',3,[a,b]),kept=candidate('kept-webp',4,[a]);
+ for(const s of [gone,kept])for(const f of s.frames)f.url=f.url.replace('.png','.webp');
+ assert.deepEqual(planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['gone-webp']).removeFiles,['assets/'+b+'.webp']);
+ gone.frames[1].url+='/.png';assert.throws(()=>planCandidateDeletion({sets:[gone,kept]},{baselines:[]},['gone-webp']),/Unsafe/);
+});

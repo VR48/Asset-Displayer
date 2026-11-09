@@ -1,7 +1,7 @@
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.20.1';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.20.1';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.20.1';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.21.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.21.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.21.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
 const versions=await catalogVersions(data.sets);
@@ -63,7 +63,7 @@ function select(s){
  const still=s.media_kind==='image';
  $('pixel-status').textContent=s.source.preview_basis==='decoded-original-video'?'Raw MJ video preview. Magenta retained; not cleaned or stabilized.':still?'Source pixels retained. No runtime installation.':'Delivered PNGs only. Stabilization offsets are not applied again.';
  const original=s.original_video?.url;if(original&&/^videos\/[a-f0-9]{64}\.mp4$/.test(original)){$('original-video-download').href=original;$('original-video-download').download=s.name+'.mp4';$('original-video-download').hidden=false;}else{$('original-video-download').hidden=true;$('original-video-download').removeAttribute('href');}
- $('geometry').textContent=`${w} × ${h} native canvas · ${still?'Still reference (not animated)':s.unique_png_files+' unique PNGs · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
+ $('geometry').textContent=`${w} × ${h} native canvas · ${still?'Still reference (not animated)':(s.unique_frame_files??s.unique_png_files)+' unique lossless frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
  $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);$('caveats').replaceChildren();
  for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still;
  if(still)playing=false;$('play').textContent=still?'Still image':playing?'Pause':'Play';

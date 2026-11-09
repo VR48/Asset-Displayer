@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {inspectLosslessFrameHeader} from './frame-format.mjs';
+function fixture(kind='VP8L'){const b=Buffer.alloc(26);b.write('RIFF');b.writeUInt32LE(18,4);b.write('WEBP',8);b.write(kind,12);b.writeUInt32LE(5,16);b[20]=0x2f;return b;}
+test('lossless still header reports native dimensions',()=>{assert.deepEqual(inspectLosslessFrameHeader(fixture(),'webp'),{width:1,height:1,encoding:'webp-lossless'});});
+test('lossy, animated, truncated and malformed delivery headers are rejected',()=>{for(const kind of ['VP8 ','ANIM','ANMF'])assert.throws(()=>inspectLosslessFrameHeader(fixture(kind),'webp'));const a=fixture();a.writeUInt32LE(99,16);assert.throws(()=>inspectLosslessFrameHeader(a,'webp'));const b=fixture();b[20]=0;assert.throws(()=>inspectLosslessFrameHeader(b,'webp'));});
