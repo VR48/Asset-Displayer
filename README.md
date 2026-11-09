@@ -391,3 +391,14 @@ its own candidate; inspect gait phase and velocity across a proposed internal
 cut before accepting a locomotion loop. Pixel-similarity rankings are inspection
 suggestions only. These raw trials are untrimmed; no internal cycle or gameplay
 installation is silently approved.
+
+
+## Review UI cleanup (1.22.1)
+
+Candidate review panels show the requested-changes textbox without the package
+caveat list. Non-replacement explanations and processing-status banners are
+removed from the UI; source metadata and saved decisions are unchanged.
+The anchor guide chooses black or white from the underlying pixel and adds an
+opposite-color outline. Raw previews without a supplied anchor use a fixed
+first-frame foreground-baseline guide, including native-video overlays. This
+preview guide does not define or change a gameplay anchor.
