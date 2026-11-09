@@ -17,3 +17,5 @@
 #native-video{max-width:100%;max-height:100%;width:auto;height:auto}#native-video[hidden]{display:none}
 
 #native-player{position:relative;height:100%;max-width:100%;aspect-ratio:2/3}#native-video,#anchor-overlay{width:100%;height:100%;object-fit:contain}#anchor-overlay{position:absolute;inset:0;pointer-events:none}
+
+.brand{display:flex;align-items:baseline;gap:10px}.ad-version{font-size:12px;font-weight:600;color:#f4c574;background:#202b3b;border:1px solid #42536b;border-radius:6px;padding:3px 6px;white-space:nowrap}.brand h1{margin:0 0 5px}.clip.pending{border-style:dashed;color:#a8b7cb;opacity:.65;cursor:default}

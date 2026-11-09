@@ -429,3 +429,32 @@ Three older rejected non-end candidates now use their unchanged original MP4s
 in the native player. Redundant frame-preview files are archived locally; no
 source animation is removed or recompressed. Only those preview fingerprints
 are migrated, preserving their Redo decisions; the approved entries are intact.
+
+
+## Versioned replacement slots (1.24.0)
+
+The header shows the deployed AD version; downloaded handoffs include it.
+`hold` remains the compatible stored value, displayed as **Modify/Fix**.
+
+Applying a **Redo** handoff now archives the exact current entry, private notes
+and media locally before removing that version and unshared public resources.
+The gallery reserves its original slot number. An explicit newer replacement
+already present takes that slot; otherwise an awaiting-replacement marker shows
+the next version. Related history is in `data.json` → `redo_slots`, with no
+private notes. Kept media and shared/baseline resources remain protected.
+
+Stage a new candidate's content-addressed files, then register it with:
+
+```sh
+node tools/install-replacement.mjs candidate.json --slot jane-walk-front --dry-run
+node tools/install-replacement.mjs candidate.json --slot jane-walk-front
+node verify.mjs
+```
+
+The candidate name must use the reserved next version (for example
+`jane-walk-front-v3`). Registration keeps the slot number, checks media hashes
+and target identity, reconnects compatible pair references, and leaves the new
+version Undecided. It cannot overwrite an active kept candidate. Run checks and
+bump the displayed AD release version before publishing each new iteration.
+Redo requests do not themselves start paid generation. Pending private notes
+stay in browser storage, downloaded handoffs and ignored local review archives.

@@ -1,5 +1,5 @@
 const candidateFile=/^(assets\/[a-f0-9]{64}\.(?:png|webp)|videos\/[a-f0-9]{64}\.(?:mp4|webm))$/;
-function files(set){
+export function candidateResources(set){
  const urls=[...set.frames.map(f=>f.url),...(set.original_video?[set.original_video.url]:[]),...(set.review_video?[set.review_video.url]:[])];
  for(const url of urls)if(!candidateFile.test(url))throw Error('Unsafe candidate resource path.');
  return urls;
@@ -18,8 +18,8 @@ export function planCandidateDeletion(data,comparisons,ids){
   if(!hashes.includes(set.source.master_sha256))throw Error('Deleted master does not match a retained video input.');
   set.source.master_catalog_status='removed';set.source.master_reference_sha256s=[...new Set(hashes)];
  }
- const retained=new Set(next.sets.flatMap(files));
+ const retained=new Set(next.sets.flatMap(candidateResources));
  for(const original of comparisons.baselines??[])for(const frame of original.frames)retained.add(frame.url);
- const removeFiles=[...new Set(removed.flatMap(files))].filter(url=>!retained.has(url)).sort();
+ const removeFiles=[...new Set(removed.flatMap(candidateResources))].filter(url=>!retained.has(url)).sort();
  return {data:next,removed,removeFiles};
 }

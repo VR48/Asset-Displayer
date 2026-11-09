@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 6,
+  "revision": 7,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -172,36 +172,6 @@
       "sourceKey": "1624c7c0-8f0d-45af-8022-16aa9c4d7619",
       "assetFingerprint": "5e841cc980bafb15e3001b292679652c66ed35f6c4c2112083bf379df26f104e"
     },
-    "seb-walk-rear-low-sword-v1": {
-      "decision": "skip",
-      "sourceKey": "eea5dcc4-eb4e-4a55-ad93-d42bd9c39beb",
-      "assetFingerprint": "ea4fa899953bc06ce042c596248e0da537cb46cf59adc23102a74c0d203afb75"
-    },
-    "seb-sneak-rear-low-sword-v1": {
-      "decision": "skip",
-      "sourceKey": "5fbf1781-eaa0-4b56-ad89-4c9164fa735b",
-      "assetFingerprint": "027d9aeda91893e6507717de9e3eb90d639eaab4b30a7e20652a0ab5e60499da"
-    },
-    "seb-walk-front-low-sword-v2": {
-      "decision": "keep",
-      "sourceKey": "20a2fb03-fca2-4150-8318-393372ca732b",
-      "assetFingerprint": "e7aadd21617ccb0f4ac2f615387289c481c7db78c413312305c9cd4f64076f8b"
-    },
-    "seb-master-left-low-sword-v6": {
-      "decision": "skip",
-      "sourceKey": "eb1d74ccdefb949886b8b0674490094a60043fd21ece05788684662f897f128b",
-      "assetFingerprint": "b2072b87b51cb45e0728e41ec65c1eb94c6839c3759a455f6eef8b74e6f9f837"
-    },
-    "seb-master-right-low-sword-v6": {
-      "decision": "skip",
-      "sourceKey": "c106c304c96115346dd71161161e0434bf1b7975506894e5bd770a651cbc4ebe",
-      "assetFingerprint": "0ec6c2b559e7c2bab127440a0988e8841b1fd954b642c6ab0ffc166da84413b4"
-    },
-    "seb-walk-left-low-sword-v6": {
-      "decision": "keep",
-      "sourceKey": "a038d91f-b7fd-492e-b107-3017797998c7",
-      "assetFingerprint": "4e6e0ca20f31f76b4b7d132524d9b902d6e3c9a61040216f093f7f6906811927"
-    },
     "seb-master-front-low-sword-v1": {
       "decision": "keep",
       "sourceKey": "dcf3d93b5bf6c75a0e2817fa49399fc025df76f70db52e717cc8b5e221c3534d",
@@ -211,6 +181,16 @@
       "decision": "keep",
       "sourceKey": "e15646580a898474a196fe5acbe2e0be8014a476b8033e977b3fa2c8df736d85",
       "assetFingerprint": "fbac2adb05629f470c19a8c63cc69f404bac91551c0edd850275ceb2fa2f94ae"
+    },
+    "seb-walk-front-low-sword-v2": {
+      "decision": "keep",
+      "sourceKey": "20a2fb03-fca2-4150-8318-393372ca732b",
+      "assetFingerprint": "e7aadd21617ccb0f4ac2f615387289c481c7db78c413312305c9cd4f64076f8b"
+    },
+    "seb-walk-left-low-sword-v6": {
+      "decision": "keep",
+      "sourceKey": "a038d91f-b7fd-492e-b107-3017797998c7",
+      "assetFingerprint": "4e6e0ca20f31f76b4b7d132524d9b902d6e3c9a61040216f093f7f6906811927"
     },
     "seb-master-left-low-sword-v7": {
       "decision": "keep",
@@ -252,30 +232,20 @@
       "sourceKey": "57e295ca95ce87db18b0921e27736e94e9c2e47b8b29793bb2e9844bb1d92ba0",
       "assetFingerprint": "18fa6f2953eb2c0498039dcfb044d9aaf2cb965781e0beb73e61c5ed069caf75"
     },
-    "jane-walk-front-v1": {
-      "decision": "skip",
-      "sourceKey": "e4ec8ef0-ac4a-415d-9a9b-5ae23c74a300",
-      "assetFingerprint": "634baf8fb2a42f857e73af8bc44f647bdc92cdfab1ee2b05f376a8b682f82886"
+    "jane-walk-rear-v2": {
+      "decision": "hold",
+      "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
+      "assetFingerprint": "b53e4a9e38a377c1e11e35a6d39ddf764ecd282e248e23f288c2dc7f2dc42eaa"
     },
-    "jane-walk-rear-v1": {
-      "decision": "skip",
-      "sourceKey": "554018d6-aa04-46e5-a44e-824c0f0904dc",
-      "assetFingerprint": "695b364930e58e606c06c0270064a4243da6d04d292a4dd3a8f5e6e3d721abc9"
-    },
-    "jane-walk-left-v1": {
-      "decision": "skip",
-      "sourceKey": "5cbe3256-2289-48c0-ba2d-5b58a00b8afd",
-      "assetFingerprint": "8beb8a421dc89f7752b0d7882b3faa534e24dd900c344ef22618cc116528495a"
+    "jane-walk-left-v2": {
+      "decision": "keep",
+      "sourceKey": "720dae73-2e2d-48cf-a26e-cd553ffd5c18",
+      "assetFingerprint": "faa5a76fbc911575d12c8723f136dc899c7236edab782a117f0838e1cdbe3c16"
     },
     "jane-walk-right-v1": {
       "decision": "hold",
       "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
       "assetFingerprint": "f26ed39fcad0c103381ffd50460c381339eb5fad573c4fd56c6d1ecf0c05fcef"
-    },
-    "jane-walk-loop-front-v1": {
-      "decision": "skip",
-      "sourceKey": "3a4f2088-0791-4fc1-8e0b-2329cb721864",
-      "assetFingerprint": "39936d9684f1da25f1d6f56d5863631cca7a3a0d4833db08a1f4d1861d0ea8ce"
     },
     "jane-walk-loop-rear-v1": {
       "decision": "keep",
@@ -287,10 +257,10 @@
       "sourceKey": "37443de7-c7d6-45d0-905f-81daade35847",
       "assetFingerprint": "84baf2fb3e13ee7697e778c457fec96f8c29807e71608a62fe18f5b4833038bd"
     },
-    "jane-walk-loop-right-v1": {
-      "decision": "skip",
-      "sourceKey": "2e4ea660-cb28-4ab8-9372-f4984e7b60d7",
-      "assetFingerprint": "583a19f9b1bfa88c6133715ee740a958c56214008d66619a14661a9d54c571a0"
+    "jane-walk-right-matte-v2": {
+      "decision": "keep",
+      "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
+      "assetFingerprint": "59c1e0cbf13b326e5bc2660f55724af796fcf215cfa2696bfb10a4af46d8cc1a"
     }
   }
 }

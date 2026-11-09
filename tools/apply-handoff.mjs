@@ -1,58 +1,37 @@
-import {readFile,writeFile,mkdir,rename,unlink,realpath} from 'node:fs/promises';
-import {createHash} from 'node:crypto';
-import path from 'node:path';
-import {fileURLToPath} from 'node:url';
-import {catalogVersions,parseHandoff,importHandoff,sourceIdentity} from '../handoff.mjs';
-import {emptyReviewState,validateReviewState} from '../review-state.mjs';
-import {planCandidateDeletion} from '../candidate-deletion.mjs';
-
-const args=process.argv.slice(2),dryRun=args.includes('--dry-run');
-let root=fileURLToPath(new URL('../',import.meta.url)),source;
-for(let i=0;i<args.length;i++){
- if(args[i]==='--dry-run')continue;
- if(args[i]==='--root'){if(!args[i+1])throw Error('--root requires a directory.');root=path.resolve(args[++i]);continue;}
- if(args[i].startsWith('--')||source)throw Error('Usage: node tools/apply-handoff.mjs HANDOFF.json [--dry-run]');
- source=path.resolve(args[i]);
+import {publishArchivedMedia} from '../archive-io.mjs';
+import {within as inside} from '../path-safety.mjs';
+import {constants} from 'node:fs';import {readFile,writeFile,mkdir,rename,unlink,realpath,copyFile,open} from 'node:fs/promises';import {createHash,randomUUID} from 'node:crypto';import path from 'node:path';import {fileURLToPath} from 'node:url';
+import {catalogVersions,parseHandoff,importHandoff,sourceIdentity} from '../handoff.mjs';import {emptyReviewState,validateReviewState} from '../review-state.mjs';import {planCandidateDeletion,candidateResources} from '../candidate-deletion.mjs';import {applyRedoSlots} from '../redo-slots.mjs';
+const args=process.argv.slice(2),dryRun=args.includes('--dry-run');let root=fileURLToPath(new URL('../',import.meta.url)),source;
+for(let i=0;i<args.length;i++){if(args[i]==='--dry-run')continue;if(args[i]==='--root'){if(!args[i+1])throw Error('--root requires a directory.');root=path.resolve(args[++i]);continue;}if(args[i].startsWith('--')||source)throw Error('Usage: apply-handoff.mjs HANDOFF.json [--root ROOT] [--dry-run]');source=path.resolve(args[i]);}if(!source)throw Error('Provide handoff JSON.');root=await realpath(root);
+const hash=b=>createHash('sha256').update(b).digest('hex'),digest=s=>s===null?null:hash(s),optional=async f=>{try{return await readFile(f,'utf8');}catch(e){if(e.code==='ENOENT')return null;throw e;}},json=v=>JSON.stringify(v,null,2)+'\n';
+const bytes=await readFile(source),inputHash=hash(bytes),archive=path.join(root,'.local','reviews',inputHash),dataFile=path.join(root,'data.json'),stateFile=path.join(root,'review-state.json');let actualArchive=null;
+try{actualArchive=await realpath(archive);if(!inside(root,actualArchive))throw Error('Archive is outside the AD workspace.');}catch(e){if(e.code!=='ENOENT')throw e;}
+async function atomic(file,value){const temp=file+'.'+randomUUID()+'.tmp';const handle=await open(temp,'wx');try{await handle.writeFile(value);await handle.sync();}finally{await handle.close();}await rename(temp,file);}
+async function archiveFile(name){const target=path.join(archive,name),actual=await realpath(target);if(!inside(actualArchive,actual))throw Error('Archive path escaped its directory.');return target;}
+async function immutable(name,value){const file=path.join(archive,name),old=await optional(file);if(old!==null){await archiveFile(name);if(hash(old)!==hash(value))throw Error('Incomplete or conflicting archive record: '+name);return;}await atomic(file,value);await archiveFile(name);if(hash(await readFile(file))!==hash(value))throw Error('Archive record verification failed.');}
+async function mediaPath(url,allowMissing=false){candidateResources({frames:[{url}]});const target=path.resolve(root,url),folder=path.dirname(target);if(![path.join(root,'assets'),path.join(root,'videos')].includes(folder))throw Error('Media escapes the AD directories.');try{const actual=await realpath(target);if(actual!==target||!inside(root,actual))throw Error('Media resolves outside its directory.');return target;}catch(e){if(e.code==='ENOENT'&&allowMissing)return null;throw e;}}
+function validateTransaction(tx){const {integrityHash,...body}=tx;if(tx.schema!=='ad-handoff-transaction-v1'||integrityHash!==hash(JSON.stringify(body))||tx.inputHash!==inputHash||digest(tx.beforeDataText)!==tx.beforeDataHash||digest(tx.afterDataText)!==tx.afterDataHash||digest(tx.beforeStateText)!==tx.beforeStateHash||digest(tx.afterStateText)!==tx.afterStateHash)throw Error('Invalid or incomplete recovery transaction.');if(!Array.isArray(tx.media)||!Array.isArray(tx.removeUrls)||new Set(tx.media.map(m=>m.url)).size!==tx.media.length)throw Error('Invalid recovery media list.');for(const m of tx.media){candidateResources({frames:[{url:m.url}]});if(path.basename(m.url).split('.')[0]!==m.sha256)throw Error('Invalid recovery media hash.');}if(tx.removeUrls.some(u=>!tx.media.some(m=>m.url===u)))throw Error('Invalid recovery removal list.');if(Object.keys(tx.metadataHashes).sort().join('|')!==['decisions.private.json','handoff.json','removed-entries.json','report.json'].sort().join('|')||tx.metadataHashes['handoff.json']!==inputHash)throw Error('Invalid recovery metadata.');JSON.parse(tx.beforeDataText);JSON.parse(tx.afterDataText);validateReviewState(JSON.parse(tx.afterStateText));return tx;}
+async function resume(tx){validateTransaction(tx);if(hash(await readFile(path.join(root,'comparisons.json'),'utf8'))!==tx.comparisonHash)throw Error('Comparison catalog changed outside transaction.');for(const [name,expected]of Object.entries(tx.metadataHashes)){if(hash(await readFile(await archiveFile(name)))!==expected)throw Error('Archive metadata is incomplete or changed: '+name);}for(const m of tx.media){if(hash(await readFile(await archiveFile(path.join('media',m.url))))!==m.sha256)throw Error('Archived media changed.');}
+ const marker=json({inputHash,transactionHash:tx.integrityHash,baselineRevision:tx.report.baselineRevision,archivedMediaVerified:true}),existing=await optional(path.join(archive,'applied.json'));if(existing!==null){await archiveFile('applied.json');if(hash(existing)!==hash(marker))throw Error('Invalid completion marker.');return {...tx.report,dryRun,alreadyApplied:true};}
+ const currentData=await readFile(dataFile,'utf8'),currentState=await optional(stateFile);if(![tx.beforeDataHash,tx.afterDataHash].includes(hash(currentData))||![tx.beforeStateHash,tx.afterStateHash].includes(digest(currentState)))throw Error('Catalog or review state changed outside this transaction; refusing stale recovery.');
+ for(const m of tx.media){const file=await mediaPath(m.url,tx.removeUrls.includes(m.url));if(file&&hash(await readFile(file))!==m.sha256)throw Error('Source media changed during recovery.');}
+ if(!dryRun){if(hash(currentData)!==tx.afterDataHash)await atomic(dataFile,tx.afterDataText);if(digest(currentState)!==tx.afterStateHash)await atomic(stateFile,tx.afterStateText);for(const url of tx.removeUrls){const file=await mediaPath(url,true);if(file){if(hash(await readFile(file))!==path.basename(url).split('.')[0])throw Error('Source changed before removal.');await unlink(file);}}await immutable('applied.json',marker);}return {...tx.report,dryRun};
 }
-if(!source)throw Error('Provide the downloaded handoff JSON.');
-root=await realpath(root);
-const bytes=await readFile(source),inputHash=createHash('sha256').update(bytes).digest('hex');
-const data=JSON.parse(await readFile(path.join(root,'data.json'),'utf8'));
-const comparisons=JSON.parse(await readFile(path.join(root,'comparisons.json'),'utf8'));
-const versions=await catalogVersions(data.sets),handoff=parseHandoff(bytes.toString('utf8').replace(/^\uFEFF/,''));
-const checked=importHandoff(handoff,data.sets,versions);
-let previous;try{previous=validateReviewState(JSON.parse(await readFile(path.join(root,'review-state.json'),'utf8')));}catch(e){if(e.code!=='ENOENT')throw e;previous=emptyReviewState();}
-const ids=Object.entries(checked.decisions).filter(([,e])=>e.decision==='delete'&&!e.needsReview).map(([id])=>id);
-const deletion=planCandidateDeletion(data,comparisons,ids);
-const statuses=Object.create(null);
-for(const set of deletion.data.sets){
- const entry=checked.decisions[set.name]??previous.decisions[set.name];
- if(!entry)continue;
- statuses[set.name]={decision:entry.decision,sourceKey:entry.sourceKey??sourceIdentity(set),assetFingerprint:entry.assetFingerprint??versions.get(set.name)};
-}
-const keys=Object.keys(statuses),same=keys.length===Object.keys(previous.decisions).length&&keys.every(id=>Object.hasOwn(previous.decisions,id)&&['decision','sourceKey','assetFingerprint'].every(k=>previous.decisions[id][k]===statuses[id][k]));
-const published=validateReviewState({schema:previous.schema,revision:previous.revision+(same?0:1),decisions:statuses});
-const resources=[];
-for(const url of deletion.removeFiles){
- const file=path.resolve(root,url),folder=path.dirname(file);
- if(![path.join(root,'assets'),path.join(root,'videos')].includes(folder))throw Error('Resource escapes the AV media directories.');
- const actual=await realpath(file),relative=path.relative(root,actual);
- if(relative.startsWith('..')||path.isAbsolute(relative)||path.dirname(actual)!==folder)throw Error('Resource resolves outside its AV media directory.');
- const expected=path.basename(url).split('.')[0],hash=createHash('sha256').update(await readFile(file)).digest('hex');
- if(hash!==expected)throw Error('Media hash changed before deletion: '+url);
- resources.push(file);
-}
-const report={dryRun,inputHash,baselineRevision:published.revision,counts:Object.fromEntries(['undecided','keep','hold','skip','delete'].map(c=>[c,Object.values(checked.decisions).filter(e=>e.decision===c).length])),deletedCandidates:ids,removedResources:deletion.removeFiles,unknown:checked.unknown};
-if(!dryRun){
- // Full handoff/notes/removal records stay in ignored local storage only.
- const archive=path.join(root,'.local','reviews',inputHash);await mkdir(archive,{recursive:true});
- await writeFile(path.join(archive,'handoff.json'),bytes);
- await writeFile(path.join(archive,'decisions.private.json'),JSON.stringify(checked.decisions,null,2)+'\n');
- await writeFile(path.join(archive,'removed-entries.json'),JSON.stringify(deletion.removed,null,2)+'\n');
- await writeFile(path.join(archive,'report.json'),JSON.stringify(report,null,2)+'\n');
- async function atomic(name,value){const file=path.join(root,name),temp=file+'.tmp';await writeFile(temp,JSON.stringify(value,null,name==='data.json'?undefined:2)+'\n');await rename(temp,file);}
- if(ids.length)await atomic('data.json',deletion.data);
- await atomic('review-state.json',published);
- for(const file of resources)await unlink(file);
-}
-console.log(JSON.stringify(report,null,2));
+const saved=actualArchive?await optional(path.join(archive,'transaction.json')):null;if(saved!==null){await archiveFile('transaction.json');console.log(json(await resume(JSON.parse(saved))));process.exit(0);}
+const comparisonText=await readFile(path.join(root,'comparisons.json'),'utf8');
+const beforeDataText=await readFile(dataFile,'utf8'),beforeStateText=await optional(stateFile),data=JSON.parse(beforeDataText),previous=beforeStateText===null?emptyReviewState():validateReviewState(JSON.parse(beforeStateText)),versions=await catalogVersions(data.sets),handoff=parseHandoff(bytes.toString('utf8').replace(/^\uFEFF/,'')),checked=importHandoff(handoff,data.sets,versions);
+if(handoff.decisionLabels?.skip&&handoff.decisionLabels.skip!=='Redo')throw Error('Export a current Redo handoff before applying replacement semantics.');
+const redoIds=Object.entries(checked.decisions).filter(([,e])=>e.decision==='skip'&&!e.needsReview).map(([id])=>id),ids=Object.entries(checked.decisions).filter(([,e])=>['skip','delete'].includes(e.decision)&&!e.needsReview).map(([id])=>id),deletion=planCandidateDeletion(data,comparisons(),ids);
+function comparisons(){return JSON.parse(comparisonText);}
+deletion.data=applyRedoSlots(data,deletion.data,checked.decisions,redoIds,ids);const nextVersions=await catalogVersions(deletion.data.sets),statuses=Object.create(null);
+for(const s of deletion.data.sets){const e=checked.decisions[s.name]??previous.decisions[s.name];if(e)statuses[s.name]={decision:e.decision,sourceKey:e.sourceKey??sourceIdentity(s),assetFingerprint:nextVersions.get(s.name)};}
+const names=Object.keys(statuses),same=names.length===Object.keys(previous.decisions).length&&names.every(id=>previous.decisions[id]&&['decision','sourceKey','assetFingerprint'].every(k=>previous.decisions[id][k]===statuses[id][k])),published=validateReviewState({schema:previous.schema,revision:previous.revision+(same?0:1),decisions:statuses}),urls=[...new Set(deletion.removed.flatMap(candidateResources))],media=[];
+for(const url of urls){const file=await mediaPath(url),sha256=path.basename(url).split('.')[0];if(hash(await readFile(file))!==sha256)throw Error('Media hash changed before archival.');media.push({url,sha256});}
+const report={dryRun:false,inputHash,baselineRevision:published.revision,counts:Object.fromEntries(['undecided','keep','hold','skip','delete'].map(c=>[c,Object.values(checked.decisions).filter(e=>e.decision===c).length])),deletedCandidates:ids,redoCandidates:redoIds,pendingRedoSlots:deletion.data.redo_slots.filter(s=>!s.currentAssetId).map(s=>({id:s.id,number:s.number,nextVersion:s.nextVersion})),archivedResources:urls,removedResources:deletion.removeFiles,unknown:checked.unknown};
+if(dryRun){console.log(json({...report,dryRun:true}));process.exit(0);}
+await mkdir(archive,{recursive:true});actualArchive=await realpath(archive);if(!inside(root,actualArchive))throw Error('Archive is outside the AD workspace.');
+const records={'handoff.json':bytes.toString('utf8'),'decisions.private.json':json(checked.decisions),'removed-entries.json':json(deletion.removed),'report.json':json(report)},metadataHashes={};
+for(const [name,value]of Object.entries(records)){await immutable(name,value);metadataHashes[name]=hash(value);}
+for(const m of media){const file=await mediaPath(m.url),dest=path.join(archive,'media',m.url);await mkdir(path.dirname(dest),{recursive:true});await publishArchivedMedia(file,dest,m.sha256,actualArchive);}
+const afterDataText=ids.length?JSON.stringify(deletion.data)+'\n':beforeDataText,afterStateText=json(published),body={schema:'ad-handoff-transaction-v1',inputHash,comparisonHash:hash(comparisonText),beforeDataText,beforeDataHash:hash(beforeDataText),afterDataText,afterDataHash:hash(afterDataText),beforeStateText,beforeStateHash:digest(beforeStateText),afterStateText,afterStateHash:hash(afterStateText),media,removeUrls:deletion.removeFiles,metadataHashes,report},tx={...body,integrityHash:hash(JSON.stringify(body))};await immutable('transaction.json',json(tx));console.log(json(await resume(tx)));
