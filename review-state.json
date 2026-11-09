@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 4,
+  "revision": 5,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -251,6 +251,46 @@
       "decision": "undecided",
       "sourceKey": "57e295ca95ce87db18b0921e27736e94e9c2e47b8b29793bb2e9844bb1d92ba0",
       "assetFingerprint": "18fa6f2953eb2c0498039dcfb044d9aaf2cb965781e0beb73e61c5ed069caf75"
+    },
+    "jane-walk-front-v1": {
+      "decision": "skip",
+      "sourceKey": "e4ec8ef0-ac4a-415d-9a9b-5ae23c74a300",
+      "assetFingerprint": "c3cd3fb2305a7fd3d62bd97aa014884857e890716c63793b126470340f92ad9a"
+    },
+    "jane-walk-rear-v1": {
+      "decision": "skip",
+      "sourceKey": "554018d6-aa04-46e5-a44e-824c0f0904dc",
+      "assetFingerprint": "ca940f126a7255ca3f7d24492e2c271d499506cba3ffe25724a9287d484b0211"
+    },
+    "jane-walk-left-v1": {
+      "decision": "skip",
+      "sourceKey": "5cbe3256-2289-48c0-ba2d-5b58a00b8afd",
+      "assetFingerprint": "4cd991d5dc8666fe133d71ce089e6865adf4ffdd3eed8d331ec1b19f4bbbc16f"
+    },
+    "jane-walk-right-v1": {
+      "decision": "hold",
+      "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
+      "assetFingerprint": "f26ed39fcad0c103381ffd50460c381339eb5fad573c4fd56c6d1ecf0c05fcef"
+    },
+    "jane-walk-loop-front-v1": {
+      "decision": "skip",
+      "sourceKey": "3a4f2088-0791-4fc1-8e0b-2329cb721864",
+      "assetFingerprint": "39936d9684f1da25f1d6f56d5863631cca7a3a0d4833db08a1f4d1861d0ea8ce"
+    },
+    "jane-walk-loop-rear-v1": {
+      "decision": "keep",
+      "sourceKey": "4a7c4d86-1f7a-41cd-acde-6a94ee5e9095",
+      "assetFingerprint": "5f44068c8d9fa55de46dae7a21b5f944eddf1bc2ac7069ff6c9cbd79278111d2"
+    },
+    "jane-walk-loop-left-v1": {
+      "decision": "keep",
+      "sourceKey": "37443de7-c7d6-45d0-905f-81daade35847",
+      "assetFingerprint": "84baf2fb3e13ee7697e778c457fec96f8c29807e71608a62fe18f5b4833038bd"
+    },
+    "jane-walk-loop-right-v1": {
+      "decision": "skip",
+      "sourceKey": "2e4ea660-cb28-4ab8-9372-f4984e7b60d7",
+      "assetFingerprint": "583a19f9b1bfa88c6133715ee740a958c56214008d66619a14661a9d54c571a0"
     }
   }
 }
