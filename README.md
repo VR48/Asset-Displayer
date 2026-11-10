@@ -471,3 +471,10 @@ cycle, 44 frames) and 93–125 (exit/planting test, 33 frames), both at 24 fps.
 The original clip and decoded RGB pixels are preserved. The loop retains a
 small pose/velocity mismatch; the exit ends before a stable stop is established.
 Neither cut uses interpolation, blending, rescaling or retiming.
+
+Jane's first Pile Driver full-motion diagnostics are grouped under the selected
+right master. The Fast / BS1 / high-motion pair uses an identical padded source:
+one same-start/end trial and one continuous trial. Both retain original MP4s
+and independent reviews. They are experimental footage: camera rotation/zoom,
+clipping and weapon continuity prevent gameplay acceptance. Accepted walking
+cuts remain Keep; these trials do not install an attack into the game.

@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 8,
+  "revision": 10,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -263,14 +263,24 @@
       "assetFingerprint": "59c1e0cbf13b326e5bc2660f55724af796fcf215cfa2696bfb10a4af46d8cc1a"
     },
     "jane-walk-rear-cycle-cut-v1": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
       "assetFingerprint": "0b0c92845fb997355768a7b95911adb9205a109d1b08bb8cc796d714b919395e"
     },
     "jane-walk-rear-stop-cut-v1": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
       "assetFingerprint": "64cdae5129d8b72ee49f9e8edbcbc5b462e9be60d81d63836efc9766987e7bc8"
+    },
+    "jane-piledriver-right-end-v1": {
+      "decision": "undecided",
+      "sourceKey": "5633b628-db2c-4f82-a757-b4452fd5c0d9",
+      "assetFingerprint": "9d5a232560093230bd1bba21ab108ed06a9331238bd80bfd0c34b01817413706"
+    },
+    "jane-piledriver-right-continuous-v1": {
+      "decision": "undecided",
+      "sourceKey": "404060fc-808f-4038-ab99-dd8d6322f870",
+      "assetFingerprint": "a80be4b9162a2f7853912d7f3c835002eba123a8323311b1dba01f1f72a6ffa5"
     }
   }
 }
