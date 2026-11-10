@@ -1,11 +1,11 @@
 {
   "name": "asset-displayer",
-  "version": "1.29.0",
+  "version": "1.30.0",
   "private": true,
   "type": "module",
   "scripts": {
     "verify": "node verify.mjs",
-    "test": "node --test --test-concurrency=1 handoff.test.mjs comparison.test.mjs character-candidates.test.mjs seb-masters.test.mjs seb-walks.test.mjs review-state.test.mjs candidate-deletion.test.mjs frame-format.test.mjs native-video.test.mjs redo-slots.test.mjs redo-workflow.test.mjs archive-io.test.mjs branch-navigation.test.mjs jane-rear-cuts.test.mjs jane-piledriver.test.mjs review-navigation.test.mjs transparency.test.mjs",
+    "test": "node --test --test-concurrency=1 handoff.test.mjs comparison.test.mjs character-candidates.test.mjs seb-masters.test.mjs seb-walks.test.mjs review-state.test.mjs candidate-deletion.test.mjs frame-format.test.mjs native-video.test.mjs redo-slots.test.mjs redo-workflow.test.mjs archive-io.test.mjs branch-navigation.test.mjs jane-rear-cuts.test.mjs jane-piledriver.test.mjs review-navigation.test.mjs transparency.test.mjs custom-end.test.mjs",
     "handoff": "node tools/read-handoff.mjs",
     "handoff:apply": "node tools/apply-handoff.mjs"
   }
