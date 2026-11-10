@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 7,
+  "revision": 8,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -261,6 +261,16 @@
       "decision": "keep",
       "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
       "assetFingerprint": "59c1e0cbf13b326e5bc2660f55724af796fcf215cfa2696bfb10a4af46d8cc1a"
+    },
+    "jane-walk-rear-cycle-cut-v1": {
+      "decision": "undecided",
+      "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
+      "assetFingerprint": "0b0c92845fb997355768a7b95911adb9205a109d1b08bb8cc796d714b919395e"
+    },
+    "jane-walk-rear-stop-cut-v1": {
+      "decision": "undecided",
+      "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
+      "assetFingerprint": "64cdae5129d8b72ee49f9e8edbcbc5b462e9be60d81d63836efc9766987e7bc8"
     }
   }
 }

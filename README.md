@@ -458,3 +458,16 @@ version Undecided. It cannot overwrite an active kept candidate. Run checks and
 bump the displayed AD release version before publishing each new iteration.
 Redo requests do not themselves start paid generation. Pending private notes
 stay in browser storage, downloaded handoffs and ignored local review archives.
+
+Derived animation cuts use explicit `branch_of` and `branch_label` fields.
+The source expands into a submenu containing its edits; every choice keeps an
+independent decision and notes in the handoff. Missing sources leave edits
+selectable as standalone candidates. `preview_loop` sets the initial repeat
+control for that edit. Grouping changes navigation, not approval or replacement
+authorization.
+
+Jane rear/up v2 has two selection-only branches: native frames 49–92 (walking
+cycle, 44 frames) and 93–125 (exit/planting test, 33 frames), both at 24 fps.
+The original clip and decoded RGB pixels are preserved. The loop retains a
+small pose/velocity mismatch; the exit ends before a stable stop is established.
+Neither cut uses interpolation, blending, rescaling or retiming.
