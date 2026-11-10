@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 11,
+  "revision": 12,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -271,6 +271,11 @@
       "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
       "assetFingerprint": "64cdae5129d8b72ee49f9e8edbcbc5b462e9be60d81d63836efc9766987e7bc8"
+    },
+    "jane-piledriver-ready-right-experimental-v1": {
+      "decision": "undecided",
+      "sourceKey": "227118f6afd669af6a1a853e8f2d6de84aefc4667f42d7ed9dc9598fe0353279",
+      "assetFingerprint": "405fdee246317b0a183f502f53eed8deecef52fd237ced8fd74cf77554029b1b"
     }
   }
 }

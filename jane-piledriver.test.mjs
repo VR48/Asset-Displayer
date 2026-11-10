@@ -1,8 +1,12 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
 import {validatePublicCandidate} from './candidate-schema.mjs';import {catalogVersions,buildHandoff} from './handoff.mjs';import {groupBranches} from './branch-navigation.mjs';
-const d=JSON.parse(await readFile(new URL('./data.json',import.meta.url))),clips=d.sets.filter(s=>s.name.startsWith('jane-piledriver-'));
+const d=JSON.parse(await readFile(new URL('./data.json',import.meta.url))),clips=d.sets.filter(s=>s.media_kind==='animation'&&s.name.startsWith('jane-piledriver-'));
 test('rejected Pile Driver versions retire into stable numbered retry slots',()=>{
  for(const [id,number]of [['jane-piledriver-right-end',92],['jane-piledriver-right-continuous',93]]){const slot=d.redo_slots.find(r=>r.id===id);assert(slot);assert.equal(slot.number,number);assert(slot.rejectedAssetIds.includes(id+'-v1'));assert(slot.nextVersion>=2);assert(!d.sets.some(s=>s.name===id+'-v1'));if(slot.currentAssetId)assert(d.sets.some(s=>s.name===slot.currentAssetId&&s.number===number));else assert.equal(slot.status,'awaiting-replacement');}
+});
+
+test('raised-ready pose is an independent experimental reference beneath the kept standing source',()=>{
+ const s=d.sets.find(s=>s.name==='jane-piledriver-ready-right-experimental-v1');assert(s);validatePublicCandidate(s);assert.equal(s.media_kind,'image');assert.equal(s.source.provider,'ImageGen');assert.equal(s.branch_of,'red-armor-heroine-master-right-v6');assert.equal(s.usage.attacking,false);assert.equal(s.replacement,undefined);assert.equal(s.source.review_classification,'experimental-attack-ready-reference');assert.equal(s.source.sha256,'227118f6afd669af6a1a853e8f2d6de84aefc4667f42d7ed9dc9598fe0353279');assert(s.source.reference_sha256s.includes('5994573b3530ccd89802441af2327ca0dd39a52641749f8eb01221274ad67a01'));
 });
 test('active Pile Driver retries retain paired Fast BS1 provenance and unchanged master pixels',async()=>{
  assert([0,2].includes(clips.length));const slots=d.redo_slots.filter(r=>r.id.startsWith('jane-piledriver-'));assert.equal(clips.length,slots.filter(r=>r.currentAssetId).length);const versions=await catalogVersions(d.sets),handoff=buildHandoff(d.sets,versions,{});

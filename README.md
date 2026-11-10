@@ -486,6 +486,12 @@ metadata, media, notes and full handoff membership remain unchanged. Mixed
 families retain text-only source context without duplicating approved asset
 buttons in the review list.
 
+Jane's experimental raised-ready right reference is separately reviewable as
+candidate 94 beneath her kept right-facing source. It is an unapproved pose
+study, not a replacement standing/walking master. Standard and Video Raw motion
+trials from it remain local because they fail the intended captive-spike action;
+attack slots 92 and 93 still await usable v2 replacements.
+
 For the next handoff-based update, kept animations must receive the established
 matte/despill transparency pass before publication. See [AGENTS.md](AGENTS.md)
 for native-frame processing, source preservation and approval/notes requirements.
