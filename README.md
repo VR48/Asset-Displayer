@@ -478,3 +478,10 @@ one same-start/end trial and one continuous trial. Both retain original MP4s
 and independent reviews. They are experimental footage: camera rotation/zoom,
 clipping and weapon continuity prevent gameplay acceptance. Accepted walking
 cuts remain Keep; these trials do not install an attack into the game.
+
+Current Keep decisions appear only inside the collapsed **Owner approved**
+section. All other decisions remain in **For review**. The Owner approved
+category filter selects Keep across the original package categories; category
+metadata, media, notes and full handoff membership remain unchanged. Mixed
+families retain text-only source context without duplicating approved asset
+buttons in the review list.

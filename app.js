@@ -1,13 +1,13 @@
-import {pendingRedoNotes} from './redo-slots.mjs?v=1.26.0';
-import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.26.0';
+import {pendingRedoNotes} from './redo-slots.mjs?v=1.27.0';
+import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.27.0';
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.26.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.26.0';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.26.0';
-import {groupBranches} from './branch-navigation.mjs?v=1.26.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.27.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.27.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.27.0';
+import {reviewNavigation,initialReviewCandidate} from './review-navigation.mjs?v=1.27.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
-const APP_VERSION='1.26.0';$('ad-version').textContent='v'+APP_VERSION;
+const APP_VERSION='1.27.0';$('ad-version').textContent='v'+APP_VERSION;
 const versions=await catalogVersions(data.sets);
 let published;
 try{const response=await fetch('./review-state.json',{cache:'no-cache'});if(!response.ok)throw Error('Saved status request failed.');published=validateReviewState(await response.json());}
@@ -36,27 +36,41 @@ function assetButton(s,role=''){
  b.textContent=String(s.number).padStart(2,'0')+' · '+(role?role+' · ':'')+(s.branch_label?s.branch_label+' · ':'')+s.name;
  const sub=document.createElement('span');sub.textContent=s.usage.action+' · '+s.usage.direction+' · '+(s.replacement?'Replacement candidate':'New feature')+' · '+decisionLabels[state];b.append(sub);b.onclick=()=>select(s);return b;
 }
-function branchGroup(node,filtering){
- const {set,children}=node;
+function branchGroup(node,filtering,partition){
+ const {set,children,selectable}=node;
  if(!children.length)return assetButton(set);
- const group=document.createElement('div'),toggle=document.createElement('button'),items=document.createElement('div'),expanded=filtering?(filteredExpansion.get(set.name)??true):!collapsedBranches.has(set.name);
- group.className='branch-group';toggle.type='button';toggle.className='branch-toggle';toggle.dataset.navigation='group:'+set.name;
- items.className='branch-items';items.id='branch-items-'+set.number;items.hidden=!expanded;toggle.setAttribute('aria-controls',items.id);
+ const group=document.createElement('div'),items=document.createElement('div');
+ items.className='branch-items';
+ if(!selectable){
+  const context=document.createElement('p');context.className='source-context';context.textContent='Source context · '+set.name;
+  group.className='branch-context';for(const child of children)items.append(branchGroup(child,filtering,partition));group.append(context,items);return group;
+ }
+ const key=partition+':'+set.name,toggle=document.createElement('button'),expanded=filtering?(filteredExpansion.get(key)??true):!collapsedBranches.has(key);
+ group.className='branch-group';toggle.type='button';toggle.className='branch-toggle';toggle.dataset.navigation='group:'+key;
+ items.id='branch-items-'+partition+'-'+set.number;items.hidden=!expanded;toggle.setAttribute('aria-controls',items.id);
  const update=()=>{toggle.setAttribute('aria-expanded',String(!items.hidden));toggle.textContent=(items.hidden?'▸ ':'▾ ')+set.name;};
- toggle.onclick=()=>{items.hidden=!items.hidden;if(filtering)filteredExpansion.set(set.name,!items.hidden);else if(items.hidden)collapsedBranches.add(set.name);else collapsedBranches.delete(set.name);update();};update();
- items.append(assetButton(set,'Source'));for(const child of children)items.append(branchGroup(child,filtering));group.append(toggle,items);return group;
+ toggle.onclick=()=>{items.hidden=!items.hidden;if(filtering)filteredExpansion.set(key,!items.hidden);else if(items.hidden)collapsedBranches.add(key);else collapsedBranches.delete(key);update();};update();
+ items.append(assetButton(set,'Source'));for(const child of children)items.append(branchGroup(child,filtering,partition));group.append(toggle,items);return group;
 }
 function list(){
  const focusKey=$('list').contains(document.activeElement)?document.activeElement.dataset.navigation:null;
- $('list').replaceChildren();const matches=s=>(!$('character').value||character(s)===$('character').value)&&(!$('category').value||s.approval_category===$('category').value),shown=data.sets.filter(matches),filtering=!!($('character').value||$('category').value);
- const pending=(data.redo_slots??[]).filter(s=>!s.currentAssetId&&(!$('character').value||s.character===$('character').value)&&(!$('category').value||s.category===$('category').value));
- $('counts').textContent=shown.length+' candidates · '+pending.length+' awaiting replacement · '+Object.keys(decisions).filter(k=>decisions[k].decision!=='undecided').length+' choices saved';
- const entries=[...groupBranches(data.sets,matches).map(node=>({node,number:node.set.number})),...pending.map(slot=>({pending:slot,number:slot.number}))].sort((a,b)=>a.number-b.number);
+ const {review,approved,pending,reviewCount,approvedCount}=reviewNavigation(data.sets,decisions,data.redo_slots??[],{character:$('character').value,category:$('category').value}),filtering=!!($('character').value||$('category').value);
+ // Keep the native details/summary mounted: open state and keyboard focus survive
+ // notes, decisions and filter rerenders without switching the current panel.
+ $('review-list').replaceChildren();$('approved-list').replaceChildren();
+ $('counts').textContent=reviewCount+' review · '+approvedCount+' approved · '+pending.length+' pending · '+Object.keys(decisions).filter(k=>decisions[k].decision!=='undecided').length+' choices saved';
+ $('review-heading').textContent='For review ('+reviewCount+')';
+ $('approved-summary').textContent='Owner approved ('+approvedCount+')';
+ $('review-empty').hidden=!!(reviewCount||pending.length);
+ const entries=[...review.map(node=>({node,number:node.set.number})),...pending.map(slot=>({pending:slot,number:slot.number}))].sort((a,b)=>a.number-b.number);
  for(const entry of entries){
-  if(entry.node){$('list').append(branchGroup(entry.node,filtering));continue;}
-  const slot=entry.pending,b=document.createElement('button');b.type='button';b.className='clip pending';b.disabled=true;b.textContent=String(slot.number).padStart(2,'0')+' · '+slot.id+' · v'+slot.nextVersion+' pending';const sub=document.createElement('span');sub.textContent='Awaiting replacement · '+slot.direction;b.append(sub);$('list').append(b);
+  if(entry.node){$('review-list').append(branchGroup(entry.node,filtering,'review'));continue;}
+  const slot=entry.pending,b=document.createElement('button');b.type='button';b.className='clip pending';b.disabled=true;b.textContent=String(slot.number).padStart(2,'0')+' · '+slot.id+' · v'+slot.nextVersion+' pending';const sub=document.createElement('span');sub.textContent='Awaiting replacement · '+slot.direction;b.append(sub);$('review-list').append(b);
  }
- if(focusKey)for(const b of $('list').querySelectorAll('button'))if(b.dataset.navigation===focusKey){b.focus({preventScroll:true});break;}
+ for(const node of approved)$('approved-list').append(branchGroup(node,filtering,'approved'));
+ if(focusKey)for(const b of $('list').querySelectorAll('[data-navigation]'))if(b.dataset.navigation===focusKey){
+  if($('approved-list').contains(b)&&!$('owner-approved').open)$('approved-summary').focus({preventScroll:true});else b.focus({preventScroll:true});break;
+ }
 }
 function image(index,set=current){
  const key=set.frames[index].url;
@@ -122,6 +136,7 @@ $('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('s
 $('pivot').onchange=()=>{draw(frame);drawOriginal(true);};$('background').onchange=()=>{for(const id of ['stage','original-stage'])$(id).className='stage '+$('background').value;};
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(snapshot(),null,2)+'\n'],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=FILE_NAME;a.click();handoffStatus('Download requested. Attach '+FILE_NAME+' in chat when it finishes.');setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
 function tick(now){const delta=now-last;last=now;if(current&&playing){elapsed+=delta*Number($('speed').value);const duration=comparing?Math.max(current.duration_verified_ms,baseline.duration_verified_ms):current.duration_verified_ms;if(!$('loop').checked&&elapsed>=duration){elapsed=duration-.001;playing=false;$('play').textContent='Play';}position=$('loop').checked?elapsed%current.duration_verified_ms:Math.min(elapsed,current.duration_verified_ms-.001);const index=frameAt(current.durations,position,false);if(index!==frame)draw(index);drawOriginal();for(let j=1;j<=3;j++)image((index+j)%current.frames.length).catch(()=>{});}paintNativeAnchor();requestAnimationFrame(tick);}
-if(data.sets.length)select(data.sets[0]);
+const initial=initialReviewCandidate(data.sets,decisions);
+if(initial)select(initial);
 else{list();$('title').textContent=(data.redo_slots??[]).some(s=>!s.currentAssetId)?'Awaiting replacements':'No candidates';for(const id of ['play','previous','next','scrub','speed','loop','pivot','decision','notes'])$(id).disabled=true;$('compare').hidden=true;}
 requestAnimationFrame(tick);
