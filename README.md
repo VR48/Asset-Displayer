@@ -485,3 +485,7 @@ category filter selects Keep across the original package categories; category
 metadata, media, notes and full handoff membership remain unchanged. Mixed
 families retain text-only source context without duplicating approved asset
 buttons in the review list.
+
+For the next handoff-based update, kept animations must receive the established
+matte/despill transparency pass before publication. See [AGENTS.md](AGENTS.md)
+for native-frame processing, source preservation and approval/notes requirements.
