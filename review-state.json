@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 12,
+  "revision": 14,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -185,12 +185,12 @@
     "seb-walk-front-low-sword-v2": {
       "decision": "keep",
       "sourceKey": "20a2fb03-fca2-4150-8318-393372ca732b",
-      "assetFingerprint": "e7aadd21617ccb0f4ac2f615387289c481c7db78c413312305c9cd4f64076f8b"
+      "assetFingerprint": "29d6c4c7df4524898afe34cfb8498952f9559393617df26f32459e1ab6ddf61c"
     },
     "seb-walk-left-low-sword-v6": {
       "decision": "keep",
       "sourceKey": "a038d91f-b7fd-492e-b107-3017797998c7",
-      "assetFingerprint": "4e6e0ca20f31f76b4b7d132524d9b902d6e3c9a61040216f093f7f6906811927"
+      "assetFingerprint": "961828463773a606c4dde97897a47cd45184e6adb261e79ebc2173a60f20b345"
     },
     "seb-master-left-low-sword-v7": {
       "decision": "keep",
@@ -205,15 +205,15 @@
     "seb-walk-left-low-sword-v9": {
       "decision": "keep",
       "sourceKey": "2b367c46-ae5c-4c4f-b73d-38ed8d6c5c70",
-      "assetFingerprint": "0f352cf608f2a55fb1d9a696eabf9b5a6f983bb55526d5b3edfa93af8b6c0305"
+      "assetFingerprint": "694a9e835c85e9b3a7ef8dda8cbc73979fb0ead673ee270f79367ecbe7223b48"
     },
     "seb-walk-right-low-sword-v9": {
       "decision": "keep",
       "sourceKey": "184d9510-86bb-4619-a68f-00c371004cde",
-      "assetFingerprint": "4828506fce5f946797ed040f92d30f5918607dfd8096075ec1a8548d6b1fe69e"
+      "assetFingerprint": "0b826eedcdb50327401859c1cea2d5660fb8f5ace0a1b028542ae00daf1a120b"
     },
     "red-armor-heroine-master-front-v1": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "ecd35cc3094a00b1b3f5498e444012bce2350dba63ad5caed01b95ed7ce2a9a9",
       "assetFingerprint": "204b6c52a5f4fe06f2cdf62fa4c96b3564876cbfd2118d30b9bdbdf45ab0381b"
     },
@@ -223,57 +223,57 @@
       "assetFingerprint": "9936b96b58fc96b2b05f0994668bd107d6a40706f6464dc9dee71a929e0eb43e"
     },
     "red-armor-heroine-master-rear-v6": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "8ef59e6e870d7685befb367f232d6dbd15091d4c9eaa6c8f75bbcfebdf455736",
       "assetFingerprint": "f23c0b25c86fe8cbaf6435062253b4d2bad0bd2a31dbfd6af36d38c60e61637f"
     },
     "red-armor-heroine-master-left-v6": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "57e295ca95ce87db18b0921e27736e94e9c2e47b8b29793bb2e9844bb1d92ba0",
       "assetFingerprint": "18fa6f2953eb2c0498039dcfb044d9aaf2cb965781e0beb73e61c5ed069caf75"
     },
     "jane-walk-rear-v2": {
-      "decision": "hold",
+      "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
-      "assetFingerprint": "b53e4a9e38a377c1e11e35a6d39ddf764ecd282e248e23f288c2dc7f2dc42eaa"
+      "assetFingerprint": "6c39b64c3074ca516f920cfb803f910b8d1ed667b9cdc523d6678cf1fc5def95"
     },
     "jane-walk-left-v2": {
       "decision": "keep",
       "sourceKey": "720dae73-2e2d-48cf-a26e-cd553ffd5c18",
-      "assetFingerprint": "faa5a76fbc911575d12c8723f136dc899c7236edab782a117f0838e1cdbe3c16"
+      "assetFingerprint": "2374ce84157980156e47625b65a63bae82b4c969e79ed55976fdd830973ed922"
     },
     "jane-walk-right-v1": {
-      "decision": "hold",
+      "decision": "keep",
       "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
-      "assetFingerprint": "f26ed39fcad0c103381ffd50460c381339eb5fad573c4fd56c6d1ecf0c05fcef"
+      "assetFingerprint": "f1ee227253008c5ba19a1f0bacdf3dd7c44af6cee07cfff61ed21b1ad477f570"
     },
     "jane-walk-loop-rear-v1": {
       "decision": "keep",
       "sourceKey": "4a7c4d86-1f7a-41cd-acde-6a94ee5e9095",
-      "assetFingerprint": "5f44068c8d9fa55de46dae7a21b5f944eddf1bc2ac7069ff6c9cbd79278111d2"
+      "assetFingerprint": "5ddb59fea0230d3aab19670c2c3640a10356c24c970fd170d2bbee8e1b5f6bfc"
     },
     "jane-walk-loop-left-v1": {
       "decision": "keep",
       "sourceKey": "37443de7-c7d6-45d0-905f-81daade35847",
-      "assetFingerprint": "84baf2fb3e13ee7697e778c457fec96f8c29807e71608a62fe18f5b4833038bd"
+      "assetFingerprint": "b5ae861f2aeb6ff7e627bb3d7e2a603ba0ab693673844d9633391be93d70f86c"
     },
     "jane-walk-right-matte-v2": {
       "decision": "keep",
       "sourceKey": "b64ffb75-29d7-4b97-906a-5943a5ac468d",
-      "assetFingerprint": "59c1e0cbf13b326e5bc2660f55724af796fcf215cfa2696bfb10a4af46d8cc1a"
+      "assetFingerprint": "34d7e5e4137eb8c7fc0fd5b2ef5fd1d1d3e4e71f29676d80f0a51d3c3b16020b"
     },
     "jane-walk-rear-cycle-cut-v1": {
       "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
-      "assetFingerprint": "0b0c92845fb997355768a7b95911adb9205a109d1b08bb8cc796d714b919395e"
+      "assetFingerprint": "95bc3214333913a0ebd2fbb96cc62f9a39f7f657f59e0aa6d117458ab86448ea"
     },
     "jane-walk-rear-stop-cut-v1": {
       "decision": "keep",
       "sourceKey": "52ca158d-7c7a-4a69-acb0-d04fe8cac831",
-      "assetFingerprint": "64cdae5129d8b72ee49f9e8edbcbc5b462e9be60d81d63836efc9766987e7bc8"
+      "assetFingerprint": "88b34e3de9f4fce3056acc697266f95658b231f535ae8f12a842d77ea7a933b0"
     },
     "jane-piledriver-ready-right-experimental-v1": {
-      "decision": "undecided",
+      "decision": "keep",
       "sourceKey": "227118f6afd669af6a1a853e8f2d6de84aefc4667f42d7ed9dc9598fe0353279",
       "assetFingerprint": "405fdee246317b0a183f502f53eed8deecef52fd237ced8fd74cf77554029b1b"
     }

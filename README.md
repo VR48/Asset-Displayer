@@ -468,9 +468,10 @@ authorization.
 
 Jane rear/up v2 has two selection-only branches: native frames 49–92 (walking
 cycle, 44 frames) and 93–125 (exit/planting test, 33 frames), both at 24 fps.
-The original clip and decoded RGB pixels are preserved. The loop retains a
-small pose/velocity mismatch; the exit ends before a stable stop is established.
-Neither cut uses interpolation, blending, rescaling or retiming.
+The original MP4 and exact pre-transparency frames are retained; the public
+previews now apply the Keep-only matte/despill pass described below. The loop
+retains a small pose/velocity mismatch; the exit ends before a stable stop is
+established. Neither cut uses interpolation, blending, rescaling or retiming.
 
 Jane's first Pile Driver full-motion diagnostics are grouped under the selected
 right master. The Fast / BS1 / high-motion pair uses an identical padded source:
@@ -487,11 +488,87 @@ families retain text-only source context without duplicating approved asset
 buttons in the review list.
 
 Jane's experimental raised-ready right reference is separately reviewable as
-candidate 94 beneath her kept right-facing source. It is an unapproved pose
-study, not a replacement standing/walking master. Standard and Video Raw motion
+candidate 94 beneath her kept right-facing source. The latest owner handoff
+keeps this pose reference for keyframes; its image remains byte-identical and
+does not replace the standing/walking master. Standard and Video Raw motion
 trials from it remain local because they fail the intended captive-spike action;
 attack slots 92 and 93 still await usable v2 replacements.
 
-For the next handoff-based update, kept animations must receive the established
-matte/despill transparency pass before publication. See [AGENTS.md](AGENTS.md)
-for native-frame processing, source preservation and approval/notes requirements.
+## Keep-animation transparency
+
+Apply the latest owner handoff first, then process **Keep animations only**:
+
+```sh
+python tools/keep-transparency.py prepare
+# Inspect every candidate's private *.samples.png on light/dark/checker.
+python tools/keep-transparency.py apply --work .local/transparency/WORK_DIRECTORY
+python tools/verify-transparency.py --work .local/transparency/WORK_DIRECTORY
+node tools/smoke-transparency.mjs .local/transparency/WORK_DIRECTORY
+python tools/keep-transparency.test.py
+node --test --test-concurrency=1
+node verify.mjs
+```
+
+Dependencies: Python with Pillow, NumPy and OpenCV; ffmpeg/ffprobe; Node.
+The browser smoke uses the sibling Lanternwake Playwright installation and
+installed Chrome. It starts only a temporary local AD HTTP server.
+It checks exact alpha/opaque pixels, geometry, playback, note migration and a
+real handoff download. Chrome canvas readback can round translucent RGB;
+the smoke bounds the composited error to one 8-bit unit. The decoded-file
+verifier checks encoded RGBA hashes exactly, for every timeline frame.
+
+The native-frame processor calls `bot_cleanup_helpers.py` directly, pinned to
+VR48/Discord-AI-Bot commit `2a0754d3e9b899aeb90002533ddb75d2cd110f47`:
+matte then despill, actual magenta/green matte, tolerance 92, edge depth 4.
+It never invokes `clean-animation.py`'s square runtime adapter or its sampling,
+resizing, crop, stabilization, retiming, hole-fill or redraw operations.
+One frame is processed at a time, with a single encoder.
+
+Alpha and borders are inspected rather than trusting an RGBA container.
+Genuinely transparent approved frame files remain byte-identical. Opaque
+timelines become lossless RGBA WebP frames at the exact approved canvas and
+frame order. Native-video previews decode every chosen review-video frame
+(otherwise every original-video frame), with ffprobe timing and count checks.
+Original MP4 and repaired WebM downloads remain unchanged. Jane right v1 uses
+its own approved historical frames; v2 uses its approved repaired WebM.
+The rear full take and its exact 49–92 / 93–125 cuts share matching output files.
+
+The repaired WebM uses millisecond timestamps. Its frames are mapped one-to-one
+to original MP4 native PTS only after every timestamp and duration agrees within
+one WebM tick; exact original 24-fps cadence and 125/24-second duration remain
+authoritative. Both probes and the rounding proof are private evidence, and
+`transparency.timing_video_sha256` identifies that timing source. A repair whose
+timing differs beyond quantization stops rather than silently retiming.
+
+Before processing, the tool privately archives the full catalog/state and all
+selected preview-frame and source-video resources with SHA-256 hashes under
+`.local/transparency/`. Per-frame evidence includes source/output file and RGBA
+hashes, alpha counts, native geometry/duration, removed/reconstructed pixels,
+protected-interior hashes and white/blue/green/red color metrics. Inspect hair,
+weapons, highlights and equipment in each before/after sample sheet. Protected
+interiors outside the bounded matte edge must remain exact; boundary unmixing
+can change RGB and alpha. Authored colors indistinguishable from the key are an
+inherent keyer limit, not evidence of preserved detail; stop affected sources
+if samples expose overkeying.
+
+All outputs and before backups precede a durable, hash-checked transaction.
+Catalog and public state are individually atomically replaced; interruption
+between them is recoverable by rerunning the same `apply --work` command.
+Unshared obsolete preview files are removed only after the metadata cutover
+and verified archival. Shared frames, comparison baselines and all source videos
+are protected. A completed transaction is a no-op on replay.
+
+New catalog fingerprints describe the actual displayed RGBA timelines.
+Published Keep decisions are retained and the baseline revision advances once;
+existing `loadReviewSession` merges private old-fingerprint browser notes into
+the new Keep baseline. No fingerprint whitelist or notes are published.
+`transparency` publishes only recipe/source/proof hashes; prior repair assertions
+are scoped to the retained repair video, not falsely asserted for despilled
+previews. Fresh handoffs bind to the new previews; already-applied old handoff
+transactions retain their existing replay semantics.
+
+Applied baseline: revision 14, 22 Keep / 33 Undecided, no Delete/Redo.
+All 13 kept animations have real alpha: 113 already-transparent frames preserved,
+1,315 timeline entries converted, 1,428 entries checked in total. All nine kept
+images, including reference 94, are unchanged. See [AGENTS.md](AGENTS.md) for the
+owner's continuing workflow requirements.

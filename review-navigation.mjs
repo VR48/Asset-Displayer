@@ -1,4 +1,4 @@
-import {groupBranches} from './branch-navigation.mjs?v=1.28.0';
+import {groupBranches} from './branch-navigation.mjs?v=1.29.0';
 
 const ownerApproved='01_OWNER_APPROVED';
 const characterOf=set=>set.usage?.character??'Other';
