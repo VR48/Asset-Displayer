@@ -30,6 +30,13 @@ Owner approved and remain present in handoff downloads.
   ensure handoff fingerprints/provenance describe the actual displayed version.
   Do not silently discard browser notes or reset approved motion to Undecided.
 
-Unapproved generation trials remain raw for review. Failed trials remain local;
+Owner instruction (2026-11-16): publish all future generated animation candidates
+to this repository's GitHub Pages for shared review, including candidates that
+need further work. Unapproved generation trials remain raw and Undecided; a
+technical rejection does not replace the owner's review. Preserve originals and
+label edits truthfully. An explicit request to publish only fixed versions takes
+precedence: the current Jane combo repair update publishes repaired versions only,
+because the owner already reviewed the originals in MJ Web.
+
 Redo slots reserve their original numbers and receive versioned replacements
-only when a usable candidate is available.
+when the requested replacement candidate is available.
