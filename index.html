@@ -1,17 +1,11 @@
 <!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Asset Displayer · Lanternwake</title>
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
-<link rel="stylesheet" href="style.css?v=1.32.0">
-<header><div><div class="brand"><span id="ad-version" class="ad-version">v1.32.0</span><h1>Asset Displayer</h1></div><small>Lanternwake animation review · original videos and lossless frame sets</small></div><div class="handoff-actions"><button id="export">Download handoff</button></div></header>
+<link rel="stylesheet" href="style.css?v=1.33.0">
+<header><div><div class="brand"><span id="ad-version" class="ad-version">v1.33.0</span><h1>Asset Displayer</h1></div><small>Lanternwake animation review · original videos and lossless frame sets</small></div><div class="handoff-actions"><button id="export">Download handoff</button></div></header>
 <div class="handoff-status"><span id="handoff-status" role="status">Choose decisions and add notes, then download the handoff JSON and attach it in chat. Applied handoffs preserve the status colors. Notes stay in your browser and downloaded file.</span></div>
-<!-- Review navigation: current Keep decisions, including browser overrides, live
-     only in Owner approved, collapsed initially; its open state survives rerenders.
-     Other decisions and pending replacements stay in review. Character filters
-     apply to both partitions. Owner approved filters by Keep across package
-     categories; other category filters use unchanged approval_category metadata.
-     branch_of groups each partition; excluded ancestors are text-only context.
-     Initial selection prefers an unkept candidate (first candidate if all kept).
-     Native summary supports keyboard disclosure; no automatic panel switch on save.
-     Decisions, notes, fingerprints and full handoff membership remain independent. -->
+<!-- Current-release votes stay in candidates (Keep remains green). Published
+     untouched Keeps live in collapsed Owner approved. Release rollover resets only
+     the browser presentation ledger; all decisions and private handoff notes stay. -->
 <main><aside><div class="filters"><select id="character" aria-label="Character"><option value="">All characters</option></select><select id="category" aria-label="Category"><option value="">All package categories</option></select></div><small id="counts" role="status"></small><div id="list">
 <section aria-labelledby="review-heading"><h2 id="review-heading" class="navigation-heading">For review</h2><p id="review-empty" class="muted" hidden>No candidates awaiting review in this view.</p><div id="review-list"></div></section>
 <details id="owner-approved"><summary id="approved-summary" data-navigation="owner-approved">Owner approved (0)</summary><div id="approved-list"></div></details>
@@ -24,7 +18,7 @@
 <div class="controls"><button id="play">Pause</button><button id="previous">◀ Frame</button><button id="next">Frame ▶</button><select id="speed"><option value="0.25">¼ speed</option><option value="0.5">½ speed</option><option value="1" selected>Original timing</option></select><label><input type="checkbox" id="loop" checked> Repeat preview</label><label><input type="checkbox" id="pivot" title="Alignment guide: supplied anchor or fixed first-frame foreground baseline."> Show anchor</label><select id="background"><option value="checker">Checker</option><option value="dark">Dark</option><option value="light">Light</option></select><span id="time"></span></div>
 <input type="range" id="scrub" class="scrub" min="0" max="1" step="1" value="0">
 <p><a id="review-video-download" hidden download>Download repaired video</a></p>
-<p><a id="original-video-download" hidden download>Download original MP4</a></p>
+<p><a id="original-video-download" hidden download>Download MP4</a></p>
 <div class="details"><div class="panel"><strong>Provenance & playback</strong><p id="geometry"></p><code id="uuid"></code><p class="muted" id="frameInfo"></p></div><div class="panel"><label for="notes">Requested changes / review notes</label><textarea id="notes" maxlength="4000" placeholder="What should change? Which version or frames should be used?"></textarea></div></div>
 </article></main>
-<script type="module" src="app.js?v=1.32.0"></script></html>
+<script type="module" src="app.js?v=1.33.0"></script></html>

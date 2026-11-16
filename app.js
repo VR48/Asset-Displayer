@@ -1,19 +1,21 @@
-import {pendingRedoNotes} from './redo-slots.mjs?v=1.32.0';
-import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.32.0';
+import {pendingRedoNotes} from './redo-slots.mjs?v=1.33.0';
+import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.33.0';
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.32.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.32.0';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.32.0';
-import {reviewNavigation,initialReviewCandidate} from './review-navigation.mjs?v=1.32.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.33.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.33.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.33.0';
+import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs?v=1.33.0';
+import {midjourneySourceLink} from './source-link.mjs?v=1.33.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
-const APP_VERSION='1.32.0';$('ad-version').textContent='v'+APP_VERSION;
+const APP_VERSION='1.33.0';$('ad-version').textContent='v'+APP_VERSION;
 const versions=await catalogVersions(data.sets);
 let published;
 try{const response=await fetch('./review-state.json',{cache:'no-cache'});if(!response.ok)throw Error('Saved status request failed.');published=validateReviewState(await response.json());}
 catch(error){$('handoff-status').textContent='Saved decisions could not be loaded. Reload before reviewing or downloading a handoff.';$('export').disabled=true;throw error;}
 let stored=null,legacy=null;try{stored=JSON.parse(localStorage.getItem(STORAGE_KEY)||'null');legacy=JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY)||'null');}catch{}
 const restored=loadReviewSession(published,stored,legacy,data.sets,versions),session=restored.session;
+session.reviewIteration=restoreReviewIteration(stored?.reviewIteration,APP_VERSION,data.sets);
 session.redoNotes=pendingRedoNotes(data.redo_slots??[],stored,legacy);
 let decisions=restored.decisions,revision=session.editRevision;
 const handoffStatus=(text,error=false)=>{$('handoff-status').textContent=text;$('handoff-status').parentElement.classList.toggle('error',error);};
@@ -54,7 +56,7 @@ function branchGroup(node,filtering,partition){
 }
 function list(){
  const focusKey=$('list').contains(document.activeElement)?document.activeElement.dataset.navigation:null;
- const {review,approved,pending,reviewCount,approvedCount}=reviewNavigation(data.sets,decisions,data.redo_slots??[],{character:$('character').value,category:$('category').value}),filtering=!!($('character').value||$('category').value);
+ const {review,approved,pending,reviewCount,approvedCount}=reviewNavigation(data.sets,decisions,data.redo_slots??[],{character:$('character').value,category:$('category').value,lingeringKeeps:new Set(session.reviewIteration.touched)}),filtering=!!($('character').value||$('category').value);
  // Keep the native details/summary mounted: open state and keyboard focus survive
  // notes, decisions and filter rerenders without switching the current panel.
  $('review-list').replaceChildren();$('approved-list').replaceChildren();
@@ -112,7 +114,9 @@ function select(s){
  const review=s.review_video;if(review&&/^videos\/[a-f0-9]{64}\.webm$/.test(review.url)){$('review-video-download').href=review.url;$('review-video-download').download=s.name+'.webm';$('review-video-download').hidden=false;}else{$('review-video-download').hidden=true;$('review-video-download').removeAttribute('href');}
  const original=s.original_video?.url;if(original&&/^videos\/[a-f0-9]{64}\.mp4$/.test(original)){$('original-video-download').href=original;$('original-video-download').download=s.name+'.mp4';$('original-video-download').hidden=false;}else{$('original-video-download').hidden=true;$('original-video-download').removeAttribute('href');}
  $('geometry').textContent=`${w} × ${h} native canvas · ${native?s.native_frame_count+' native video frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds':still?'Still reference (not animated)':(s.unique_frame_files??s.unique_png_files)+' unique lossless frames · '+(s.duration_verified_ms/1000).toFixed(3)+' seconds'}`;
- $('uuid').textContent=s.source.mj_job_uuid?'MJ UUID: '+s.source.mj_job_uuid:s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);
+ const sourceLink=midjourneySourceLink(s);$('uuid').replaceChildren();
+ if(sourceLink){const a=document.createElement('a');a.href=sourceLink.url;a.textContent=sourceLink.jobId;a.target='_blank';a.rel='noopener noreferrer';a.title='View original job on Midjourney';$('uuid').append('MJ UUID: ',a);}
+ else $('uuid').textContent=s.source.provider+(s.source.job_id?' · Job: '+s.source.job_id:' · Source SHA-256: '+s.source.sha256);
  for(const id of ['play','previous','next','scrub','speed','loop'])$(id).disabled=still||(native&&['previous','next','scrub'].includes(id));
  if(still)playing=false;$('play').textContent=still?'Still image':playing?'Pause':'Play';
  $('decision').value=decisions[s.name]?.decision||'undecided';$('notes').value=decisions[s.name]?.notes||'';decisionVisuals();list();draw(0);
@@ -124,10 +128,11 @@ function select(s){
  $('replacement-label').textContent=baseline?`Authorize replacing ${s.replacement.slot} (${s.replacement.phase}) with this candidate.`:'';
 }
 function save(){if($('decision').value!=='keep')$('replace-approved').checked=false;decisions[current.name]={decision:$('decision').value,notes:$('notes').value,mjJobUuid:current.source.mj_job_uuid,sourceKey:sourceIdentity(current),packageCategory:current.approval_category,assetFingerprint:versions.get(current.name),replaceApproved:!!baseline&&$('replace-approved').checked,replacementFingerprint:current.replacement?.baselineFingerprint};session.overrides[current.name]=decisions[current.name];session.editRevision=++revision;persistBrowser();list();decisionVisuals();}
-$('replace-approved').onchange=()=>{if($('replace-approved').checked)$('decision').value='keep';save();};
+function vote(){if(!session.reviewIteration.touched.includes(current.name))session.reviewIteration.touched.push(current.name);save();}
+$('replace-approved').onchange=()=>{if($('replace-approved').checked)$('decision').value='keep';vote();};
 $('compare').onclick=()=>{if(!baseline)return;comparing=!comparing;generation++;originalPaint++;originalFrame=-1;$('previews').classList.toggle('comparing',comparing);$('original-pane').hidden=!comparing;$('candidate-label').hidden=!comparing;$('compare').textContent=comparing?'Close comparison':'Compare';$('compare').setAttribute('aria-pressed',String(comparing));$('original-label').textContent=`Current original · ${current.replacement.slot} · ${baseline.phase}`;
  const [w,h]=current.actual_dimensions[0];$('canvas').width=comparing?640:w;$('canvas').height=comparing?640:h;$('original-canvas').width=640;$('original-canvas').height=640;draw(frame);drawOriginal(true);};
- $('decision').onchange=save;$('notes').oninput=save;const filterChanged=()=>{filteredExpansion.clear();list();};$('character').onchange=filterChanged;$('category').onchange=filterChanged;
+ $('decision').onchange=vote;$('notes').oninput=save;const filterChanged=()=>{filteredExpansion.clear();list();};$('character').onchange=filterChanged;$('category').onchange=filterChanged;
 $('native-video').onplay=()=>{$('play').textContent='Pause';};$('native-video').onpause=()=>{if(current?.review_mode==='native-video')$('play').textContent='Play';};
 $('speed').onchange=()=>{$('native-video').playbackRate=Number($('speed').value);};$('loop').onchange=()=>{$('native-video').loop=$('loop').checked;};
 $('play').onclick=()=>{if(current.review_mode==='native-video'){const v=$('native-video');if(v.paused)v.play().catch(()=>{$('time').textContent='Video could not play. Check your connection.';});else v.pause();return;}if(!playing&&elapsed>=current.duration_verified_ms-.01){elapsed=position=0;draw(0);}playing=!playing;$('play').textContent=playing?'Pause':'Play';last=performance.now();};
@@ -136,7 +141,7 @@ $('previous').onclick=()=>seek(frame-1);$('next').onclick=()=>seek(frame+1);$('s
 $('pivot').onchange=()=>{draw(frame);drawOriginal(true);};$('background').onchange=()=>{for(const id of ['stage','original-stage'])$(id).className='stage '+$('background').value;};
 $('export').onclick=()=>{const blob=new Blob([JSON.stringify(snapshot(),null,2)+'\n'],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=FILE_NAME;a.click();handoffStatus('Download requested. Attach '+FILE_NAME+' in chat when it finishes.');setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
 function tick(now){const delta=now-last;last=now;if(current&&playing){elapsed+=delta*Number($('speed').value);const duration=comparing?Math.max(current.duration_verified_ms,baseline.duration_verified_ms):current.duration_verified_ms;if(!$('loop').checked&&elapsed>=duration){elapsed=duration-.001;playing=false;$('play').textContent='Play';}position=$('loop').checked?elapsed%current.duration_verified_ms:Math.min(elapsed,current.duration_verified_ms-.001);const index=frameAt(current.durations,position,false);if(index!==frame)draw(index);drawOriginal();for(let j=1;j<=3;j++)image((index+j)%current.frames.length).catch(()=>{});}paintNativeAnchor();requestAnimationFrame(tick);}
-const initial=initialReviewCandidate(data.sets,decisions);
+const initial=initialReviewCandidate(data.sets,decisions,new Set(session.reviewIteration.touched));
 if(initial)select(initial);
 else{list();$('title').textContent=(data.redo_slots??[]).some(s=>!s.currentAssetId)?'Awaiting replacements':'No candidates';for(const id of ['play','previous','next','scrub','speed','loop','pivot','decision','notes'])$(id).disabled=true;$('compare').hidden=true;}
 requestAnimationFrame(tick);

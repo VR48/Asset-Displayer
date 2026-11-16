@@ -43,6 +43,21 @@ def main():
             continue
         counts['animations'] += 1
         report_path = work / (original['name'] + '.json')
+        # Incremental runs omit banks already carrying verified transparency.
+        # They must remain byte-for-byte identical; their prior evidence belongs
+        # to its original private transaction, not this run's work directory.
+        if not report_path.exists() and original.get('transparency'):
+            assert candidate == original
+            for frame in candidate['frames']:
+                path = kt.resource(root, frame['url'])
+                with Image.open(path) as decoded:
+                    rgba = decoded.convert('RGBA')
+                    assert kt.digest(rgba.tobytes()) == frame['rgba_sha256']
+                    assert kt.inspect_alpha(np.array(rgba))['genuine_alpha']
+                assert kt.file_hash(path) == frame['sha256']
+                counts['frames'] += 1
+                counts['preserved_frames'] += 1
+            continue
         report = json.loads(report_path.read_bytes())
         if candidate.get('transparency'):
             assert candidate['transparency']['evidence_sha256'] == kt.file_hash(report_path)

@@ -1,11 +1,25 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {reviewNavigation,initialReviewCandidate} from './review-navigation.mjs';
+import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs';
 
 const owner='01_OWNER_APPROVED',other='03_ALTERNATIVES_AND_DERIVED_CUTS';
 const asset=(name,number,branch_of,approval_category=other,character='Jane')=>Object.freeze({name,number,branch_of,approval_category,usage:{character}});
 const buttons=nodes=>nodes.flatMap(node=>[...(node.selectable?[node.set.name]:[]),...buttons(node.children)]);
 const shape=nodes=>nodes.map(n=>[n.set.name,n.selectable,shape(n.children)]);
+
+test('Keep votes linger exclusively in candidates for the release, including re-approved published Keeps',()=>{
+ const sets=[asset('published keep',1),asset('fresh vote',2)],decisions={'published keep':{decision:'keep'},'fresh vote':{decision:'keep'}};
+ let iteration=restoreReviewIteration(null,'1.33.0',sets);
+ iteration.touched.push('fresh vote');
+ let nav=reviewNavigation(sets,decisions,[],{lingeringKeeps:new Set(iteration.touched)});
+ assert.deepEqual(buttons(nav.review),['fresh vote']);assert.deepEqual(buttons(nav.approved),['published keep']);
+ iteration.touched.push('published keep');decisions['published keep'].decision='hold';
+ nav=reviewNavigation(sets,decisions,[],{lingeringKeeps:new Set(iteration.touched)});assert.equal(nav.reviewCount,2);assert.equal(nav.approvedCount,0);
+ decisions['published keep'].decision='keep';iteration=restoreReviewIteration(JSON.parse(JSON.stringify(iteration)),'1.33.0',sets);
+ nav=reviewNavigation(sets,decisions,[],{lingeringKeeps:new Set(iteration.touched)});assert.equal(nav.reviewCount,2);assert.equal(nav.approvedCount,0);assert.equal(initialReviewCandidate(sets,decisions,new Set(iteration.touched)),sets[0]);
+ iteration=restoreReviewIteration(iteration,'1.34.0',sets);nav=reviewNavigation(sets,decisions,[],{lingeringKeeps:new Set(iteration.touched)});assert.equal(nav.reviewCount,0);assert.equal(nav.approvedCount,2);assert.equal(decisions['published keep'].decision,'keep');
+ assert.deepEqual(restoreReviewIteration({version:'1.33.0',touched:['fresh vote','fresh vote','missing',null]},'1.33.0',sets).touched,['fresh vote']);
+});
 
 test('mixed families retain grouping with source context, never cross-partition asset buttons',()=>{
  const sets=Object.freeze([asset('kept source',1),asset('fix child',2,'kept source'),asset('kept grandchild',3,'fix child'),asset('review source',4),asset('kept child',5,'review source'),asset('redo child',6,'review source')]);
@@ -101,8 +115,9 @@ test('browser: partition moves, native disclosure, filters, notes, handoff and e
   await page.locator('#notes').fill('Independent child notes <b>literal</b>');
   assert.equal(await page.locator('#owner-approved').evaluate(e=>e.open),true);
   await page.locator('#decision').selectOption('keep');
-  assert.deepEqual(await ids('#review-list'),[names[3],names[5]]);
-  assert.deepEqual(await ids('#approved-list'),[names[0],names[1],names[2],names[4]]);
+  assert.deepEqual(await ids('#review-list'),[names[1],names[3],names[5]]);
+  assert.deepEqual(await ids('#approved-list'),[names[0],names[2],names[4]]);
+  assert.equal(await page.locator('#review-list [data-asset="'+names[1]+'"]').getAttribute('data-decision'),'keep');
   assert.match(await page.locator('#title').innerText(),/fix child/);
   await page.locator('#decision').selectOption('hold');await checkIds();
   await page.locator('#approved-summary').click();

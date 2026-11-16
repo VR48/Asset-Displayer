@@ -8,8 +8,11 @@ canvas geometry, source-frame mappings and exact animation timing.
 Owner instruction (2026-11-10): on the next and subsequent handoff-based AD
 updates, apply the established transparency workflow to animations marked
 **Keep candidate** before publication. Kept animations should preview with real
-alpha, not an opaque magenta/green rectangle. Keep entries remain collapsed in
-Owner approved and remain present in handoff downloads.
+alpha, not an opaque magenta/green rectangle. Published Keep entries live in
+collapsed Owner approved. Votes changed during an AD release stay in candidates,
+green when Keep, until the next AD version; this includes re-approved entries.
+Reloading the same release preserves that orientation. A version rollover clears
+only the presentation ledger, never votes/notes. All entries remain in handoffs.
 
 - Inspect existing alpha; preserve already-transparent approved frames.
 - Use the pinned Lanternwake Dune2 matte-then-despill helpers in
