@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 18,
+  "revision": 19,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -286,16 +286,6 @@
       "decision": "keep",
       "sourceKey": "aa52f06c-1a73-4551-8816-e2bdab1988f8",
       "assetFingerprint": "0612857970c0c7709a60fe35874ab322a6968909aaf2a8133c25d47c1163279b"
-    },
-    "jane-pile-bunker-two-hit-repaired-v1": {
-      "decision": "hold",
-      "sourceKey": "aa52f06c-1a73-4551-8816-e2bdab1988f8",
-      "assetFingerprint": "1e10f209d1ce24c589cd5af2540800cb08c9326b1e72e18fb94835e5d8f0fa89"
-    },
-    "jane-pile-bunker-kickback-repaired-v1": {
-      "decision": "hold",
-      "sourceKey": "d8177deb-5bb5-4484-aa00-3ccc7e2f300a",
-      "assetFingerprint": "fb08ddaf50e396b0cfe506f7f56b3560cef9219a1a894a7ef987c6c1f1dcb552"
     }
   }
 }
