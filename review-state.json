@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 28,
+  "revision": 30,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
