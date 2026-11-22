@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 30,
+  "revision": 32,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -291,6 +291,11 @@
       "decision": "keep",
       "sourceKey": "aa52f06c-1a73-4551-8816-e2bdab1988f8",
       "assetFingerprint": "33f734c3d2757fb9c12e9464aa1956cfa489098d404ed770242a7b2958c087fe"
+    },
+    "jane-pile-bunker-kickback-repaired-v7": {
+      "decision": "keep",
+      "sourceKey": "d8177deb-5bb5-4484-aa00-3ccc7e2f300a",
+      "assetFingerprint": "fe1730ce272aebaf028810801ee3f2ce992851a90257e7dcf4d07636fce7e9c8"
     }
   }
 }
