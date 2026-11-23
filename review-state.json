@@ -1,6 +1,6 @@
 {
   "schema": "asset-displayer-review-state-v1",
-  "revision": 34,
+  "revision": 36,
   "decisions": {
     "rook-sprint-loop-A": {
       "decision": "undecided",
@@ -336,6 +336,16 @@
       "decision": "undecided",
       "sourceKey": "ad997597ac3e9b4bcdc2880753f5a85501b70516dad5c3090ff23c584c178e6b",
       "assetFingerprint": "7165117f8abbab7d7939b4c6af9daab99b18fd4e22c7d08b9b785cff0f966a4e"
+    },
+    "jane-pile-bunker-sprint-charge-right-v5": {
+      "decision": "keep",
+      "sourceKey": "eba3cbcc-30be-407d-b892-d52ed9603245",
+      "assetFingerprint": "ff282550899c72254b2e3dca85afdc45beceedb2672c2717b9c66169eeaf9007"
+    },
+    "jane-pile-bunker-sprint-charge-right-v7": {
+      "decision": "keep",
+      "sourceKey": "c7225cb7-e861-45f2-bbde-02cf2a46b0dd",
+      "assetFingerprint": "a806285be7043ee4772ed5ce2ed155c593e5b77f9f0c1060dd0bc7224e38f6f8"
     }
   }
 }
