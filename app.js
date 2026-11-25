@@ -1,14 +1,14 @@
-import {pendingRedoNotes} from './redo-slots.mjs?v=1.57.0';
-import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.57.0';
+import {pendingRedoNotes} from './redo-slots.mjs?v=1.58.0';
+import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.58.0';
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.57.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.57.0';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.57.0';
-import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs?v=1.57.0';
-import {midjourneySourceLink} from './source-link.mjs?v=1.57.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.58.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.58.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.58.0';
+import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs?v=1.58.0';
+import {midjourneySourceLink} from './source-link.mjs?v=1.58.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
-const APP_VERSION='1.57.0';$('ad-version').textContent='v'+APP_VERSION;
+const APP_VERSION='1.58.0';$('ad-version').textContent='v'+APP_VERSION;
 const versions=await catalogVersions(data.sets);
 let published;
 try{const response=await fetch('./review-state.json',{cache:'no-cache'});if(!response.ok)throw Error('Saved status request failed.');published=validateReviewState(await response.json());}
