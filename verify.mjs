@@ -9,8 +9,13 @@ import {inspectLosslessFrameHeader} from './frame-format.mjs';
 const manifest=JSON.parse(await readFile(new URL('./data.json',import.meta.url),'utf8'));
 const frames=new Map(),videos=new Map();let entries=0;
 validateRedoSlots(manifest);assert(Array.isArray(manifest.sets));assert.equal(new Set(manifest.sets.map(s=>s.name)).size,manifest.sets.length);assert.equal(new Set(manifest.sets.map(s=>s.number)).size,manifest.sets.length);
+function isStandaloneTake(set){
+ const expected=set.source.loop_requested?'standalone-loop':'standalone-one-shot';
+ return set.source.review_classification===expected&&set.preview_loop===set.source.loop_requested&&
+  !set.paired_continuous_asset_id&&!set.paired_loop_asset_id&&!set.paired_continuous_slot_id&&!set.paired_loop_slot_id;
+}
 for(const set of manifest.sets){
- if(set.review_mode==='native-video'){assert.equal(set.frames.length,1);assert(Number.isInteger(set.native_frame_count)&&set.native_frame_count>1);assert(['native-original-video','native-derived-video'].includes(set.source.preview_basis));assert.equal(typeof set.source.loop_requested,'boolean');assert(set.original_video);assert.equal(set.usage.status,'new-feature');assert(set.source.custom_end_requested||manifest.sets.some(s=>s.name===(set.paired_continuous_asset_id??set.paired_loop_asset_id))||(manifest.redo_slots??[]).some(r=>r.id===(set.paired_loop_slot_id??set.paired_continuous_slot_id))||set.source.retired_pair_asset_ids?.length);}
+ if(set.review_mode==='native-video'){assert.equal(set.frames.length,1);assert(Number.isInteger(set.native_frame_count)&&set.native_frame_count>1);assert(['native-original-video','native-derived-video'].includes(set.source.preview_basis));assert.equal(typeof set.source.loop_requested,'boolean');assert(set.original_video);assert.equal(set.usage.status,'new-feature');assert(isStandaloneTake(set)||set.source.custom_end_requested||manifest.sets.some(s=>s.name===(set.paired_continuous_asset_id??set.paired_loop_asset_id))||(manifest.redo_slots??[]).some(r=>r.id===(set.paired_loop_slot_id??set.paired_continuous_slot_id))||set.source.retired_pair_asset_ids?.length);}
  if(set.review_video){assert.equal(set.review_video.url,`videos/${set.review_video.sha256}.webm`);assert.match(set.review_video.sha256,/^[a-f0-9]{64}$/);assert.equal(set.review_video.mime_type,'video/webm');videos.set(set.review_video.url,set.review_video.sha256);}
  if(set.original_video){assert.equal(set.original_video.url,`videos/${set.original_video.sha256}.mp4`);assert.match(set.original_video.sha256,/^[a-f0-9]{64}$/);assert.equal(set.original_video.sha256,set.source.video_sha256);videos.set(set.original_video.url,set.original_video.sha256);}
  if(set.source.mj_job_uuid)assert.match(set.source.mj_job_uuid,/^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/);

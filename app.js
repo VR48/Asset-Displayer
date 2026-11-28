@@ -1,14 +1,14 @@
-import {pendingRedoNotes} from './redo-slots.mjs?v=1.65.0';
-import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.65.0';
+import {pendingRedoNotes} from './redo-slots.mjs?v=1.66.0';
+import {previewAnchor,drawAnchor} from './anchor.mjs?v=1.66.0';
 
-import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.65.0';
-import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.65.0';
-import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.65.0';
-import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs?v=1.65.0';
-import {midjourneySourceLink} from './source-link.mjs?v=1.65.0';
+import {FILE_NAME,catalogVersions,buildHandoff,sourceIdentity} from './handoff.mjs?v=1.66.0';
+import {frameAt,baselineFor,comparisonBounds} from './comparison.mjs?v=1.66.0';
+import {STORAGE_KEY,LEGACY_STORAGE_KEY,validateReviewState,loadReviewSession} from './review-state.mjs?v=1.66.0';
+import {reviewNavigation,initialReviewCandidate,restoreReviewIteration} from './review-navigation.mjs?v=1.66.0';
+import {midjourneySourceLink} from './source-link.mjs?v=1.66.0';
 const $=id=>document.getElementById(id), data=await(await fetch('./data.json',{cache:'no-cache'})).json();
 const comparisons=await(await fetch('./comparisons.json',{cache:'no-cache'})).json();
-const APP_VERSION='1.65.0';$('ad-version').textContent='v'+APP_VERSION;
+const APP_VERSION='1.66.0';$('ad-version').textContent='v'+APP_VERSION;
 const versions=await catalogVersions(data.sets);
 let published;
 try{const response=await fetch('./review-state.json',{cache:'no-cache'});if(!response.ok)throw Error('Saved status request failed.');published=validateReviewState(await response.json());}
@@ -28,7 +28,7 @@ function paintNativeAnchor(){const overlay=$('anchor-overlay');overlay.hidden=!$
 const character=s=>s.usage?.character??'Other';
 const decisionLabels={undecided:'Undecided',keep:'Keep candidate',hold:'Modify/Fix',skip:'Redo',delete:'Delete candidate'};
 function decisionVisuals(){const state=decisions[current.name]?.decision??'undecided';$('decision').dataset.decision=state;$('candidate-panel').dataset.decision=state;$('decision-info').textContent=state==='skip'?'This version will be archived and removed when your handoff is applied; its slot awaits a new version.':state==='delete'?'Marked for deletion when your handoff is applied in the next update.':decisionLabels[state];}
-const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review','06_NEW_CHARACTER_CANDIDATES':'06 · New character candidates'};
+const categoryLabels={'01_OWNER_APPROVED':'01 · Owner approved','02_OWNER_SELECTED_SOURCES':'02 · Selected source / compromise','03_ALTERNATIVES_AND_DERIVED_CUTS':'03 · Alternative / derived cut','04_REVIEW_CONDITIONAL':'04 · Conditional review','05_TECHNICAL_PORT_PENDING_VISUAL_REVIEW':'05 · Seb port — visual review','06_NEW_CHARACTER_CANDIDATES':'06 · New character candidates','07_NEW_ENEMY_CANDIDATES':'07 · New enemy candidates'};
 for(const value of [...new Set([...data.sets.map(character),...(data.redo_slots??[]).map(s=>s.character)])]){const o=document.createElement('option');o.value=value;o.textContent=value;$('character').append(o);}
 for(const [value,label] of Object.entries(categoryLabels)){const o=document.createElement('option');o.value=value;o.textContent=label;$('category').append(o);}
 const collapsedBranches=new Set(),filteredExpansion=new Map();
